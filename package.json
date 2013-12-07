@@ -1,16 +1,21 @@
 {
   "name": "equipReserv",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "equipReserv",
-  "main": "app.js",
+  "main": "server.js",
   "author": {
 	"name": "ANT_IW3R",
-	"email": ""
+	"email": "anthonyleepellerin@hotmail.com"
   },
   "dependencies": {
 	"express": "3.4.4",
 	"jade": "*",
 	"stylus": "*",
-	"connect-mongo": "*"
+	"connect-mongo": "0.4.x",
+	"mysql": "2.0.0-rc2",
+	"async": "0.2.x",
+	"generic-pool": "2.x",
+	"bcrypt": "0.x",
+	"node-uuid": "1.x
   }
 }
