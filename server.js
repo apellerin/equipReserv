@@ -27,11 +27,12 @@ else {
 
     var express = require('express');
     var routes = require('./routes');
-    //var models = require('./models');
     var user = require('./routes/user');
     var http = require('http');
     var path = require('path');
-
+    var async = require('async');
+    var generic_pool = require('generic-pool');
+    var mysql = require('mysql');
 
     var app = express();
 
@@ -70,8 +71,39 @@ else {
     app.get('/', routes.index);
 
     // Start the app
-    http.createServer(app).listen(app.get('port'), function () {
+    http.createServer(app).listen(app.get('port')) 
         console.log('Express app started by %s', worker_id);
-    });
-
-}
+        
+        //Create mySQL Connection Pool's (25 per CPU)
+        var local = require('./local.config.js');
+        conn_props = local.config.db_config;
+        var pool = generic_pool.Pool({
+        name: 'mysql',
+        max: 10,
+        create: function(callback) {
+            var c = mysql.createConnection({
+                host:     conn_props.host,
+                user:     conn_props.user,
+                password: conn_props.password,
+                database: conn_props.database
+                })
+            c.connect(function(err, server) {
+                callback(err, c);
+                });
+            },
+            destroy: function(c) {
+                c.end();
+            },
+            idleTimeoutMillis : 30000,
+            //log : true 
+        });
+   
+        pool.acquire(function(err, client) {
+                if (err) {
+                    console.log('Error connecting to database');}
+                else {
+                    client.query('INSERT INTO test (idTEST) VALUES(\'' + worker_id + '\')');
+                    pool.release(client);
+                    }
+                });
+            }

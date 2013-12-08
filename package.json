@@ -16,6 +16,6 @@
 	"async": "0.2.x",
 	"generic-pool": "2.x",
 	"bcrypt": "0.x",
-	"node-uuid": "1.x
+	"node-uuid": "1.x"
   }
 }
