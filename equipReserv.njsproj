@@ -34,9 +34,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="lib\mysql_pool.js" />
     <Compile Include="local.config.js" />
-    <Compile Include="routes\index.js" />
-    <Compile Include="routes\user.js" />
+    <Compile Include="routes\routes.js" />
     <Compile Include="server.js" />
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
@@ -47,8 +47,7 @@
     <Content Include="views\layout.jade" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="models\" />
-    <Folder Include="data\" />
+    <Folder Include="lib\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
