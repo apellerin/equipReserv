@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  Legend Login
+  form.form-horizontal(method="POST")
+    div.control-group
+      label.control-label Username
+      div.controls
+        input(type="text", name="username",placeholder="Username")
+    div.control-group
+      label.control-label Password
+      div.controls
+        input(type="password", name="password",placeholder="Password")
+        button.btn(type="submit") Login

@@ -26,12 +26,12 @@ else {
     var worker_id = 'Worker' + cluster.worker.id;
     var express = require('express');
     var http = require('http');
-    var path = require('path');
-    var async = require('async');
-    var mysql_pool = require('./lib/mysql_pool.js');    
+    var path  = require('path');
+    var mysql_pool = require('./lib/mysql_pool.js'); 
+    var namespace = require('express-namespace');   
+
     //Initalize Express Application
     var app = express();
-    var routes = require('./routes/routes')(app);
 
     //Configure Session Store
     app.use( express.cookieParser() );
@@ -44,17 +44,22 @@ else {
         }), secret: 'S3KR#T'
     }));
 
+    //Load Routes
+    var routes = require('./routes/routes')(app);
+
     //Mount Middleware
+    app.use(express.logger('dev'));
+    app.use(express.compress());
+    app.use(express.favicon());
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
     app.set('port', process.env.PORT || 3000);
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'jade');
-    app.use(express.favicon());
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
-    app.use(app.router);
+    app.set('view options', { pretty: true });
     app.use(require('stylus').middleware(path.join(__dirname, 'public')));
     app.use(express.static(path.join(__dirname, 'public')));
+    app.use(app.router);
     app.use(mysql_pool);
 
 

@@ -1,10 +1,36 @@
+var users = require('../lib/users.js');
+
 module.exports = function(app){
 
-    app.get('/login', function(req, res){
-        res.render('index', {
-            title: 'Express Login'
+    //Catch all requests and verify login state.
+    app.all('*',function(req,res,next){
+        users.isLoggedIn(req, 
+            function(result){
+                if (result) {
+                next();
+                }else{
+                    res.render('login',{title : 'Login'});
+                }
         });
     });
+      
+    //User Routes
+    app.namespace('/users', function() {
 
-    //other routes..
+        //Register New Users
+        app.post('/', users.registerUser);
+         
+           
+
+          
+      });//end namespace
+
+
+
+    //Create Error Response - No Route Exists
+    app.all('*', function(req, res, next){
+        throw new Error('The resource does not exist.');
+    });
+
+
 }
