@@ -42,6 +42,7 @@
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
     <Content Include="package.json" />
+    <Content Include="public\images\logo.png" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\login.jade" />
@@ -53,6 +54,7 @@
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
+    <Folder Include="public\scripts\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
