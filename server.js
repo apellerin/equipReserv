@@ -44,36 +44,38 @@ else {
         }), secret: 'S3KR#T'
     }));
 
-    //Load Routes
-    var routes = require('./routes/routes')(app);
+    //Start mySQL Pools
+    sql_pool = mysql_pool.startPool();
+
+
+    
 
     //Mount Middleware
     app.use(express.logger('dev'));
     app.use(express.compress());
     app.use(express.favicon());
     app.use(express.bodyParser());
-    app.use(express.methodOverride());
+    //app.use(express.methodOverride());
     app.set('port', process.env.PORT || 3000);
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'jade');
-    app.set('view options', { pretty: true });
     app.use(require('stylus').middleware(path.join(__dirname, 'public')));
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(app.router);
-    app.use(mysql_pool);
+    //Load Routes
+    var routes = require('./routes/routes')(app);
+  
 
 
     // development only
     if ('development' == app.get('env')) {
       app.use(express.errorHandler());
+      app.set('view options', { pretty: true });
     }
 
     // Start the app
     http.createServer(app).listen(app.get('port')) 
         console.log('Express app started by %s', worker_id);
-
-    //Start mySQL Pools
-    mysql_pool.startPool;
-        
-        
+        console.log(app.get('env'));
+       
 }

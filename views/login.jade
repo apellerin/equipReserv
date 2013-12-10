@@ -2,13 +2,17 @@ extends layout
 
 block content
   Legend Login
-  form.form-horizontal(method="POST")
-    div.control-group
-      label.control-label Username
-      div.controls
-        input(type="text", name="username",placeholder="Username")
-    div.control-group
-      label.control-label Password
-      div.controls
-        input(type="password", name="password",placeholder="Password")
-        button.btn(type="submit") Login
+  form(method="POST", action="/users/authenticate")
+   div.form-group
+     label(for="username") Username:
+     input.form-control(type="text", id="username",placeholder="Enter username", name="username")
+   div.form-group
+     label(for="password") Password:
+     input.form-control(type="password", id="password",placeholder="password", name="password")
+   button.btn.btn-default Submit
+
+
+
+
+
+    
