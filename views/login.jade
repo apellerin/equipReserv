@@ -2,6 +2,7 @@ extends layout
 
 block content
   Legend Login
+  p.loginmessage #{message}
   form(method="POST", action="/users/authenticate")
    div.form-group
      label(for="username") Username:

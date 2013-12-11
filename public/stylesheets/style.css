@@ -3,6 +3,9 @@
   height: 150px;
   background-color: #c8c8c8;
 }
-.header img {
+.header .headerlogo {
   height: 120px;
+}
+.loginmessage {
+  color: #f00;
 }
