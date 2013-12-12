@@ -38,10 +38,11 @@ else {
     var MongoStore = require('connect-mongo')(express);
     app.use(express.session({
         store: new MongoStore({
-            db: 'appName',
+            db: 'eqSessions',
             host: '127.0.0.1',
             port: 27017
-        }), secret: 'S3KR#T'
+        }), secret: 'S3KR#T',
+            maxAge: 300000
     }));
 
     //Start mySQL Pools
