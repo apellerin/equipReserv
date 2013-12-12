@@ -36,7 +36,6 @@
   <ItemGroup>
     <Compile Include="lib\mysql_pool.js" />
     <Compile Include="lib\users.js" />
-    <Compile Include="lib\users_bak.js" />
     <Compile Include="local.config.js" />
     <Compile Include="routes\routes.js" />
     <Compile Include="server.js" />
