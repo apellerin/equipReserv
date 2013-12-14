@@ -1,5 +1,8 @@
 ﻿var cluster = require('cluster');
 
+//Variable to track whether or not we want to fork new workers
+var close_server = false;
+
 // Master process - starts the workers
 if (cluster.isMaster) {
 
@@ -15,13 +18,15 @@ if (cluster.isMaster) {
 
     // In case a worker dies, a new one should be started
     cluster.on('exit', function (worker, code, signal) {
-        cluster.fork();
+        //logger.info('Worker ' + worker.process.pid + ' died');
+        if (close_server = false)  cluster.fork();
     });
 
 }
     // Code for the worker processes to execute
 else {
 
+    
     //Load Middleware
     var worker_id = 'Worker' + cluster.worker.id;
     var express = require('express');
@@ -29,27 +34,24 @@ else {
     var path  = require('path');
     var mysql_pool = require('./lib/mysql_pool.js'); 
     var namespace = require('express-namespace');   
-
+    
     //Initalize Express Application
     var app = express();
-
+    
     //Configure Session Store
     app.use( express.cookieParser() );
+
     var MongoStore = require('connect-mongo')(express);
-    app.use(express.session({
+    var sessStore = app.use(express.session({
         store: new MongoStore({
             db: 'eqSessions',
             host: '127.0.0.1',
             port: 27017
         }), secret: 'S3KR#T',
-            maxAge: 300000
-    }));
+    })); 
 
     //Start mySQL Pools
     sql_pool = mysql_pool.startPool();
-
-
-    
 
     //Mount Middleware
     app.use(express.logger('dev'));
@@ -66,17 +68,17 @@ else {
     //Load Routes
     var routes = require('./routes/routes')(app);
   
-
-
-    // development only
+     // development only
     if ('development' == app.get('env')) {
       app.use(express.errorHandler());
       app.set('view options', { pretty: true });
     }
 
-    // Start the app
-    http.createServer(app).listen(app.get('port')) 
-        console.log('Express app started by %s', worker_id);
-        console.log(app.get('env'));
-       
-}
+ // Start the app
+      
+            var server = http.createServer(app).listen(app.get('port')) 
+                console.log('Express app started by %s', worker_id);
+            }
+
+    
+

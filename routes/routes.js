@@ -9,10 +9,14 @@ module.exports = function(app){
         app.post('/authenticate',function(req,res) {
             users.authenticate(req, res)
               });
-        
-            
-         //User Registration
+
+         //Add New User
         app.post('/register',function(req,res) {
+            users.register(req, res)
+        });
+
+         //User Registration Form
+        app.get('/register',function(req,res) {
             users.register(req, res)
         });
       
