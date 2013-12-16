@@ -1,0 +1,7 @@
+extends layout
+
+block content
+ h1= title
+ p  #{first_name},  An email was sent to #{email} with instructions on activating your account. 
+  Please activate your account to use the system.  
+ a(href="/users/resendactivate") Resend Activation Link 

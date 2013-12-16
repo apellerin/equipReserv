@@ -1,9 +1,13 @@
 var users = require('../lib/users.js');
 
+
+
+//Application Routing Logic
 module.exports = function(app){
 
      //User Routes
     app.namespace('/users', function(req, res) {
+        
 
         //User Authentication/Login
         app.post('/authenticate',function(req,res) {
@@ -17,20 +21,22 @@ module.exports = function(app){
 
          //User Registration Form
         app.get('/register',function(req,res) {
-            users.register(req, res)
+            res.render('register');
+        });
+        //User Activation
+        app.get('/activate',function(req,res){
+                users.activate(req,res);
+        });
+
+        app.get('/resendactivate',function(req,res){
+            var thisUser = req.session.thisUser;
+            users.sendActivationLink(thisUser.activation_hash, thisUser.email);
+            res.render('login');
         });
       
     });//End Users Namespace
     
 
-
-
-
-
-
-
-
-    
     //Catch all requests and verify login state.
     app.all('*',function(req,res,next){
         users.isLoggedIn(req, 
