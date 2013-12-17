@@ -27,11 +27,22 @@ module.exports = function(app){
         app.get('/activate',function(req,res){
                 users.activate(req,res);
         });
-
+        //resend activation email
         app.get('/resendactivate',function(req,res){
             var thisUser = req.session.thisUser;
             users.sendActivationLink(thisUser.activation_hash, thisUser.email);
             res.render('login');
+        });
+        //update user account
+        app.post('/update',function(req,res){
+           if(!users.isLoggedIn) {res.render('login');}
+           else{  
+               users.update(req,res);
+               }
+        });
+        //logout user
+        app.get('/logout',function(req,res){
+            users.logOut(req,res);
         });
       
     });//End Users Namespace
