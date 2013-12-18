@@ -47,6 +47,7 @@
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\account.jade" />
+    <Content Include="views\passwordreset.jade" />
     <Content Include="views\register.jade" />
     <Content Include="views\notactivated.jade" />
     <Content Include="views\reg_success.jade" />

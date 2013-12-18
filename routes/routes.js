@@ -1,7 +1,12 @@
 var users = require('../lib/users.js');
 
-
-
+function isLoggedIn(req, res, next){
+    if(req.session.thisUser){
+        next();
+    } else {
+        res.render('login');
+        }
+}
 //Application Routing Logic
 module.exports = function(app){
 
@@ -29,40 +34,50 @@ module.exports = function(app){
         });
         //resend activation email
         app.get('/resendactivate',function(req,res){
-            var thisUser = req.session.thisUser;
-            users.sendActivationLink(thisUser.activation_hash, thisUser.email);
+            var inactiveUser = req.session.inactiveUser;
+            users.sendActivationLink(inactiveUser.hash, inactiveUser.email);
             res.render('login');
         });
         //update user account
-        app.post('/update',function(req,res){
-           if(!users.isLoggedIn) {res.render('login');}
-           else{  
+        app.post('/update',isLoggedIn,function(req,res){
                users.update(req,res);
-               }
         });
         //logout user
         app.get('/logout',function(req,res){
             users.logOut(req,res);
         });
-      
-    });//End Users Namespace
-    
-
-    //Catch all requests and verify login state.
-    app.all('*',function(req,res,next){
-        users.isLoggedIn(req, 
-            function(result){
-                if (result) {
-                    res.render('index',{title: 'Welcome'});
-                }else{
-                    res.render('login',{title : 'Login'});
-                }
+        //Send password reset link
+        app.post('/forgotpassword',function(req,res){
+              users.recoverPassword(req, res);
         });
-    });
-    
+        //User followed reset password link
+        app.get('/resetpassword',function(req,res){
+            if(!req.query.id) {
+                res.render('login');
+            } else 
+                {users.getByHash(req.query.id,function(user){
+                    if(user === null){res.render('login',{message: 'The reset link has expired.'});}
+                    else {
+                        if(user.activated == 0){
+                            req.session.inactiveUser = user.response_obj();
+                            res.render('notactivated',user.response_obj());
+                        } else {
+                            req.session.thisUser = user;
+                            res.render('account',user);
+                        }
+                    }
+                })
+            }
+        });
+        app.get('/',function(req,res){
+            res.render('login');
+        });
+    });//End Users Namespace
+   
+        
     //Create Error Response - No Route Exists
     app.all('*', function(req, res){
-        throw new Error('The resource does not exist.');
+        res.rend('login');
     });
 
 
