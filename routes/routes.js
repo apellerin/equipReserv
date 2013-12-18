@@ -77,7 +77,7 @@ module.exports = function(app){
         
     //Create Error Response - No Route Exists
     app.all('*', function(req, res){
-        res.rend('login');
+        res.render('login');
     });
 
 
