@@ -1,5 +1,7 @@
 var users = require('../lib/users.js');
-
+var local = require('../local.config.js');
+    messages = local.config.messages;
+//Check Login Status
 function isLoggedIn(req, res, next){
     if(req.session.thisUser){
         next();
@@ -7,23 +9,20 @@ function isLoggedIn(req, res, next){
         res.render('login');
         }
 }
+
 //Application Routing Logic
 module.exports = function(app){
 
      //User Routes
     app.namespace('/users', function(req, res) {
-        
-
-        //User Authentication/Login
+        //User Authentication
         app.post('/authenticate',function(req,res) {
             users.authenticate(req, res)
               });
-
          //Add New User
         app.post('/register',function(req,res) {
             users.register(req, res)
         });
-
          //User Registration Form
         app.get('/register',function(req,res) {
             res.render('register');
@@ -56,7 +55,7 @@ module.exports = function(app){
                 res.render('login');
             } else 
                 {users.getByHash(req.query.id,function(user){
-                    if(user === null){res.render('login',{message: 'The reset link has expired.'});}
+                    if(user === null){res.render('login',{message: messages.reset_link_expired});}
                     else {
                         if(user.activated == 0){
                             req.session.inactiveUser = user.response_obj();
@@ -74,6 +73,8 @@ module.exports = function(app){
         });
     });//End Users Namespace
    
+    
+    
         
     //Create Error Response - No Route Exists
     app.all('*', function(req, res){
