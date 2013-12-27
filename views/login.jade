@@ -1,28 +1,27 @@
 extends layout
 
 block content
- div.jumbotron
-  div.container
-   form.form-horizontal(method="POST", action="/users/authenticate")
-    div.form-group
-     h2 Please Login or Register
-     p.loginmessage #{message}
-    div.form-group
-     label.form-label(for="username") Username/Email:
-     input.form-control(type="text", id="username",placeholder="Enter username", name="username")
-    div.form-group
-     label.form-label(for="password") Password:
-     input.form-control(type="password", id="password",placeholder="password", name="password")
-    div.form-group
-     button.btn.btn-primary Submit
-    div.form-group
-     tr.loginoptions
-      td
-       a(href='/users/forgotpassword') Forgot Password
-       text  |  
-       a(href='/users/register') Create Account
-
-
+  div.col-xs-12.col-sm-9
+    div.jumbotron.clearfix
+      div.container
+        form.form-horizontal(method="POST", action="/users/authenticate")
+          div.form-group
+            h2 Login
+          div.form-group
+            label.form-label(for="username") Username/Email:
+            input.form-control(type="text", id="username",placeholder="Enter Username", name="username", autofocus required)
+          div.form-group
+            label.form-label(for="password") Password:
+            input.form-control(type="password", id="password",placeholder="Password", name="password" required)
+          div.form-group
+            button.btn.btn-primary Login
+          div.form-group
+            tr.loginoptions
+              td
+                a(href='#myModal' role='button' data-toggle="modal" data-target="#myModal") Forgot Password
+                text  |  
+                a(href='/users/register') Create Account
+  include ./modals/recoverpassmodal
 
 
     

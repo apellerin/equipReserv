@@ -20,7 +20,7 @@ exports.config =
         host: 'smtp.gmail.com',
         secureConnection: true,
         port: 465,
-        auth: {username: 'anthonyleepellerin@gmail.com', password: 'S@m1121@ntha'}
+        auth: {username: 'anthonyleepellerin@gmail.com', password: 'Sw3@tP3@'}
         },
 
     emails: {
@@ -30,7 +30,7 @@ exports.config =
             subject: 'Account Activation'        
         },
         reset_password_email: {
-            text: 'Please follow the link to reset your password',
+            text: 'Please follow the link to reset your password ',
             link: domain + '/users/resetpassword/?id=',
             subject: 'Password Reset Request'
         }
@@ -42,6 +42,6 @@ exports.config =
         generic_error: 'An error occurred.  Please retry your request later.',
         post_activate: 'Please login to complete the activation of your account.',
         no_matching_account: 'Sorry, we were unable to find an account matching that information. Please retry.',
-        reset_link_expired: 'This link has expired.  If you still need to reset your password, please request a new link'
+        reset_link_expired: 'This link has expired.  If you still need to reset your password, please request a new link.'
     }
 }

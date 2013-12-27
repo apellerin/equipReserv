@@ -38,6 +38,7 @@
     <Compile Include="lib\mysql_pool.js" />
     <Compile Include="lib\users.js" />
     <Compile Include="local.config.js" />
+    <Compile Include="public\scripts\scripts.js" />
     <Compile Include="routes\routes.js" />
     <Compile Include="server.js" />
     <Content Include=".gitattributes" />
@@ -47,14 +48,16 @@
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\account.jade" />
-    <Content Include="views\nav.jade" />
+    <Content Include="views\header.jade" />
     <Content Include="views\passwordreset.jade" />
+    <Content Include="views\modals\recoverpassmodal.jade" />
     <Content Include="views\register.jade" />
     <Content Include="views\notactivated.jade" />
     <Content Include="views\reg_success.jade" />
     <Content Include="views\login.jade" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
+    <Content Include="views\sidebar.jade" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
@@ -64,6 +67,7 @@
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
+    <Folder Include="views\modals\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>

@@ -1,34 +1,34 @@
 extends layout
-
 block content
-  div.jumbotron
-    div.container
-      form.form-horizontal(method="POST", action="/users/register")
-        div.form-group
-          H2 Register
-          p.loginmessage #{message}
-        div.form-group
-            label(for="username") Username:
-            input.form-control(type="text", id="username",placeholder="Enter Username", name="username")
-        div.form-group
-            label(for="password") Password:
-            input.form-control(type="password", id="password",placeholder="Enter Password", name="password")
-        div.form-group
-            label(for="password2") Confirm Password:
-            input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2")
-        div.form-group
-            label(for="username") First Name:
-            input.form-control(type="text", id="first_name",placeholder="First Name", name="first_name")
-        div.form-group
-            label(for="username") Last Name:
-            input.form-control(type="text", id="last_name",placeholder="Last Name", name="last_name")
-        div.form-group
-            label(for="username") Email Address:
-            input.form-control(type="email", id="email",placeholder="Enter Valid Email Address", name="email")
-        div.form-group
-            label(for="username") Phone:
-            input.form-control(type="tel", id="username",placeholder="Phone Number", name="phone")
-        button.btn.btn-default Submit
+  div.col-xs-12.col-sm-9
+    div.jumbotron.clearfix
+      div.container
+        form.form-horizontal(method="POST", action="/users/register")
+          div.form-group
+              H2 Create an Account
+          div.form-group
+              label(for="username") Username:
+              input.form-control(type="text", id="username",placeholder="Enter Username", name="username", autofocus required)
+          div.form-group
+              label(for="password") Password:
+              input.form-control(type="password", id="password",placeholder="Enter Password", name="password")
+          div.form-group
+              label(for="password2") Confirm Password:
+              input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2")
+          div.form-group
+              label(for="username") First Name:
+              input.form-control(type="text", id="first_name",placeholder="First Name", name="first_name")
+          div.form-group
+              label(for="username") Last Name:
+              input.form-control(type="text", id="last_name",placeholder="Last Name", name="last_name")
+          div.form-group
+              label(for="username") Email Address:
+              input.form-control(type="email", id="email",placeholder="Enter Valid Email Address", name="email")
+          div.form-group
+              label(for="username") Phone:
+              input.form-control(type="tel", id="username",placeholder="Phone Number", name="phone")
+          div.form-group
+              button.btn.btn-primary Register
 
 
 
