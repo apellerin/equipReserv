@@ -6,7 +6,7 @@ function isLoggedIn(req, res, next){
     if(req.session.thisUser){
         next();
     } else {
-        res.render('login');
+        res.render('./users/login');
         }
 }
 
@@ -25,7 +25,7 @@ module.exports = function(app){
         });
          //User Registration Form
         app.get('/register',function(req,res) {
-            res.render('register');
+            res.render('./users/register');
         });
         //User Activation
         app.get('/activate',function(req,res){
@@ -35,7 +35,7 @@ module.exports = function(app){
         app.get('/resendactivate',function(req,res){
             var inactiveUser = req.session.inactiveUser;
             users.sendActivationLink(inactiveUser.hash, inactiveUser.email);
-            res.render('login');
+            res.render('./users/login');
         });
         //update user account
         app.post('/update',isLoggedIn,function(req,res){
@@ -52,24 +52,24 @@ module.exports = function(app){
         //User followed reset password link
         app.get('/resetpassword',function(req,res){
             if(!req.query.id) {
-                res.render('login');
+                res.render('./users/login');
             } else 
                 {users.getByHash(req.query.id,function(user){
-                    if(user === null){res.render('login',{message: messages.reset_link_expired});}
+                    if(user === null){res.render('./users/login',{message: messages.reset_link_expired});}
                     else {
                         if(user.activated == 0){
                             req.session.inactiveUser = user.response_obj();
                             res.render('notactivated',user.response_obj());
                         } else {
                             req.session.thisUser = user;
-                            res.render('account',user);
+                            res.render('./users/account',user);
                         }
                     }
                 })
             }
         });
         app.get('/',function(req,res){
-            res.render('login');
+            res.render('./users/login');
         });
     });//End Users Namespace
    
@@ -78,7 +78,7 @@ module.exports = function(app){
         
     //Create Error Response - No Route Exists
     app.all('*', function(req, res){
-        res.render('login');
+        res.render('./users/login');
     });
 
 

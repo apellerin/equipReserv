@@ -18,7 +18,7 @@ html(lang='en')
     
   body
     include header
-    div.container
+    div.container(id="contentcontainer")
       div.row.row-offcanvas.row-offcanvas-right
         div.col-xs-12.col-sm-9
           p.pull-right.visible-xs
@@ -29,3 +29,5 @@ html(lang='en')
     script(src='http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js')
     script(src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js')
     script(src='/scripts/scripts.js')
+    //form validation script
+    script(src='/scripts/formvalidation.js')

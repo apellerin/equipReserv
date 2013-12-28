@@ -1,11 +1,25 @@
 ﻿div.col-xs-6.col-sm-3.sidebar-offcanvas(id="sidebar" role="navigation")
- div.list-group
-  a.list-group-item.active Menu
-  a.list-group-item Link
-  a.list-group-item Link
-  a.list-group-item Link
-  a.list-group-item Link
-  a.list-group-item Link
-  a.list-group-item Link
-  a.list-group-item Link
-  a.list-group-item Link
+  div.panel.panel-primary
+    .panel-heading.menuheader Menu
+    div.list-group
+    if (loggedin && usertype=='admin')
+      a.list-group-item #name Admin
+      a.list-group-item Links
+      a.list-group-item Are
+      a.list-group-item Here
+      a.list-group-item For
+      a.list-group-item Admins
+      a.list-group-item Yee!
+      a.list-group-item Link
+    else if (loggedin && usertype !='admin')
+      a.list-group-item User
+      a.list-group-item Links
+      a.list-group-item Are
+      a.list-group-item Not
+      a.list-group-item As
+      a.list-group-item Cool
+      a.list-group-item Boo!
+      a.list-group-item Link
+    else
+      a.list-group-item(href='/users/login') Login
+      a.list-group-item(href='/users/register') Register

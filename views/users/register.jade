@@ -1,9 +1,11 @@
-extends layout
+extends ../layout
 block content
+  if (invalidreg) 
+    include ../feedback/invalidreg
   div.col-xs-12.col-sm-9
     div.jumbotron.clearfix
       div.container
-        form.form-horizontal(method="POST", action="/users/register")
+        form.form-horizontal(method="POST", action="/users/register", id="registerform")
           div.form-group
               H2 Create an Account
           div.form-group
@@ -28,7 +30,9 @@ block content
               label(for="username") Phone:
               input.form-control(type="tel", id="username",placeholder="Phone Number", name="phone")
           div.form-group
-              button.btn.btn-primary Register
+              button.btn.btn-primary(type="submit") Submit
+              text    
+              a.btn.btn-danger(type="reset", href='/users/login') Cancel
 
 
 

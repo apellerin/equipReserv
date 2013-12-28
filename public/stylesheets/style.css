@@ -41,3 +41,6 @@ body {
 /* 6 columns */
   }
 }
+.panel-heading.menuheader {
+  text-align: center;
+}

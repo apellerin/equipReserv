@@ -11,6 +11,7 @@
   div.collapse.navbar-collapse(id="bs-example-navbar-collapse-1")
     ul.nav.navbar-nav.navbar-right
       li.dropdown
+      if (loggedin)
         a.btn.btn-link.dropdown-toggle(href="#" data-toggle="dropdown") Account
         ul.dropdown-menu(role='menu' aria-labelledby='dLabel')
           li

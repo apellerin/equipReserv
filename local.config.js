@@ -36,7 +36,7 @@ exports.config =
         }
     },
     messages: {
-        invalid_credentials: 'Invalid credentials.  Please log in or register',
+        invalid_credentials: 'Invalid credentials.  Please login or register.',
         incomplete_reg: 'Registration form missing data.  Please correct and resubmit.',
         user_exists: 'A user with this email/username already exists.',
         generic_error: 'An error occurred.  Please retry your request later.',
