@@ -1,5 +1,5 @@
 ﻿//equipreserv Configuration File
-var domain = 'http://localhost:3000';
+var domain = 'http://192.168.1.105:3000';
 
 exports.config = 
 { 
@@ -42,6 +42,8 @@ exports.config =
         generic_error: 'An error occurred.  Please retry your request later.',
         post_activate: 'Please login to complete the activation of your account.',
         no_matching_account: 'Sorry, we were unable to find an account matching that information. Please retry.',
-        reset_link_expired: 'This link has expired.  If you still need to reset your password, please request a new link.'
+        reset_link_expired: 'This link has expired.  If you still need to reset your password, please request a new link.',
+        reg_success: 'Thank you for registering!  An email has been sent with instructions on how to activate your account',
+        resend_activate: 'Please check your email for activation instructions.'
     }
 }

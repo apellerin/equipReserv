@@ -35,7 +35,7 @@ module.exports = function(app){
         app.get('/resendactivate',function(req,res){
             var inactiveUser = req.session.inactiveUser;
             users.sendActivationLink(inactiveUser.hash, inactiveUser.email);
-            res.render('./users/login');
+            res.render('./users/login',{resendactivate: messages.resend_activate});
         });
         //update user account
         app.post('/update',isLoggedIn,function(req,res){

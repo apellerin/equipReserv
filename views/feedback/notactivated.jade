@@ -1,7 +1,9 @@
-extends layout
+div.container
+  div.row.row-offcanvas.row-offcanvas-right
+    div.col-xs-12.col-sm-9
+      div.alert.alert-info
+        p  #{notactivated.first_name},  an email was sent to #{notactivated.email} with instructions on activating your account. Please activate your account to use the system.  
+          a(href="/users/resendactivate") Resend Activation Link
 
-block content
- h1= title
- p  #{first_name},  An email was sent to #{email} with instructions on activating your account. 
- p Please activate your account to use the system.  
- a(href="/users/resendactivate") Resend Activation Link 
+
+ 

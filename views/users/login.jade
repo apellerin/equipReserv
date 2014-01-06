@@ -5,6 +5,14 @@ block content
     include ../feedback/invalidcredentials
   if (resetpassword)
     include ../feedback/resetpassword
+  if (reg_success)
+    include ../feedback/reg_success
+  if (notactivated)
+    include ../feedback/notactivated
+  if (activatesuccess)
+    include ../feedback/activatesuccess
+  if (resendactivate)
+    include ../feedback/resendactivate
   div.col-xs-12.col-sm-9
     div.jumbotron.clearfix
       div.container
