@@ -2,8 +2,8 @@
   div.panel.panel-primary
     .panel-heading.menuheader Menu
     div.list-group
-    if (loggedin && usertype=='admin')
-      a.list-group-item #name Admin
+    if (user && user.user_level == -1)
+      a.list-group-item Admin
       a.list-group-item Links
       a.list-group-item Are
       a.list-group-item Here
@@ -11,7 +11,7 @@
       a.list-group-item Admins
       a.list-group-item Yee!
       a.list-group-item Link
-    else if (loggedin && usertype !='admin')
+    else if (user && user.user_level == 0)
       a.list-group-item User
       a.list-group-item Links
       a.list-group-item Are
