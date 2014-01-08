@@ -92,6 +92,11 @@ exports.config =
             messageheader: '',
             message: '',
             messagetype: ''
+        },
+        invaliduserupdate: {
+            messageheader: 'Invalid:  ',
+            message: 'Update form missing data, please update and retry.',
+            messagetype: 'error'
         }
     }
 }

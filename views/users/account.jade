@@ -1,13 +1,13 @@
 extends ../layout
 block content
-  if (invalidreg) 
-    include ../feedback/invalidreg
+  if (message || notactivated || resetpassword) 
+    include ../feedback/feedback
   div.col-xs-12.col-sm-9
     div.jumbotron.clearfix
       div.container
         form.form-horizontal(method="POST", action="/users/update", id="accountform")
           div.form-group
-              H2 #{user_name}'s Account
+              H2 #{user.user_name}'s Account
           div.form-group
               label(for="username") Username:
               input.form-control(type="text", id="username",value="#{user.user_name}", name="username", autofocus required)
@@ -30,6 +30,6 @@ block content
               label(for="username") Phone:
               input.form-control(type="tel", id="username",value="#{user.phone}", name="phone")
           div.form-group
-              button.btn.btn-primary(type="submit") Edit
+              button.btn.btn-primary(type="submit") Update
               text    
               a.btn.btn-danger(type="reset", href='/') Cancel
