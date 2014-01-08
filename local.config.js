@@ -36,14 +36,62 @@ exports.config =
         }
     },
     messages: {
-        invalid_credentials: 'Invalid credentials.  Please login or register.',
-        incomplete_reg: 'Registration form missing data.  Please correct and resubmit.',
-        user_exists: 'A user with this email/username already exists.',
-        generic_error: 'An error occurred.  Please retry your request later.',
-        post_activate: 'Please login to complete the activation of your account.',
-        no_matching_account: 'Sorry, we were unable to find an account matching that information. Please retry.',
-        reset_link_expired: 'This link has expired.  If you still need to reset your password, please request a new link.',
-        reg_success: 'Thank you for registering!  An email has been sent with instructions on how to activate your account',
-        resend_activate: 'Please check your email for activation instructions.'
+        invalid_credentials: {
+            messageheader: 'Invalid Credentials:  ',
+            message: 'Please login or register.',
+            messagetype: 'error' 
+        },
+        incomplete_reg: {
+            messageheader: 'Registration form missing data:  ',
+            message: 'Please correct and resubmit.',
+            messagetype: 'error' 
+        },
+        user_exists: {
+            messageheader: 'Unable to create account:  ',
+            message: 'A user with this email/username already exists.',
+            messagetype: 'error'
+        },
+        generic_error: {
+            messageheader: 'Error:  ',
+            message: 'Please retry your request later.',
+            messagetype: 'error'
+        },
+        post_activate: {
+            messageheader: 'Thank you!  ',
+            message: 'Please login to complete the activation of your account.',
+            messagetype: 'success'
+        },
+        no_matching_account: {
+            messageheader: 'Sorry,  ',
+            message: 'we were unable to find an account matching the information submitted.',
+            messagetype: 'error'
+        },
+        reset_link_expired: {
+            messageheader: 'Link Expired:  ',
+            message: 'If you still need to reset your password, please request a new link.',
+            messagetype: 'warning'
+        },
+        reg_success: {
+            messageheader: 'Thank you for registering!  ',
+            message: 'An email has been sent with instructions on how to activate your account.',
+            messagetype: 'success'
+        },
+        resend_activate: {
+            messageheader: 'Mail Sent:  ',
+            message: 'Please check your email for activation instructions.',
+            messagetype: 'info'
+        },
+        notactivated: {
+            //see feedback.jade for configuration
+            messageheader: '',
+            message: '',
+            messagetype: ''
+        },
+        resetpassword: {
+            //see feedback.jade for configuration
+            messageheader: '',
+            message: '',
+            messagetype: ''
+        }
     }
 }

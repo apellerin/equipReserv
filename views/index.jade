@@ -1,1 +1,7 @@
 extends layout
+block content
+  if(message)
+  include ./feedback/feedback
+  div.col-xs-12.col-sm-9
+    div.jumbotron.clearfix
+      div.container

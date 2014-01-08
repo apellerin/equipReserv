@@ -68,6 +68,11 @@ module.exports = function(app){
                 })
             }
         });
+        //User Account View
+        app.get('/account',isLoggedIn,function(req,res){
+            res.render('./users/account',{user: req.session.thisUser});
+        });
+        //Default
         app.get('/',function(req,res){
             res.render('./users/login');
         });
