@@ -7,29 +7,29 @@ block content
       div.container
         form.form-horizontal(method="POST", action="/users/update", id="accountform")
           div.form-group
-              H2 #{user.user_name}'s Account
+            H2 #{user.user_name}'s Account
           div.form-group
-              label(for="username") Username:
-              input.form-control(type="text", id="username",value="#{user.user_name}", name="username", autofocus required)
+            label(for="user_name") Username:
+            input.form-control(type="text", id="user_name",value="#{user.user_name}", name="user_name", autofocus required)
           div.form-group
-              label(for="password") Password:
-              input.form-control(type="password", id="password",placeholder="Enter Password", name="password" required)
+            label(for="password") Password:
+            input.form-control(type="password", id="password",placeholder="Enter Password", name="password" required)
           div.form-group
-              label(for="password2") Confirm Password:
-              input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2" required)
+            label(for="password2") Confirm Password:
+            input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2" required)
           div.form-group
-              label(for="username") First Name:
-              input.form-control(type="text", id="first_name",value="#{user.first_name}", name="first_name" required)
+            label(for="username") First Name:
+            input.form-control(type="text", id="first_name",value="#{user.first_name}", name="first_name" required)
           div.form-group
-              label(for="username") Last Name:
-              input.form-control(type="text", id="last_name",value="#{user.last_name}", name="last_name" required)
+            label(for="username") Last Name:
+            input.form-control(type="text", id="last_name",value="#{user.last_name}", name="last_name" required)
           div.form-group
-              label(for="username") Email Address:
-              input.form-control(type="email", id="email",value="#{user.email}", name="email" required)
+            label(for="username") Email Address:
+            input.form-control(type="email", id="email",value="#{user.email}", name="email" required)
           div.form-group
-              label(for="username") Phone:
-              input.form-control(type="tel", id="username",value="#{user.phone}", name="phone")
+            label(for="username") Phone:
+            input.form-control(type="tel", id="username",value="#{user.phone}", name="phone")
           div.form-group
-              button.btn.btn-primary(type="submit") Update
-              text    
-              a.btn.btn-danger(type="reset", href='/') Cancel
+            button.btn.btn-primary(type="submit") Update
+            text    
+            a.btn.btn-danger(type="reset", href='/') Cancel

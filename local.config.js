@@ -46,9 +46,14 @@ exports.config =
             message: 'Please correct and resubmit.',
             messagetype: 'error' 
         },
-        user_exists: {
-            messageheader: 'Unable to create account:  ',
-            message: 'A user with this email/username already exists.',
+        username_exists: {
+            messageheader: 'Ooops!:  ',
+            message: 'A user with this username already exists.',
+            messagetype: 'error'
+        },
+        email_exists: {
+            messageheader: 'Ooops!:  ',
+            message: 'A user with this email already exists.',
             messagetype: 'error'
         },
         generic_error: {

@@ -79,6 +79,9 @@ module.exports = function(app){
     });//End Users Namespace
    
     
+    app.get('/index',isLoggedIn,function(req, res){
+        res.render('index',{user: req.session.thisUser});
+    });
     
         
     //Create Error Response - No Route Exists

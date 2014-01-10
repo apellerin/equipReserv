@@ -7,29 +7,29 @@ block content
       div.container
         form.form-horizontal(method="POST", action="/users/register", id="registerform")
           div.form-group
-              H2 Create an Account
+            H2 Create an Account
           div.form-group
-              label(for="username") Username:
-              input.form-control(type="text", id="username",placeholder="Enter Username", name="username", autofocus required)
+            label(for="user_name") Username:
+            input.form-control(type="text", id="user_name",placeholder="Enter Username", name="user_name", autofocus required)
           div.form-group
-              label(for="password") Password:
-              input.form-control(type="password", id="password",placeholder="Enter Password", name="password")
+            label(for="password") Password:
+            input.form-control(type="password", id="password",placeholder="Enter Password", name="password")
           div.form-group
-              label(for="password2") Confirm Password:
-              input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2")
+            label(for="password2") Confirm Password:
+            input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2")
           div.form-group
-              label(for="username") First Name:
-              input.form-control(type="text", id="first_name",placeholder="First Name", name="first_name")
+            label(for="username") First Name:
+            input.form-control(type="text", id="first_name",placeholder="First Name", name="first_name")
           div.form-group
-              label(for="username") Last Name:
-              input.form-control(type="text", id="last_name",placeholder="Last Name", name="last_name")
+            label(for="username") Last Name:
+            input.form-control(type="text", id="last_name",placeholder="Last Name", name="last_name")
           div.form-group
-              label(for="username") Email Address:
-              input.form-control(type="email", id="email",placeholder="Enter Valid Email Address", name="email")
+            label(for="username") Email Address:
+            input.form-control(type="email", id="email",placeholder="Enter Valid Email Address", name="email")
           div.form-group
-              label(for="username") Phone:
-              input.form-control(type="tel", id="username",placeholder="Phone Number", name="phone")
+            label(for="username") Phone:
+            input.form-control(type="tel", id="username",placeholder="Phone Number", name="phone")
           div.form-group
-              button.btn.btn-primary(type="submit") Submit
-              text    
-              a.btn.btn-danger(type="reset", href='/users/login') Cancel
+            button.btn.btn-primary(type="submit") Submit
+            text    
+            a.btn.btn-danger(type="reset", href='/users/login') Cancel

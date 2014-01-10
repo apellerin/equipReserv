@@ -1,7 +1,7 @@
 ﻿$(document).ready(function(){
     $('#loginform').validate({
         rules: {
-            username: {
+            user_name: {
                 minlength: 3,
                 required: true
             },
@@ -54,7 +54,7 @@
 
     $('#registerform').validate({
         rules: {
-            username: {
+            user_name: {
                 minlength: 3,
                 maxlength: 15,
                 required: true
@@ -68,10 +68,10 @@
                 equalTo: '#password',
                 required: true
             },
-            firstname: {
+            first_name: {
                 required: true
             },
-            lastname: {
+            last_name: {
                 required: true
             },
             email: {
@@ -101,7 +101,7 @@
 
     $('#accountform').validate({
         rules: {
-            username: {
+            user_name: {
                 minlength: 3,
                 maxlength: 15,
                 required: true
@@ -115,10 +115,10 @@
                 equalTo: '#password',
                 required: true
             },
-            firstname: {
+            first_name: {
                 required: true
             },
-            lastname: {
+            last_name: {
                 required: true
             },
             email: {
