@@ -102,6 +102,21 @@ exports.config =
             messageheader: 'Invalid:  ',
             message: 'Update form missing data, please update and retry.',
             messagetype: 'error'
+        },
+        invalidpassword: {
+            messageheader: 'Invalid Credentials: ',
+            message: 'The password provided is invalid.',
+            messagetype: 'error'
+        },
+        noupdate: {
+            messageheader: 'Invalid Update: ',
+            message: 'No changes were supplied.',
+            messagetype: 'info'
+        },
+        accountupdated: {
+            messageheader: 'Success: ',
+            message: 'Your account has been updated.',
+            messagetype: 'success'
         }
     }
 }

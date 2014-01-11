@@ -38,6 +38,7 @@
     <Compile Include="lib\mysql_pool.js" />
     <Compile Include="lib\users.js" />
     <Compile Include="local.config.js" />
+    <Compile Include="public\scripts\bcrypt.min.js" />
     <Compile Include="public\scripts\formvalidation.js" />
     <Compile Include="public\scripts\scripts.js" />
     <Compile Include="routes\routes.js" />
@@ -53,6 +54,7 @@
     <Content Include="views\users\account.jade" />
     <Content Include="views\header.jade" />
     <Content Include="views\modals\recoverpassmodal.jade" />
+    <Content Include="views\users\changepass.jade" />
     <Content Include="views\users\register.jade" />
     <Content Include="views\users\login.jade" />
     <Content Include="views\index.jade" />

@@ -9,14 +9,11 @@ block content
           div.form-group
             H2 #{user.user_name}'s Account
           div.form-group
+            H3 Edit Account  / 
+              a(href='/users/changepass') Change Password
+          div.form-group
             label(for="user_name") Username:
             input.form-control(type="text", id="user_name",value="#{user.user_name}", name="user_name", autofocus required)
-          div.form-group
-            label(for="password") Password:
-            input.form-control(type="password", id="password",placeholder="Enter Password", name="password" required)
-          div.form-group
-            label(for="password2") Confirm Password:
-            input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2" required)
           div.form-group
             label(for="username") First Name:
             input.form-control(type="text", id="first_name",value="#{user.first_name}", name="first_name" required)
@@ -29,6 +26,9 @@ block content
           div.form-group
             label(for="username") Phone:
             input.form-control(type="tel", id="username",value="#{user.phone}", name="phone")
+          div.form-group
+            label(for="password") Confirm Password:
+            input.form-control(type="password", id="password",placeholder="Confirm Password", name="password" required)
           div.form-group
             button.btn.btn-primary(type="submit") Update
             text    

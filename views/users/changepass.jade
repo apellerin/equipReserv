@@ -1,0 +1,28 @@
+﻿extends ../layout
+block content
+  if (message || notactivated || resetpassword) 
+    include ../feedback/feedback
+  div.col-xs-12.col-sm-9
+    div.jumbotron.clearfix
+      div.container      
+        form.form-horizontal(method="POST", action="/users/changepass", id="changepassform")
+          div.form-group
+            H2 #{user.user_name}'s Account
+          div.form-group
+            H3
+              a(href='/users/account') Edit Account
+              text   /  
+              text Change Password
+          div.form-group
+            label(for="username") Old Password:
+            input.form-control(type="password", id="oldpassword",value="", name="oldpassword" required)
+          div.form-group
+            label(for="password") New Password:
+            input.form-control(type="password", id="password",value="", name="password" required)
+          div.form-group
+            label(for="password2") Confirm Password:
+            input.form-control(type="password", id="password2",placeholder="Confirm Password", name="password2" required)
+          div.form-group
+            button.btn.btn-primary(type="submit") Update
+            text    
+            a.btn.btn-danger(type="reset", href='/') Cancel

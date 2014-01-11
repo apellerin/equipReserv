@@ -62,7 +62,7 @@ module.exports = function(app){
                             res.render('notactivated',user.response_obj());
                         } else {
                             req.session.thisUser = user;
-                            res.render('./users/account',user);
+                            res.render('./users/changepass',user);
                         }
                     }
                 })
@@ -71,6 +71,13 @@ module.exports = function(app){
         //User Account View
         app.get('/account',isLoggedIn,function(req,res){
             res.render('./users/account',{user: req.session.thisUser});
+        });
+        //Change Password
+        app.get('/changepass',isLoggedIn,function(req,res){
+            res.render('./users/changepass',{user: req.session.thisUser});
+        });
+        app.post('/changepass',isLoggedIn,function(req,res){
+            users.changePassword(req,res);
         });
         //Default
         app.get('/',function(req,res){
