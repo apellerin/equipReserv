@@ -16,12 +16,6 @@ html(lang='en')
     link(rel='stylesheet', href='/stylesheets/style.css')
     
   body
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-    script(src='http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js')
-    script(src='/scripts/scripts.js')
-    script(src='/scripts/bcrypt.min.js')
-    //form validation script
-    script(src='/scripts/formvalidation.js')
     include header
     div.container(id="contentcontainer")
       div.row.row-offcanvas.row-offcanvas-right
@@ -30,4 +24,7 @@ html(lang='en')
             button.btn.btn-primary.btn-xs(type="button" data-toggle="offcanvas") Menu
         block content
         include sidebar
-    
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script(src='http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js')
+    script(src='/scripts/scripts.js')
+    block scripts

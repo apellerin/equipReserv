@@ -39,7 +39,8 @@
     <Compile Include="lib\users.js" />
     <Compile Include="local.config.js" />
     <Compile Include="public\scripts\bcrypt.min.js" />
-    <Compile Include="public\scripts\formvalidation.js" />
+    <Compile Include="public\scripts\jqBootstrapValidation.js" />
+    <Compile Include="public\scripts\loginvalidation.js" />
     <Compile Include="public\scripts\scripts.js" />
     <Compile Include="routes\routes.js" />
     <Compile Include="server.js" />
