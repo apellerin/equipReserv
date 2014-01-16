@@ -11,11 +11,11 @@ block content
             h2 Login
           div.form-group
             label.form-label(for="user_name") Username/Email:
-            input.form-control(type="text", id="user_name",placeholder="Enter Username", name="user_name", autofocus required)
+            input.form-control(type="text", id="user_name",placeholder="Enter Username", name="user_name", min="8" autofocus required)
             p.help-block
           div.form-group
             label.form-label(for="password") Password:
-            input.form-control(type="password", id="password",placeholder="Password", name="password" required)
+            input.form-control(type="password", id="password",placeholder="Enter Password", name="password", min="8" required)
             p.help-block
           div.form-group
             button.btn.btn-primary Login
@@ -27,7 +27,5 @@ block content
                 a(href='/users/register') Create Account
   include ../modals/recoverpassmodal
 block scripts
-  script(src='/scripts/bcrypt.min.js')
   script(src='/scripts/jqBootstrapValidation.js')
-  script
-    $(function () {$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();});
+  script(src='/scripts/page/login.js')	    

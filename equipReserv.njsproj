@@ -41,6 +41,7 @@
     <Compile Include="public\scripts\bcrypt.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
     <Compile Include="public\scripts\loginvalidation.js" />
+    <Compile Include="public\scripts\page\login.js" />
     <Compile Include="public\scripts\scripts.js" />
     <Compile Include="routes\routes.js" />
     <Compile Include="server.js" />
@@ -51,6 +52,7 @@
     <Content Include="public\images\logo.png" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
+    <Content Include="views\equipment\equipment.jade" />
     <Content Include="views\feedback\feedback.jade" />
     <Content Include="views\users\account.jade" />
     <Content Include="views\header.jade" />
@@ -67,11 +69,13 @@
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\scripts\" />
+    <Folder Include="public\scripts\page\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
     <Folder Include="views\modals\" />
     <Folder Include="views\feedback\" />
+    <Folder Include="views\equipment\" />
     <Folder Include="views\users\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />

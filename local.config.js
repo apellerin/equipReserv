@@ -117,6 +117,11 @@ exports.config =
             messageheader: 'Success: ',
             message: 'Your account has been updated.',
             messagetype: 'success'
+        },
+        notadmin: {
+            messageheader: 'Access Denied:  ',
+            message: 'You must be an administrator to access this area.  Please contact your system administrator.',
+            messagetype: 'error'
         }
     }
 }

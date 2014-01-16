@@ -1,4 +1,5 @@
-﻿var cluster = require('cluster');
+﻿require('newrelic');
+var cluster = require('cluster');
 
 //Variable to track whether or not we want to fork new workers
 var close_server = false;

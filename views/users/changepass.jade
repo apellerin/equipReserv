@@ -5,7 +5,7 @@ block content
   div.col-xs-12.col-sm-9
     div.jumbotron.clearfix
       div.container      
-        form.form-horizontal(method="POST", action="/users/changepass", id="changepassform")
+        form.form-horizontal(method="POST", action="/users/changepass", id="changepassform" novalidate)
           div.form-group
             H2 #{user.user_name}'s Account
           div.form-group
@@ -15,14 +15,21 @@ block content
               text Change Password
           div.form-group
             label(for="username") Old Password:
-            input.form-control(type="password", id="oldpassword",value="", name="oldpassword" required)
+            input.form-control(type="password", id="oldpassword",value="", name="oldpassword", placeholder="Old Password" required)
+            p.help-block
           div.form-group
             label(for="password") New Password:
-            input.form-control(type="password", id="password",value="", name="password" required)
+            input.form-control(type="password", id="password",value="", name="password", placeholder="New Password" required)
+            p.help-block
           div.form-group
-            label(for="password2") Confirm Password:
-            input.form-control(type="password", id="password2",placeholder="Confirm Password", name="password2" required)
+            label(for="password2") Confirm New Password:
+            input.form-control(type="password", id="password2",placeholder="Confirm Password", name="password2", data-validation-match-match="password"
+            data-validation-match-message="Passwords do not match" required)
+            p.help-block
           div.form-group
             button.btn.btn-primary(type="submit") Update
             text    
-            a.btn.btn-danger(type="reset", href='/') Cancel
+            a.btn.btn-danger(type="reset", href='/index') Cancel
+block scripts
+  script(src='/scripts/jqBootstrapValidation.js')
+  script $(document).ready(function(){$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();});

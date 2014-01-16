@@ -10,10 +10,18 @@ function isLoggedIn(req, res, next){
         }
 }
 
+function isAdmin(req, res, next){
+    if(req.session.thisUser.user_level==-1){
+        next();
+    } else {
+            res.render('index',{user: req.session.thisUser, message: messages.notadmin});
+        }
+}
+
 //Application Routing Logic
 module.exports = function(app){
 
-     //User Routes
+     //USER NAMESPACE
     app.namespace('/users', function(req, res) {
         //User Authentication
         app.post('/authenticate',function(req,res) {
@@ -85,6 +93,24 @@ module.exports = function(app){
         });
     });//End Users Namespace
    
+
+    //ADMINISTRATION NAMESPACE
+    app.namespace('/admin',isLoggedIn,isAdmin,function() {
+        app.namespace('/equipment', function() {
+            app.get('/',function(req,res){
+                res.render('./equipment/equipment',{user: req.session.thisUser});
+            });
+
+
+
+        });//end admin/equipment namespace
+
+    });//end admin namespace
+
+
+
+
+
     
     app.get('/index',isLoggedIn,function(req, res){
         res.render('index',{user: req.session.thisUser});
