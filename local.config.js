@@ -20,7 +20,7 @@ exports.config =
         host: 'smtp.gmail.com',
         secureConnection: true,
         port: 465,
-        auth: {username: 'anthonyleepellerin@gmail.com', password: 'Sw3@tP3@'}
+        auth: {username: 'email@email.com', password: 'email'}
         },
 
     emails: {
