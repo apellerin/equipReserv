@@ -38,6 +38,7 @@
     <Compile Include="lib\mysql_pool.js" />
     <Compile Include="lib\users.js" />
     <Compile Include="local.config.js" />
+    <Compile Include="newrelic.js" />
     <Compile Include="public\scripts\bcrypt.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
     <Compile Include="public\scripts\loginvalidation.js" />
@@ -47,6 +48,8 @@
     <Compile Include="server.js" />
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include="bin\Microsoft.NodejsTools.WebRole.dll" />
+    <Content Include="DatabaseDiagram.mwb" />
     <Content Include="package.json" />
     <Content Include="public\images\Done.png" />
     <Content Include="public\images\logo.png" />
@@ -65,6 +68,7 @@
     <Content Include="views\sidebar.jade" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="lib\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
