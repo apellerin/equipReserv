@@ -1,4 +1,5 @@
 var users = require('../lib/users.js');
+var equip = require('../lib/equipment.js');
 var local = require('../local.config.js');
     messages = local.config.messages;
 //Check Login Status
@@ -99,6 +100,12 @@ module.exports = function(app){
         app.namespace('/equipment', function() {
             app.get('/',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
+            });
+
+            app.post('/addstatus',function(req,res){
+                equip.addEquipStatus(req.body.status, function(result){
+                       res.send(result);
+                });
             });
 
 
