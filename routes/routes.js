@@ -1,3 +1,4 @@
+var fs = require('fs');
 var users = require('../lib/users.js');
 var equip = require('../lib/equipment.js');
 var local = require('../local.config.js');
@@ -101,22 +102,106 @@ module.exports = function(app){
             app.get('/',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
             });
-
-            app.post('/addstatus',function(req,res){
+            app.post('/status/add',function(req,res){
                 equip.addEquipStatus(req.body.status, function(result){
                        res.send(result);
                 });
             });
+            app.post('/status/get',function(req,res){
+                equip.getEquipStatus('status_id',req.body.status_id,function(result){
+                        res.send(result);
+                    });
+            });
+            app.post('/status/update',function(req,res){
+                equip.updateEquipStatus(req.body.status_id, 'status_id',req.body.status,function(result){
+                    res.send(result);
+                });
+            });
+            app.post('/status/delete',function(req,res){
+                equip.deleteEquipStatus(req.body.status_id,function(result){
+                    res.send(result);
+                });
+            });
+            app.get('/status/list',function(req,res){
+                equip.listEquipStatuses(function(result){
+                    res.send(JSON.stringify(result));
+                });
+            });
+            app.post('/type/add',function(req,res){
+                equip.addEquipType(req.body.type, function(result){
+                    res.send(result);
+                });
+            });
+            app.post('/type/get',function(req,res){
+                equip.getEquipType(req.body.id, function(result){
+                    res.send(result);
+                });
+            });
+            app.post('/type/delete',function(req,res){
+                equip.deleteEquipType(req,body.id, function(result){
+                    res.send(result);
+                });
+            });
+            app.get('/type/list',function(req,res){
+                equip.listEquipTypes(function(result){
+                    res.send(result);
+                });
+            });
+            app.post('/add',function(req,res){
+                console.log(req.files);
+                var obj = { "equip_id":null,
+                            "type_id":req.body.type_id,
+                            "make": req.body.make,
+                            "model": req.body.model,
+                            "description": req.body.description,
+                            "image": fs.readFileSync(req.files.image.path) }
+                equip.addEquipment(obj, function(result){
+                    res.send(result);
+                });
+            });
+            app.post('/get',function(req,res){
+                equip.getEquipment(req.body.equip_id, function(result){
 
+                    if(result.image != null) {
+                        var image = result.image.toString('base64');
+                    }else { var image = null;}
+
+                    var obj = { "equip_id":result.equip_id,
+                            "type_id":result.type_id,
+                            "make": result.make,
+                            "model": result.model,
+                            "description": result.description,
+                            "image": image
+                            }
+                    res.send(obj);
+                });
+            });
+            app.post('/update',function(req,res){
+                var obj = { "equip_id":req.body.equip_id,
+                            "type_id":req.body.type_id,
+                            "make": req.body.make,
+                            "model": req.body.model,
+                            "description": req.body.description,
+                            "image": fs.readFileSync(req.files.image.path) }
+                equip.updateEquipment(obj, function(result){
+                    res.send(result);    
+                });
+            });
+            app.post('/delete',function(req,res){
+                equip.deleteEquipment(req.body.equip_id,function(result){
+                    res.send(result);
+                });
+            });
+            app.get('/list',function(req,res){
+                equip.listEquipment(function(result){
+                    res.send(result);
+                });
+            });
 
 
         });//end admin/equipment namespace
 
     });//end admin namespace
-
-
-
-
 
     
     app.get('/index',isLoggedIn,function(req, res){
