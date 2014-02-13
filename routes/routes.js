@@ -148,7 +148,6 @@ module.exports = function(app){
                 });
             });
             app.post('/add',function(req,res){
-                console.log(req.files);
                 var obj = { "equip_id":null,
                             "type_id":req.body.type_id,
                             "make": req.body.make,
@@ -194,6 +193,31 @@ module.exports = function(app){
             });
             app.get('/list',function(req,res){
                 equip.listEquipment(function(result){
+                    res.send(result);
+                });
+            });
+            app.post('/item/add',function(req,res){
+                equip.addEquipItem(req.body,function(result){
+                    res.send(result);
+                });
+            });
+            app.post('/item/get',function(req,res){
+                equip.getEquipItem(req.body.inventory_id,function(result){
+                    res.send(result);
+                });
+            });
+            app.post('/item/update',function(req,res){
+                equip.updateEquipItem(req.body,function(result){
+                    res.send(result);
+                });
+            });
+            app.post('/item/delete',function(req,res){
+                equip.deleteEquipItem(req.body.inventory_id,function(result){
+                    res.send(result);
+                });
+            });
+            app.get('/item/list',function(req,res){
+                equip.listEquipItems(function(result){
                     res.send(result);
                 });
             });
