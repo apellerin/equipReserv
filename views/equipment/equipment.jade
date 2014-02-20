@@ -5,33 +5,55 @@ block content
     include ../feedback/feedback
   div.col-xs-12.col-sm-9
       h2 Report Administration
-      h3 Reports
       br
-      div(id="table")
-        table.table.table-hover.table-responsive(id="mytable")
-          tr
-            th Name
-            th Published
-            th Owner
-            th Last Updated
+      div(id="table1")
+        table.table.table-responsive(id="mytable")
+          tr.active
+            th 
+            th View
+            th Add
           tr 
-            td one
-            td two
-            td seven
-            td four
+            td
+              strong Equipment Types
+            td
+              a(href='/admin/equipment/type/list')
+                button.btn.btn-info.btn-sm
+                  span.glyphicon.glyphicon-search
+            td
+              a(href='/admin/equipment/type/new')
+                button.btn.btn-success.btn-sm
+                  span.glyphicon.glyphicon-plus
           tr 
-            td one
-            td two
-            td three
-            td four
-          tr
-            td one
-            td two
-            td three
-            td four
+            td 
+              strong Equipment
+            td
+              a(href='/admin/equipment/list')
+                button.btn.btn-info.btn-sm
+                  span.glyphicon.glyphicon-search
+            td
+              a(href='/admin/equipment/new')
+                button.btn.btn-success.btn-sm
+                  span.glyphicon.glyphicon-plus
           tr 
-            td one
-            td two
-            td three
-            td four
+            td 
+              strong Equipment Items
+            td
+              a(href='/admin/equipment/item/list')
+                button.btn.btn-info.btn-sm
+                  span.glyphicon.glyphicon-search
+            td
+              a(href='/admin/equipment/item/new')
+                button.btn.btn-success.btn-sm
+                  span.glyphicon.glyphicon-plus
+          tr 
+            td 
+              strong Equipment Statuses
+            td
+              a(href='/admin/equipment/status/list')
+                button.btn.btn-info.btn-sm
+                  span.glyphicon.glyphicon-search
+            td
+              a(href='/admin/equipment/status/new')
+                button.btn.btn-success.btn-sm
+                  span.glyphicon.glyphicon-plus
 block scripts

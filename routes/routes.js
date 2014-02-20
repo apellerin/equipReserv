@@ -98,6 +98,7 @@ module.exports = function(app){
 
     //ADMINISTRATION NAMESPACE
     app.namespace('/admin',isLoggedIn,isAdmin,function() {
+        //EQUIPMENT NAMESPACE
         app.namespace('/equipment', function() {
             app.get('/',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
@@ -124,8 +125,11 @@ module.exports = function(app){
             });
             app.get('/status/list',function(req,res){
                 equip.listEquipStatuses(function(result){
-                    res.send(JSON.stringify(result));
+                    res.send(result);
                 });
+            });
+            app.get('/status/new',function(req,res){
+                res.render('./equipment/equipment',{user: req.session.thisUser});
             });
             app.post('/type/add',function(req,res){
                 equip.addEquipType(req.body.type, function(result){
@@ -146,6 +150,9 @@ module.exports = function(app){
                 equip.listEquipTypes(function(result){
                     res.send(result);
                 });
+            });
+            app.get('/type/new',function(req,res){
+                res.render('./equipment/equipment',{user: req.session.thisUser});
             });
             app.post('/add',function(req,res){
                 var obj = { "equip_id":null,
@@ -196,6 +203,9 @@ module.exports = function(app){
                     res.send(result);
                 });
             });
+            app.get('/new',function(req,res){
+                res.render('./equipment/equipment',{user: req.session.thisUser});
+            });
             app.post('/item/add',function(req,res){
                 equip.addEquipItem(req.body,function(result){
                     res.send(result);
@@ -220,6 +230,9 @@ module.exports = function(app){
                 equip.listEquipItems(function(result){
                     res.send(result);
                 });
+            });
+            app.get('/item/new',function(req,res){
+                res.render('./equipment/equipment',{user: req.session.thisUser});
             });
 
 

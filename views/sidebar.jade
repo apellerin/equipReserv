@@ -3,23 +3,19 @@
     .panel-heading.menuheader Menu
     div.list-group
     if(user && user.user_level == -1)
-      a.list-group-item(href='/users/login') Admin
-      a.list-group-item Links
-      a.list-group-item Are
-      a.list-group-item Here
-      a.list-group-item For
-      a.list-group-item Admins
-      a.list-group-item Yee!
-      a.list-group-item Link
+      a.list-group-item(href='/admin/reservations') Reservations
+      a.list-group-item(href='/admin/equipment') Equipment
+      a.list-group-item(href='/admin/users/') Users
+      a.list-group-item(href='/admin/reports/') Reports
+      a.list-group-item(href='/users/account/') My Account
+      a.list-group-item(href='/users/logout') Sign Out
     if(user && user.user_level == 0)
-      a.list-group-item User
-      a.list-group-item Links
-      a.list-group-item Are
-      a.list-group-item Not
-      a.list-group-item As
-      a.list-group-item Cool
-      a.list-group-item Boo!
-      a.list-group-item Link
+      a.list-group-item(href='/reservations/view') My Reservations
+      a.list-group-item(href='/reservations/make') Make Reservation
+      a.list-group-item(href='/equipment/view') Browse Equipment
+      a.list-group-item(href='/contact') Contact Admin
+      a.list-group-item(href='/users/account/') My Account
+      a.list-group-item(href='/users/logout') Sign Out
     if(!user)
       a.list-group-item(href='/users/login') Login
       a.list-group-item(href='/users/register') Register
