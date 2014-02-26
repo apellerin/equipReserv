@@ -20,7 +20,7 @@ block content
                 button.btn.btn-info.btn-sm
                   span.glyphicon.glyphicon-search
             td
-              a(href='/admin/equipment/type/new')
+              a(href='#typeModal' role='button' data-toggle="modal" data-target="#typeModal")
                 button.btn.btn-success.btn-sm
                   span.glyphicon.glyphicon-plus
           tr 
@@ -56,4 +56,6 @@ block content
               a(href='/admin/equipment/status/new')
                 button.btn.btn-success.btn-sm
                   span.glyphicon.glyphicon-plus
+  //Modals
+  include ../modals/addequiptype
 block scripts

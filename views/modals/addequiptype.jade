@@ -1,0 +1,14 @@
+﻿div.modal.fade(id='typeModal' role='dialog' aria-labelledby='typeModalLabel' aria-hidden='true')
+  div.modal-dialog
+   div.row
+    div.modal-content.col-md-12
+      div.modal-body
+        form.form-horizontal(method="POST", action="/admin/equipment/type/add", id="addtypeform")
+          div.form-group
+            h3 Add Equipment Type
+            label.form-label(for="type") Please Enter Type Description:
+            input.form-control(type="type", id="type",placeholder="e.g. Camera Lens", name="type", autofocus required)
+          div.form-group
+            button.btn.btn-primary Submit
+            text   
+            button.btn.btn-danger(data-dismiss='modal') Cancel

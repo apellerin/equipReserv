@@ -20,7 +20,7 @@ exports.config =
         host: 'smtp.gmail.com',
         secureConnection: true,
         port: 465,
-        auth: {username: 'email@email.com', password: 'email'}
+        auth: {username: 'equipreserv@gmail.com', password: 'reservation'}
         },
 
     emails: {
@@ -122,6 +122,11 @@ exports.config =
             messageheader: 'Access Denied:  ',
             message: 'You must be an administrator to access this area.  Please contact your system administrator.',
             messagetype: 'error'
+        },
+        itemadded: {
+            messageheader: 'Success: ',
+            message: 'Item was added succesfully.',
+            messagetype: 'success'
         }
     }
 }

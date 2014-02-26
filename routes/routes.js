@@ -132,8 +132,13 @@ module.exports = function(app){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
             });
             app.post('/type/add',function(req,res){
-                equip.addEquipType(req.body.type, function(result){
-                    res.send(result);
+                equip.addEquipType(req.body.type, function(err, result){
+                    if(err){
+                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});
+                    }
+                    else {
+                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});
+                        }
                 });
             });
             app.post('/type/get',function(req,res){

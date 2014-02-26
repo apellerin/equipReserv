@@ -43,6 +43,7 @@
     <Compile Include="public\scripts\bcrypt.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
     <Compile Include="public\scripts\loginvalidation.js" />
+    <Compile Include="public\scripts\page\equipment.js" />
     <Compile Include="public\scripts\page\login.js" />
     <Compile Include="public\scripts\scripts.js" />
     <Compile Include="routes\routes.js" />
@@ -58,6 +59,7 @@
     <Content Include="README.md" />
     <Content Include="views\equipment\equipment.jade" />
     <Content Include="views\feedback\feedback.jade" />
+    <Content Include="views\modals\addequiptype.jade" />
     <Content Include="views\users\account.jade" />
     <Content Include="views\header.jade" />
     <Content Include="views\modals\recoverpassmodal.jade" />
