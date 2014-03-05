@@ -31,7 +31,7 @@ block content
                 button.btn.btn-info.btn-sm
                   span.glyphicon.glyphicon-search
             td
-              a(href='/admin/equipment/new')
+              a(href='#equipModal' role='button' data-toggle="modal" data-target="#equipModal")
                 button.btn.btn-success.btn-sm
                   span.glyphicon.glyphicon-plus
           tr 
@@ -58,4 +58,8 @@ block content
                   span.glyphicon.glyphicon-plus
   //Modals
   include ../modals/addequiptype
+  include ../modals/addequipment
 block scripts
+  script(src='/scripts/bootstrap-file-input.js')
+  script(src='/scripts/page/equipment.js')
+  script(src='/scripts/jqBootstrapValidation.js')

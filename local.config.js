@@ -123,10 +123,16 @@ exports.config =
             message: 'You must be an administrator to access this area.  Please contact your system administrator.',
             messagetype: 'error'
         },
+        //Equipment Type Messages
         itemadded: {
             messageheader: 'Success: ',
             message: 'Item was added succesfully.',
             messagetype: 'success'
+        },
+        itemexists: {
+            messageheader: 'Oops!: ',
+            message: 'This item already exists.',
+            messagetype: 'error'
         }
     }
 }

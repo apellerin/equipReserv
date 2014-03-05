@@ -1,0 +1,27 @@
+﻿div.modal.fade(id='equipModal' role='dialog' aria-labelledby='equipModalLabel' aria-hidden='true')
+  div.modal-dialog
+   div.row
+    div.modal-content.col-md-12
+      div.modal-body
+        form.form-horizontal(method="POST", action="/admin/equipment/add", id="addequipform" enctype="multipart/form-data")
+          div.form-group
+            h3 Add Equipment
+            label.form-label(for="type") Type Description:
+            select.form-control(type="select", id="type",placeholder="Select Equipment Type", name="type", autofocus required)
+              option(value = "")
+          div.form-group
+            label.form-label(for="make") Manufacturer Name:
+            input.form-control(type="input", id="make",placeholder="Manufacturer Name", name="make", required)
+          div.form-group
+            label.form-label(for="model") Model Name/Number:
+            input.form-control(type="input", id="model",placeholder="Model Name/Number", name="model", required)
+          div.form-group
+            label.form-label(for="description") Product Description:
+            input.form-control(type="textarea", id="description",placeholder="", name="description")
+          div.form-group
+            div.input-group
+              input.form-control(type="file", title="Upload Image", name="image", id="image")
+          div.form-group
+            button.btn.btn-primary Submit
+            text   
+            button.btn.btn-danger(data-dismiss='modal') Cancel

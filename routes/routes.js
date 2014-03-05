@@ -31,7 +31,20 @@ module.exports = function(app){
               });
          //Add New User
         app.post('/register',function(req,res) {
-            users.register(req, res)
+            users.getByUsername(req.body.user_name, function(result){
+                if(result){
+                    res.render('./users/register',{message: messages.username_exists});
+                } else {
+                    users.getByEmail(req.body.email, function(result){
+                        if(result){
+                            res.render('./users/register',{message: messages.email_exists});
+                        } else {
+                            users.register(req, res)
+                        }
+                    });
+                }
+            });
+                
         });
          //User Registration Form
         app.get('/register',function(req,res) {
@@ -134,7 +147,7 @@ module.exports = function(app){
             app.post('/type/add',function(req,res){
                 equip.addEquipType(req.body.type, function(err, result){
                     if(err){
-                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});
+                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists});
                     }
                     else {
                         res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});
@@ -153,7 +166,7 @@ module.exports = function(app){
             });
             app.get('/type/list',function(req,res){
                 equip.listEquipTypes(function(result){
-                    res.send(result);
+                    res.send(JSON.stringify(result));
                 });
             });
             app.get('/type/new',function(req,res){
@@ -161,13 +174,18 @@ module.exports = function(app){
             });
             app.post('/add',function(req,res){
                 var obj = { "equip_id":null,
-                            "type_id":req.body.type_id,
+                            "type_id":req.body.type,
                             "make": req.body.make,
                             "model": req.body.model,
                             "description": req.body.description,
-                            "image": fs.readFileSync(req.files.image.path) }
-                equip.addEquipment(obj, function(result){
-                    res.send(result);
+                            "image": fs.readFileSync(req.files.image.path) 
+                            }
+                equip.addEquipment(obj, function(err, result){
+                    if(err){
+                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists});
+                    } else {
+                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});
+                    }
                 });
             });
             app.post('/get',function(req,res){
