@@ -16,4 +16,6 @@
             $('select').append("<option value='" + value.type_id + "'>" + value.type_desc);
         });
     });
+    //Jasny Bootstrap File Upload
+    //$('.fileinput').fileinput()
 });

@@ -133,6 +133,11 @@ exports.config =
             messageheader: 'Oops!: ',
             message: 'This item already exists.',
             messagetype: 'error'
+        },
+        filetoobig: {
+            messageheader: 'Oops!: ',
+            message: 'File is too large.  Please upload a file less than 65MB.',
+            messagetype: 'error'
         }
     }
 }

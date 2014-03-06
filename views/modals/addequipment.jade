@@ -3,12 +3,12 @@
    div.row
     div.modal-content.col-md-12
       div.modal-body
-        form.form-horizontal(method="POST", action="/admin/equipment/add", id="addequipform" enctype="multipart/form-data")
+        form.form-horizontal(method="POST", action="/admin/equipment/add", id="addequipform" enctype="multipart/form-data" novalidate)
           div.form-group
             h3 Add Equipment
             label.form-label(for="type") Type Description:
             select.form-control(type="select", id="type",placeholder="Select Equipment Type", name="type", autofocus required)
-              option(value = "")
+              option(value = "" disabled selected) Please select a value
           div.form-group
             label.form-label(for="make") Manufacturer Name:
             input.form-control(type="input", id="make",placeholder="Manufacturer Name", name="make", required)
@@ -18,9 +18,14 @@
           div.form-group
             label.form-label(for="description") Product Description:
             input.form-control(type="textarea", id="description",placeholder="", name="description")
-          div.form-group
-            div.input-group
-              input.form-control(type="file", title="Upload Image", name="image", id="image")
+          div.jumbotron.fileinput
+            div.fileinput.fileinput-new(data-provides="fileinput")
+              div.fileinput-new.thumbnail(style="width: 425px; height: 250px;")
+                img(data-src="holder.js/100%x100%" alt="" src="data:image/png;base64," style="height 250px; width: 425px")+
+              div.fileinput-preview.thumbnail.fileinput-exists(style="width: 425px; height: 250px;")
+              a.btn.btn-default.fileinput-exists(href="#", data-dismiss="fileinput") Remove
+              input.btn.btn-default.fileinput-new(type="file", name="image", id="image")
+              
           div.form-group
             button.btn.btn-primary Submit
             text   

@@ -1347,6 +1347,8 @@
     <Compile Include="node_modules\stylus\node_modules\sax\test\xmlns-xml-default-redefine.js" />
     <Compile Include="public\scripts\bcrypt.min.js" />
     <Compile Include="public\scripts\bootstrap-file-input.js" />
+    <Compile Include="public\scripts\jasny-bootstrap.js" />
+    <Compile Include="public\scripts\jasny-bootstrap.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
     <Compile Include="public\scripts\loginvalidation.js" />
     <Compile Include="public\scripts\page\equipment.js" />
@@ -2263,6 +2265,8 @@
     <Content Include="package.json" />
     <Content Include="public\images\Done.png" />
     <Content Include="public\images\logo.png" />
+    <Content Include="public\stylesheets\jasny-bootstrap.css" />
+    <Content Include="public\stylesheets\jasny-bootstrap.min.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\equipment\equipment.jade" />

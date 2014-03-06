@@ -145,8 +145,9 @@ module.exports = function(app){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
             });
             app.post('/type/add',function(req,res){
-                equip.addEquipType(req.body.type, function(err, result){
-                    if(err){
+                equip.addEquipType(req.body.type, function(result){
+                    console.log(JSON.stringify(result));
+                    if(!result){
                         res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists});
                     }
                     else {
@@ -173,6 +174,9 @@ module.exports = function(app){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
             });
             app.post('/add',function(req,res){
+                if(fs.statSync(req.files.image.path)["size"] >= 65000) {
+                    res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.filetoobig});
+                    }
                 var obj = { "equip_id":null,
                             "type_id":req.body.type,
                             "make": req.body.make,
@@ -180,8 +184,8 @@ module.exports = function(app){
                             "description": req.body.description,
                             "image": fs.readFileSync(req.files.image.path) 
                             }
-                equip.addEquipment(obj, function(err, result){
-                    if(err){
+                equip.addEquipment(obj, function(result){
+                    if(!result){
                         res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists});
                     } else {
                         res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});

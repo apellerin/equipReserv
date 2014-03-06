@@ -4,7 +4,8 @@ block content
   if (message) 
     include ../feedback/feedback
   div.col-xs-12.col-sm-9
-      h2 Report Administration
+    div
+      h2.clearfix Report Administration
       br
       div(id="table1")
         table.table.table-responsive(id="mytable")
@@ -60,6 +61,8 @@ block content
   include ../modals/addequiptype
   include ../modals/addequipment
 block scripts
+  link(rel='stylesheet', href='/stylesheets/jasny-bootstrap.min.css')
   script(src='/scripts/bootstrap-file-input.js')
   script(src='/scripts/page/equipment.js')
   script(src='/scripts/jqBootstrapValidation.js')
+  script(src='/scripts/jasny-bootstrap.min.js')
