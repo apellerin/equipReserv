@@ -1,0 +1,66 @@
+﻿extends ../layout
+block content
+  if (message) 
+    include ../feedback/feedback
+  div.col-xs-12.col-sm-9
+    h2.clearfix Report Administration
+      br
+    table.table.table-bordered.datagrid(id="MyGrid")
+      thead
+        tr
+          th
+            span.datagrid-header-title Geographic Data Sample
+              div.datagrid-header-left
+                div.input-append.search.datagrid-search
+                  input.input-medium(type="text", placeholder="Search")
+                    button.btn(type="button")
+                      i.icon-search
+              div.datagrid-header-right
+                div.select.filter(data-resize="auto")
+                  button.btn.dropdown-toggle(type="button" data-toggle="dropdown")
+                    span.dropdown-label
+                    span.caret
+                  ul.dropdown-menu
+                    li(data-value="all" data-selected="true")
+                      a(href="#") All
+                    li(data-value="lt5m")
+                      a(href="#") Population < 5M
+                    li(data-value="gte5m")
+                      a(href="#") Population >= 5M
+      tfoot
+        tr
+          th
+            div.datagrid-footer-left(style="display:none;")
+              div.grid-controls
+                span
+                  span.grid-start -
+                  span.grid-end of
+                  span.grid-count
+                div.select.grid-pagesize(data-resize="auto")
+                  button.btn.dropdown-toggle(type="button" data-toggle="dropdown")
+                    span.dropdown-label
+                    span.caret
+                  ul.dropdown-menu
+                    li(data-value="5" data-selected="true")
+                      a(href="#") 5
+                    li(data-value="10")
+                      a(href="#") 10
+                    li(data-value="20")
+                      a(href="#") 20
+                span Per Page
+            div.datagrid-footer-right(style="display:none;")
+              div.grid-pager
+                button.btn.grid-prevpage(type="button")
+                  i.icon-chevron-left
+                    span Page
+                div.input-append.dropdown.combobox
+                  input.span1(type="text")
+                  button.btn(type="button" data-toggle="dropdown")
+                   i.caret
+                  ul.dropdown-menu
+                  span of
+                    span.grid-pages
+                  button.btn.grid-nextpage(type="button")
+                    i.icon-chevron-right
+block scripts
+  script(src="http://www.fuelcdn.com/fuelux/2.6.0/loader.min.js")

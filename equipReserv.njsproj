@@ -2270,6 +2270,7 @@
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\equipment\equipment.jade" />
+    <Content Include="views\equipment\FuelUXGrid.jade" />
     <Content Include="views\feedback\feedback.jade" />
     <Content Include="views\modals\addequipment.jade" />
     <Content Include="views\modals\addequiptype.jade" />

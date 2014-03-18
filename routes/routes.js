@@ -261,6 +261,9 @@ module.exports = function(app){
             app.get('/item/new',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
             });
+            app.get('/item/test',function(req,res){
+                res.render('./equipment/FuelUXGrid',{user: req.session.thisUser});
+            });
 
 
         });//end admin/equipment namespace
