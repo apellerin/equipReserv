@@ -46,7 +46,7 @@ else {
     var sessStore = app.use(express.session({
         store: new MongoStore({
             db: 'eqSessions',
-            host: '127.0.0.1',
+            host: 'localhost',
             port: 27017
         }), secret: 'S3KR#T',
     })); 
