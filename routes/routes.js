@@ -226,7 +226,9 @@ module.exports = function(app){
                 });
             });
             app.get('/list',function(req,res){
-                equip.listEquipment(function(result){
+                length = parseInt(req.query.length);
+                page = parseInt(req.query.page);
+                equip.listEquipment(length, page, function(result){
                     res.send(result);
                 });
             });

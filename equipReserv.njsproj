@@ -1351,6 +1351,7 @@
     <Compile Include="public\scripts\jasny-bootstrap.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
     <Compile Include="public\scripts\loginvalidation.js" />
+    <Compile Include="public\scripts\page\equiplist.js" />
     <Compile Include="public\scripts\page\equipment.js" />
     <Compile Include="public\scripts\page\login.js" />
     <Compile Include="public\scripts\scripts.js" />

@@ -4,30 +4,28 @@ block content
     include ../feedback/feedback
   div.col-xs-12.col-sm-9
     h2.clearfix Report Administration
-      br
-    div.table-responsive
-      table.table.table-hover
-        span
-          label.form-label(for="type") Type Description:
-          select.form-control.append(type="select", id="type",placeholder="Select Equipment Type", name="type", autofocus required)
-            option(value = "" disabled selected) Please select a value
+    br
+    div.input-group
+      span.input-group-addon Filter
+      input.form-control(style="width:200px")
+    div.table-responsive(style="background-color:white")
+      table#eqlist.table.table-hover
         thead
           tr
-            th Name
-            th Position
-            th Office
-            th Age
-            th Start date
-            th Salary
+            th ID
+            th Type
+            th Make
+            th Model
+            th Description
+            th 
+            th
         tbody
-         
+          tr#tablecontents
+      ul.pager
+            li.previous
+              a(href='#') ← Prev
+            li.next
+              a(href='#') Next →
   block css
   block scripts
-    script.
-      $(document).ready(function() {
-        $.getJSON("/admin/equipment/type/list", function (result) {
-          $.each(result, function (key, value) {
-            $('select').append("<option value='" + value.type_id + "'>" + value.type_desc);
-            });
-          });
-        });
+    script(src="/scripts/page/equiplist.js")
