@@ -228,9 +228,13 @@ module.exports = function(app){
             app.get('/list',function(req,res){
                 length = parseInt(req.query.length);
                 page = parseInt(req.query.page);
-                equip.listEquipment(length, page, function(result){
+                filter = req.query.filter;
+                equip.listEquipment(length, page, filter, function(result){
                     res.send(result);
                 });
+            });
+            app.get('/view',function(req,res){
+                res.render('./equipment/equiplist',{user: req.session.thisUser});
             });
             app.get('/new',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});

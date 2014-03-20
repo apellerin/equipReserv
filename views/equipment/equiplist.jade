@@ -7,24 +7,24 @@ block content
     br
     div.input-group
       span.input-group-addon Filter
-      input.form-control(style="width:200px")
+      input#filter.form-control(style="width:200px")
     div.table-responsive(style="background-color:white")
       table#eqlist.table.table-hover
         thead
           tr
-            th ID
             th Type
             th Make
             th Model
             th Description
             th 
             th
+            th
         tbody
           tr#tablecontents
       ul.pager
-            li.previous
+            li.page-control.previous
               a(href='#') ← Prev
-            li.next
+            li.page-control.next
               a(href='#') Next →
   block css
   block scripts
