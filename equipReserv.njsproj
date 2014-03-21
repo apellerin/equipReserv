@@ -2273,7 +2273,9 @@
     <Content Include="views\equipment\equipment.jade" />
     <Content Include="views\equipment\equiplist.jade" />
     <Content Include="views\feedback\feedback.jade" />
+    <Content Include="views\modals\editequipment.jade" />
     <Content Include="views\modals\addequipment.jade" />
+    <Content Include="views\modals\editequiptype.jade" />
     <Content Include="views\modals\addequiptype.jade" />
     <Content Include="views\users\account.jade" />
     <Content Include="views\header.jade" />
