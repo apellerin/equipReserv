@@ -1345,12 +1345,14 @@
     <Compile Include="node_modules\stylus\node_modules\sax\test\xmlns-xml-default-prefix-attribute.js" />
     <Compile Include="node_modules\stylus\node_modules\sax\test\xmlns-xml-default-prefix.js" />
     <Compile Include="node_modules\stylus\node_modules\sax\test\xmlns-xml-default-redefine.js" />
+    <Compile Include="public\scripts\alertify.min.js" />
     <Compile Include="public\scripts\bcrypt.min.js" />
     <Compile Include="public\scripts\bootstrap-file-input.js" />
     <Compile Include="public\scripts\jasny-bootstrap.js" />
     <Compile Include="public\scripts\jasny-bootstrap.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
     <Compile Include="public\scripts\loginvalidation.js" />
+    <Compile Include="public\scripts\page\inventory.js" />
     <Compile Include="public\scripts\page\equiplist.js" />
     <Compile Include="public\scripts\page\equipment.js" />
     <Compile Include="public\scripts\page\login.js" />
@@ -2269,7 +2271,10 @@
     <Content Include="public\stylesheets\jasny-bootstrap.css" />
     <Content Include="public\stylesheets\jasny-bootstrap.min.css" />
     <Content Include="public\stylesheets\style.styl" />
+    <Content Include="public\STYLES~1\alertify.bootstrap.css" />
+    <Content Include="public\STYLES~1\alertify.core.css" />
     <Content Include="README.md" />
+    <Content Include="views\equipment\inventory.jade" />
     <Content Include="views\equipment\equipment.jade" />
     <Content Include="views\equipment\equiplist.jade" />
     <Content Include="views\feedback\feedback.jade" />

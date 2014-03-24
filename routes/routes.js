@@ -174,7 +174,7 @@ module.exports = function(app){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
             });
             app.post('/add',function(req,res){
-                if(fs.statSync(req.files.image.path)["size"] >= 65000) {
+                if(fs.statSync(req.files.image.path)["size"] >= 16777215) {
                     res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.filetoobig});
                     }
                 var obj = { "equip_id":null,
@@ -233,6 +233,9 @@ module.exports = function(app){
                     res.send(result);
                 });
             });
+            app.get('/viewinventory',function(req,res){
+                res.render('./equipment/inventory',{user: req.session.thisUser});
+            });
             app.get('/view',function(req,res){
                 res.render('./equipment/equiplist',{user: req.session.thisUser});
             });
@@ -263,6 +266,21 @@ module.exports = function(app){
                 equip.listEquipItems(function(result){
                     res.send(result);
                 });
+            });
+            app.get('/item/inventory',function(req,res){
+                var equip_id = parseInt(req.query.eid);
+                var length = parseInt(req.query.length);
+                var page = parseInt(req.query.page);
+                var filter = req.query.filter;
+                if(!equip_id) {
+                    equip.listEquipItems(length, page, filter, function(result){
+                        res.send(result);
+                });
+                } else {
+                    equip.listSelectItems(equip_id, length, page, filter, function(result){
+                        res.send(result);
+                });
+                }
             });
             app.get('/item/new',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});

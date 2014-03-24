@@ -55,7 +55,8 @@ var loadTable = function(length, page, filter) {
                         "<td id='description'>" + value.description + "</td>" +
                         "<td>" + "<a href='#' class='edit'>Edit </a>"+ "</td>" +
                         "<td>" + "<a href='#' class='delete'>Delete </a>"+ "</td>" +
-                        "<td>" + "<a href='#' class = 'detail'>Inventory</a>"+ "</td>" +
+                        "<td>" + "<a href='/admin/equipment/viewinventory?eid=" + value.equip_id + "&length=" + length +
+                        "&page=0&filter=" +  "'class = 'detail'>Inventory</a>"+ "</td>" +
                         "</tr>");
             });
             //hide next button if there are less than defined length rows.
@@ -84,20 +85,27 @@ var loadTable = function(length, page, filter) {
             $('.delete').on("click", function(){
                 //get equipment id for row
                 var eid = $(this).parent().siblings(":first").text();
-                //get data
-                $.post("/admin/equipment/delete",{equip_id: eid},  function (result) {
-                    $('.alert-dismissable').remove();
-                    $('#content').append(" \
-                        <div class='alert alert-success alert-dismissable'> \
-                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button> \
-                        <strong>Success: </strong>Item has been deleted.</div>");
+                // prompt dialog
+                alertify.confirm("This item and all sub-items will be deleted.", function (e, str) {
+                    // str is the input text
+                    if (e) {
+                        $.post("/admin/equipment/delete",{equip_id: eid},  function (result) {
+                            loadTable(length,page,filter);
+                        });
+                    } else {
+                        // user clicked "cancel"
+                    }
+                }, "Default Value");  
+            });
+            $('.detail').on("click", function(){
+                //get equipment id for row
+                var eid = $(this).parent().siblings(":first").text();
+                $.post("/admin/equipment/item",{equip_id: eid},  function (result) {
 
-                    loadTable(length,page,filter);
-                });
-                
+                }); 
             });
         });
-    }
+}
     //populate form function
     function populate(frm, data) {   
     $.each(data, function(key, value){  

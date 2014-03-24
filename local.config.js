@@ -136,7 +136,7 @@ exports.config =
         },
         filetoobig: {
             messageheader: 'Oops!: ',
-            message: 'File is too large.  Please upload a file less than 65MB.',
+            message: 'File is too large.  Please upload a file less than 16MB.',
             messagetype: 'error'
         }
     }
