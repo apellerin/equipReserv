@@ -20,15 +20,18 @@
     });
 
     //handle row edit link click events
-            $('.edit').on("click", function(){
-                //get equipment id for row
-                var eid = $(this).parent().siblings(":first").text();
-                //get data
-                $.post("/admin/equipment/get",{equip_id: eid},  function (result) {
-                    populate("#editequipform", result);
-                });
-                $('#editequipModal').modal('toggle');
-            });
+    $('.edit').on("click", function(){
+        //get equipment id for row
+        var eid = $(this).parent().siblings(":first").text();
+        //get data
+        $.post("/admin/equipment/get",{equip_id: eid},  function (result) {
+            populate("#editequipform", result);
+        });
+        $('#editequipModal').modal('toggle');
+    });
+    //Add hidden field with equip_id to add inventory modal
+    var equip_id = getParameterByName("eid");
+    $('#equip_id').val(equip_id);
 });
 
 //Get Parameters from querystring

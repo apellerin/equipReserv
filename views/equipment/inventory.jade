@@ -8,6 +8,9 @@ block content
     div.input-group
       span.input-group-addon Filter
       input#filter.form-control(style="width:200px")
+      a.pull-right(href='#addinventory' role='button' data-toggle="modal" data-target="#addinventory")
+        button.btn.btn-success.btn-md.pull-left
+          span.glyphicon.glyphicon-plus
     div.table-responsive(style="background-color:white")
       table#eqlist.table.table-hover
         thead
@@ -25,7 +28,7 @@ block content
             li.page-control.next
               a(href='#') Next →
   //Modals
-  //include ../modals/editinventory
+  include ../modals/addinventory
 block css
   link(rel='stylesheet', href='/stylesheets/alertify.core.css')
   link(rel='stylesheet', href='/stylesheets/alertify.bootstrap.css')

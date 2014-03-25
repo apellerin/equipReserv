@@ -1,4 +1,5 @@
 var fs = require('fs');
+var async = require('async');
 var users = require('../lib/users.js');
 var equip = require('../lib/equipment.js');
 var local = require('../local.config.js');
@@ -243,8 +244,20 @@ module.exports = function(app){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
             });
             app.post('/item/add',function(req,res){
-                equip.addEquipItem(req.body,function(result){
-                    res.send(result);
+                var equip_id = req.body.equip_id;
+                async.each(Object.keys(req.body), function(item, callback) {
+                    if(item != 'equip_id') {
+                        equip.addEquipItem(req.body[item], equip_id, callback);
+                    } else {
+                        callback();
+                        }
+                },
+                function(err){
+                    try {
+                        res.redirect(302,req.headers['referer']); 
+                        }catch(e) {
+                            res.send(messages.generic_error);
+                        }
                 });
             });
             app.post('/item/get',function(req,res){
