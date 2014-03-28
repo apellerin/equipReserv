@@ -1352,6 +1352,7 @@
     <Compile Include="public\scripts\jasny-bootstrap.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
     <Compile Include="public\scripts\loginvalidation.js" />
+    <Compile Include="public\scripts\page\userlist.js" />
     <Compile Include="public\scripts\page\inventory.js" />
     <Compile Include="public\scripts\page\equiplist.js" />
     <Compile Include="public\scripts\page\equipment.js" />
@@ -2278,6 +2279,7 @@
     <Content Include="views\equipment\equipment.jade" />
     <Content Include="views\equipment\equiplist.jade" />
     <Content Include="views\feedback\feedback.jade" />
+    <Content Include="views\modals\edituser.jade" />
     <Content Include="views\modals\addinventory.jade" />
     <Content Include="views\modals\editequipment.jade" />
     <Content Include="views\modals\addequipment.jade" />
@@ -2287,6 +2289,7 @@
     <Content Include="views\header.jade" />
     <Content Include="views\modals\recoverpassmodal.jade" />
     <Content Include="views\users\changepass.jade" />
+    <Content Include="views\users\userlist.jade" />
     <Content Include="views\users\register.jade" />
     <Content Include="views\users\login.jade" />
     <Content Include="views\index.jade" />

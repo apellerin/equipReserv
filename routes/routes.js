@@ -187,9 +187,9 @@ module.exports = function(app){
                             }
                 equip.addEquipment(obj, function(result){
                     if(!result){
-                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists});
+                        res.render('./equipment/equiplist',{user: req.session.thisUser, message: messages.itemexists});
                     } else {
-                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});
+                        res.render('./equipment/equiplist',{user: req.session.thisUser, message: messages.itemadded});
                     }
                 });
             });
@@ -298,16 +298,26 @@ module.exports = function(app){
             app.get('/item/new',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
             });
-            app.get('/item/test',function(req,res){
-                res.render('./equipment/FuelUXGrid',{user: req.session.thisUser});
+        });//end admin/equipment namespace
+
+        app.namespace('/users', function() {
+            app.get('/', function(req, res) {
+                res.render('./users/userlist',{user: req.session.thisUser});
+            });
+            app.get('/list', function(req, res) {
+                length = parseInt(req.query.length);
+                page = parseInt(req.query.page);
+                filter = req.query.filter;
+                users.listUsers(length, page, filter, function(result){
+                    res.send(result);
+                });
             });
 
-
-        });//end admin/equipment namespace
+        });//end admin/users namespace
 
     });//end admin namespace
 
-    
+
     app.get('/index',isLoggedIn,function(req, res){
         res.render('index',{user: req.session.thisUser});
     });
@@ -317,6 +327,4 @@ module.exports = function(app){
     app.all('*', function(req, res){
         res.render('./users/login');
     });
-
-
 }

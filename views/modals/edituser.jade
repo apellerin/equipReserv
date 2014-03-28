@@ -1,0 +1,43 @@
+﻿div.modal.fade(id='edituser' role='dialog' aria-labelledby='edituserlabel' aria-hidden='true')
+  div.modal-dialog
+   div.row
+    div.modal-content.col-md-12
+      div.modal-body
+        form.form-horizontal(method="POST", action="/admin/users/edit", id="edituserform" enctype="multipart/form-data" novalidate)
+          div.form-group
+            h3 Add Equipment
+          div.form-group
+            label(for="user_name") Username:
+            input.form-control(type="text", id="user_name",placeholder="Enter Username", name="user_name", autofocus required)
+            p.help-block
+          div.form-group
+            label(for="password") Password:
+            input.form-control(type="password", id="password",placeholder="Enter Password", name="password" required)
+            p.help-block
+          div.form-group
+            label(for="password2") Confirm Password:
+            input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2" data-validation-match-match="password",
+            data-validation-match-message="Passwords do not match" required)
+            p.help-block
+          div.form-group
+            label(for="username") First Name:
+            input.form-control(type="text", id="first_name",placeholder="First Name", name="first_name" required)
+            p.help-block
+          div.form-group
+            label(for="username") Last Name:
+            input.form-control(type="text", id="last_name",placeholder="Last Name", name="last_name" required)
+            p.help-block
+          div.form-group
+            label(for="username") Email Address:
+            input.form-control(type="email", id="email",placeholder="Enter Valid Email Address", name="email" required)
+            p.help-block
+          div.form-group
+            label(for="username") Phone:  
+              span.badge Format: 123-123-1234
+            input.form-control(type="tel", id="username",placeholder="Phone Number", name="phone" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"
+            data-validation-pattern-message="Please enter a valid telephone format")
+            p.help-block
+          div.form-group
+            button.btn.btn-primary(type="submit") Submit
+            text    
+            a.btn.btn-danger(type="reset", href='/users/login') Cancel
