@@ -41,12 +41,13 @@ var loadTable = function(length, page, filter) {
             $.each(result, function (key, value) {
                 $('tbody')
                     .append(
-                        "<tr><td id='user_id' style=" + "display:none" + ">" + value.user_id + "</td>" + 
+                        "<tr>" + 
                         "<td id='user_name'>" + value.user_name + "</td>" +
                         "<td id='first_name'>" + value.first_name + "</td>" +
                         "<td id='last_name'>" + value.last_name + "</td>" +
                         "<td id='email'>" + value.email + "</td>" +
-                        "<td id='phone'>" + value.phone + "</td>" +
+                        "<td id='user_level'>" + value.user_level + "</td>" +
+                        "<td id='activated'>" + value.activated + "</td>" +
                         "<td>" + "<a href='#' class='edit', data-toggle='modal' data-target='#edituser'>Edit </a>"+ "</td>" +
                         "<td>" + "<a href='#' class='delete'>Delete </a>"+ "</td>" +
                         "</tr>");
@@ -65,12 +66,13 @@ var loadTable = function(length, page, filter) {
             //handle row edit link click events
             $('.edit').on("click", function(){
                 //get equipment id for row
-                var eid = $(this).parent().siblings(":first").text();
+                var uid = $(this).parent().siblings(":first").text();
                 //get data
-                $.post("/admin/equipment/get",{equip_id: eid},  function (result) {
-                    populate("#editequipform", result);
+                $.post("/admin/users/get",{user_name: uid},  function (result) {
+                    alert(result);
+                    populate("#edituserform", result);
                 });
-                $('#editequipModal').modal('toggle');
+                $('#edituser').modal('toggle');
             });
 
             //handle row delete link click events
@@ -100,6 +102,7 @@ var loadTable = function(length, page, filter) {
 }
     //populate form function
     function populate(frm, data) {   
+    alert(data);
     $.each(data, function(key, value){  
         var $ctrl = $('[id='+key+']', frm);  
         switch($ctrl.attr("type"))  

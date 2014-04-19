@@ -312,6 +312,12 @@ module.exports = function(app){
                     res.send(result);
                 });
             });
+            app.post('/get', function(req, res) {
+                console.log(req.body.user_name);
+                users.getByUsername(req.body.user_name, function(result){
+                    res.send(result);
+                });
+            });
 
         });//end admin/users namespace
 
