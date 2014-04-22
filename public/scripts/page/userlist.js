@@ -39,6 +39,10 @@ var loadTable = function(length, page, filter) {
         $.getJSON("/admin/users/list?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
             $('tbody').empty();
             $.each(result, function (key, value) {
+                var level = 'User';
+                var active = 'Inactive';
+                if (value.user_level == -1) level = 'Admin';
+                if (value.activated == 1) active = 'Active';
                 $('tbody')
                     .append(
                         "<tr>" + 
@@ -46,8 +50,8 @@ var loadTable = function(length, page, filter) {
                         "<td id='first_name'>" + value.first_name + "</td>" +
                         "<td id='last_name'>" + value.last_name + "</td>" +
                         "<td id='email'>" + value.email + "</td>" +
-                        "<td id='user_level'>" + value.user_level + "</td>" +
-                        "<td id='activated'>" + value.activated + "</td>" +
+                        "<td id='user_level'>" + level + "</td>" +
+                        "<td id='activated'>" + active + "</td>" +
                         "<td>" + "<a href='#' class='edit', data-toggle='modal' data-target='#edituser'>Edit </a>"+ "</td>" +
                         "<td>" + "<a href='#' class='delete'>Delete </a>"+ "</td>" +
                         "</tr>");
@@ -69,7 +73,6 @@ var loadTable = function(length, page, filter) {
                 var uid = $(this).parent().siblings(":first").text();
                 //get data
                 $.post("/admin/users/get",{user_name: uid},  function (result) {
-                    alert(result);
                     populate("#edituserform", result);
                 });
                 $('#edituser').modal('toggle');
@@ -78,12 +81,12 @@ var loadTable = function(length, page, filter) {
             //handle row delete link click events
             $('.delete').on("click", function(){
                 //get equipment id for row
-                var eid = $(this).parent().siblings(":first").text();
+                var user = $(this).parent().siblings(":first").text();
                 // prompt dialog
-                alertify.confirm("This item and all sub-items will be deleted.", function (e, str) {
+                alertify.confirm("Are you sure you want to delete this user?", function (e, str) {
                     // str is the input text
                     if (e) {
-                        $.post("/admin/equipment/delete",{equip_id: eid},  function (result) {
+                        $.post("/admin/users/delete",{user_name: user},  function (result) {
                             loadTable(length,page,filter);
                         });
                     } else {
@@ -102,7 +105,6 @@ var loadTable = function(length, page, filter) {
 }
     //populate form function
     function populate(frm, data) {   
-    alert(data);
     $.each(data, function(key, value){  
         var $ctrl = $('[id='+key+']', frm);  
         switch($ctrl.attr("type"))  

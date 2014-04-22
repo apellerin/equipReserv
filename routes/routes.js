@@ -147,7 +147,6 @@ module.exports = function(app){
             });
             app.post('/type/add',function(req,res){
                 equip.addEquipType(req.body.type, function(result){
-                    console.log(JSON.stringify(result));
                     if(!result){
                         res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists});
                     }
@@ -157,22 +156,38 @@ module.exports = function(app){
                 });
             });
             app.post('/type/get',function(req,res){
-                equip.getEquipType(req.body.id, function(result){
+                equip.getEquipType(req.body.type_id, function(result){
                     res.send(result);
                 });
             });
             app.post('/type/delete',function(req,res){
-                equip.deleteEquipType(req,body.id, function(result){
+                equip.deleteEquipType(req.body.id, function(result){
                     res.send(result);
                 });
             });
-            app.get('/type/list',function(req,res){
-                equip.listEquipTypes(function(result){
-                    res.send(JSON.stringify(result));
+            app.get('type/list', function (req, res) {
+                equip.listEquipTypes(function (result) {
+                    res.send(result);
                 });
+            });
+            app.get('type/list2', function (req, res) {
+                length = parseInt(req.query.length);
+                page = parseInt(req.query.page);
+                filter = req.query.filter;
+                equip.listEquipTypes2(length, page, filter, function (result) {
+                    res.send(result);
+                });
+            });
+            app.get('type/view', function (req, res) {
+                res.render('./equipment/typelist', { user: req.session.thisUser });
             });
             app.get('/type/new',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
+            });
+            app.get('/type/update', function (req, res) {
+                equip.updateEquipType(req.type_id, req.type_desc, function (result) {
+                    res.send(result);
+                });
             });
             app.post('/add',function(req,res){
                 if(fs.statSync(req.files.image.path)["size"] >= 16777215) {
@@ -313,10 +328,24 @@ module.exports = function(app){
                 });
             });
             app.post('/get', function(req, res) {
-                console.log(req.body.user_name);
                 users.getByUsername(req.body.user_name, function(result){
                     res.send(result);
                 });
+            });
+            app.post('/update', function (req, res) {
+                users.adminUpdate(req, function (result) {
+                    if (!result.affectedRows == 1) {
+                        res.render('./users/userlist', { message: messages.noupdate, user: req.session.thisUser });
+                    } else {
+                        res.render('./users/userlist', { message: messages.accountupdated, user: req.session.thisUser });
+                    }
+                });
+            });
+            app.post('/delete', function (req, res) {
+                users.deleteUser(req.body.user_name, function (result) {
+                    res.send(result);
+                });
+
             });
 
         });//end admin/users namespace

@@ -1352,6 +1352,7 @@
     <Compile Include="public\scripts\jasny-bootstrap.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
     <Compile Include="public\scripts\loginvalidation.js" />
+    <Compile Include="public\scripts\page\typelist.js" />
     <Compile Include="public\scripts\page\userlist.js" />
     <Compile Include="public\scripts\page\inventory.js" />
     <Compile Include="public\scripts\page\equiplist.js" />
@@ -2275,6 +2276,7 @@
     <Content Include="public\STYLES~1\alertify.bootstrap.css" />
     <Content Include="public\STYLES~1\alertify.core.css" />
     <Content Include="README.md" />
+    <Content Include="views\equipment\typelist.jade" />
     <Content Include="views\equipment\inventory.jade" />
     <Content Include="views\equipment\equipment.jade" />
     <Content Include="views\equipment\equiplist.jade" />

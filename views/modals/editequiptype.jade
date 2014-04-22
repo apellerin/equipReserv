@@ -1,13 +1,14 @@
-﻿div.modal.fade(id='typeModal' role='dialog' aria-labelledby='typeModalLabel' aria-hidden='true')
+﻿div.modal.fade(id='editTypeModal' role='dialog' aria-labelledby='editTypeModalLabel' aria-hidden='true')
   div.modal-dialog
    div.row
     div.modal-content.col-md-12
       div.modal-body
-        form.form-horizontal(method="POST", action="/admin/equipment/type/add", id="addtypeform")
+        form.form-horizontal(method="POST", action="/admin/equipment/type/update", id="edittypeform")
           div.form-group
-            h3 Add Equipment Type
-            label.form-label(for="type") Please Enter Type Description:
-            input.form-control(type="input", id="type",placeholder="e.g. Camera Lens", name="type", autofocus required)
+            h3 Edit Equipment Type
+            label.form-label(for="type_desc") Please Enter Type Description:
+            input.form-control(type="input", id="type_id", name="type_id" style="display:none");
+            input.form-control(type="input", id="type_desc",placeholder="", name="type_desc", autofocus required)
           div.form-group
             button.btn.btn-primary Submit
             text   

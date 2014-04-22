@@ -3,7 +3,7 @@
    div.row
     div.modal-content.col-md-12
       div.modal-body
-        form.form-horizontal(method="POST", action="/admin/users/edit", id="edituserform" enctype="multipart/form-data" novalidate)
+        form.form-horizontal(method="POST", action="/admin/users/update", id="edituserform" enctype="multipart/form-data" novalidate)
           div.form-group
             h3 Edit User
           div.form-group
@@ -11,23 +11,15 @@
             input.form-control(type="text", id="user_name",placeholder="Enter Username", name="user_name", autofocus required)
             p.help-block
           div.form-group
-            label(for="password") Password:
-            input.form-control(type="password", id="password",placeholder="Enter Password", name="password" required)
-            p.help-block
-          div.form-group
-            label(for="username") First Name:
+            label(for="first_name") First Name:
             input.form-control(type="text", id="first_name",placeholder="First Name", name="first_name" required)
             p.help-block
           div.form-group
-            label(for="username") Last Name:
+            label(for="last_name") Last Name:
             input.form-control(type="text", id="last_name",placeholder="Last Name", name="last_name" required)
             p.help-block
           div.form-group
-            label(for="username") Nickname:
-            input.form-control(type="text", id="nickname",placeholder="Nickname", name="nickname" required)
-            p.help-block
-          div.form-group
-            label(for="username") Email Address:
+            label(for="email") Email Address:
             input.form-control(type="email", id="email",placeholder="Enter Valid Email Address", name="email" required)
             p.help-block
           div.form-group
@@ -38,23 +30,23 @@
             p.help-block
           div.form-group
             label(for="username") User Level:
-            input.form-control(type="text", id="user_level",placeholder="Last Name", name="user_level" required)
+            select.form-control(type="text", id="user_level",placeholder="User Level", name="user_level" required)
+              option(value = 0) User
+              option(value = -1) Admin
             p.help-block
           div.form-group
             label(for="username") Activated:
-            input.form-control(type="text", id="activated",placeholder="Last Name", name="activated" required)
+            select.form-control(type="text", id="activated",placeholder="status", name="activated" required)
+              option(value = 0) Inactive
+              option(value = 1) Active
             p.help-block
           div.form-group
-            label(for="username") Created:
-            input.form-control(type="text", id="created",placeholder="Last Name", name="created" required)
+            label(for="modified") Last Modified:
+            input.form-control(type="text", id="modified",placeholder="Last Name", name="modified" required disabled)
             p.help-block
           div.form-group
             label(for="username") Last Login:
-            input.form-control(type="text", id="last_login",placeholder="Last Name", name="last_login" required)
-            p.help-block
-          div.form-group
-            label(for="username") Hash:
-            input.form-control(type="text", id="hash",placeholder="Last Name", name="hash" required)
+            input.form-control(type="text", id="last_login",placeholder="", name="last_login" required disabled)
             p.help-block
           div.form-group
             button.btn.btn-primary(type="submit") Submit

@@ -14,17 +14,6 @@ block content
             th View
             th Add
           tr 
-            td
-              strong Equipment Types
-            td
-              a(href='/admin/equipment/type/list')
-                button.btn.btn-info.btn-sm
-                  span.glyphicon.glyphicon-search
-            td
-              a(href='#typeModal' role='button' data-toggle="modal" data-target="#typeModal")
-                button.btn.btn-success.btn-sm
-                  span.glyphicon.glyphicon-plus
-          tr 
             td 
               strong Equipment
             td
@@ -36,14 +25,14 @@ block content
                 button.btn.btn-success.btn-sm
                   span.glyphicon.glyphicon-plus
           tr 
-            td 
-              strong Equipment Statuses
             td
-              a(href='/admin/equipment/status/list')
+              strong Equipment Types
+            td
+              a(href='/admin/equipment/type/view')
                 button.btn.btn-info.btn-sm
                   span.glyphicon.glyphicon-search
             td
-              a(href='/admin/equipment/status/new')
+              a(href='#typeModal' role='button' data-toggle="modal" data-target="#typeModal")
                 button.btn.btn-success.btn-sm
                   span.glyphicon.glyphicon-plus
   //Modals
