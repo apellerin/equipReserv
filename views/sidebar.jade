@@ -4,7 +4,8 @@
     div.list-group
     if(user && user.user_level == -1)
       a.list-group-item(href='/admin/reservations') Reservations
-      a.list-group-item(href='/admin/equipment') Equipment
+      a.list-group-item(href='/admin/equipment/view') Equipment
+      a.list-group-item(href='/admin/equipment/type/view') Equip Types
       a.list-group-item(href='/admin/users/') Users
       a.list-group-item(href='/admin/reports/') Reports
       a.list-group-item(href='/users/account/') My Account

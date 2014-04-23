@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="lib\equipment.js" />
+    <Compile Include="lib\reservation.js" />
     <Compile Include="lib\mailout.js" />
     <Compile Include="lib\mysql_pool.js" />
     <Compile Include="lib\users.js" />

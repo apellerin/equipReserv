@@ -161,7 +161,7 @@ module.exports = function(app){
                 });
             });
             app.post('/type/delete',function(req,res){
-                equip.deleteEquipType(req.body.id, function(result){
+                equip.deleteEquipType(req.body.type_id, function(result){
                     res.send(result);
                 });
             });
@@ -184,9 +184,9 @@ module.exports = function(app){
             app.get('/type/new',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});
             });
-            app.get('/type/update', function (req, res) {
-                equip.updateEquipType(req.type_id, req.type_desc, function (result) {
-                    res.send(result);
+            app.post('/type/update', function (req, res) {
+                equip.updateEquipType(req.body.type_id, req.body.type_desc, function (result) {
+                    res.render('./equipment/typelist', { user: req.session.thisUser});
                 });
             });
             app.post('/add',function(req,res){
