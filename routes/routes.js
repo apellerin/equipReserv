@@ -110,7 +110,6 @@ module.exports = function(app){
         });
     });//End Users Namespace
    
-
     //ADMINISTRATION NAMESPACE
     app.namespace('/admin',isLoggedIn,isAdmin,function() {
         //EQUIPMENT NAMESPACE
@@ -353,18 +352,106 @@ module.exports = function(app){
 
     });//end admin namespace
 
-    app.namespace('/reserve', isLoggedIn, function () {
+    app.namespace('/reservation', isLoggedIn, function () {
 
         //ADD RESERVATION
         app.post('/add', function (req, res) {
-            reserv.createReservation(req.body, function (result) {
+            newres = {
+                user_name: req.session.thisUser.user_name,
+                reserv_date: new Date(),
+                reserv_edit_date: new Date(),
+                reserv_start_date: req.body.start,
+                reserv_end_date: req.body.end
+            }
 
+            reserv.createReservation(newres, function (result) {
+                res.send('Your reservation ID is: ' + result);
             });
         });
 
+        app.post('/update', function (req, res) {
+            newres = {
+                reservation_id : req.body.reservation_id,
+                reserv_start_date : req.body.start,
+                reserv_end_date: req.body.end,
+                reserv_status: parseInt(req.body.reserv_status)
+            }
+            reserv.updateReservation(newres, function (result) {
+                res.send(result);
+            });
+        });
 
+        app.post('/list', function (req, res) {
+            length = parseInt(req.body.length);
+            page = parseInt(req.body.page);
+            filter = req.body.filter;
 
+            reserv.listReservations(length, page, filter, function (result) {
+                res.send(result);
+            });
+        });
+        app.get('/list', function (req, res) {
+            length = parseInt(req.query.length);
+            page = parseInt(req.query.page);
+            filter = req.query.filter;
 
+            reserv.listReservations(length, page, filter, function (result) {
+                res.send(result);
+            });
+        });
+        app.post('/delete', function (req, res) {
+            reserv.deleteReservation(req.body.reservation_id, function (result) {
+                res.send(result);
+            });
+        });
+        app.post('/get', function (req, res) {
+
+            if (req.body.reservation_id) {
+                reserv.getReservationById(req.body.reservation_id, function (result) {
+                    res.send(result);
+                });
+            } 
+            else if (req.body.status) {
+                reserv.getReservationsByStatus(req.body.status, function (result) {
+                    res.send(result);
+                });
+            }
+            else if (req.body.user_name) {
+                reserv.getReservationByUser(req.body.user_name, function (result) {
+                    res.send(result);
+                });
+            }
+            else if (req.body.start && req.body.end) {
+                reserv.getReservationByDateRange(req.body.start, req.body.end, function (result) {
+                    res.send(result);
+                });
+            }
+            else {
+                res.send(200, 'Huh?');
+            }
+        });
+
+        app.post('/getavailableequipment', function (req, res) {
+            start = new Date(req.body.start);
+            end = new Date(req.body.end);
+            type = req.body.type;
+
+            reserv.getAvailableEquipment(start, end, type, function (result) {
+                res.send(result);
+            });
+        });
+
+        app.post('/reserveitem', function (req, res) {
+            reserv.reserveItem(req.body.reservation_id, req.body.inventory_id, function (result) {
+                res.send(200, "Your item has been reserved as number: " + result);
+            });
+        });
+
+        app.post('/unreserveitem', function (req, res) {
+            reserv.unreserveItem(req.body.reservation_id, req.body.inventory_id, function (result) {
+                res.send(result);
+            });
+        });
     }); //end reserve namespace
     
         
