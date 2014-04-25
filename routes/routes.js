@@ -2,6 +2,7 @@ var fs = require('fs');
 var async = require('async');
 var users = require('../lib/users.js');
 var equip = require('../lib/equipment.js');
+var reserv = require('../lib/reservation.js');
 var local = require('../local.config.js');
     messages = local.config.messages;
 //Check Login Status
@@ -352,10 +353,19 @@ module.exports = function(app){
 
     });//end admin namespace
 
+    app.namespace('/reserve', isLoggedIn, function () {
 
-    app.get('/index',isLoggedIn,function(req, res){
-        res.render('index',{user: req.session.thisUser});
-    });
+        //ADD RESERVATION
+        app.post('/add', function (req, res) {
+            reserv.createReservation(req.body, function (result) {
+
+            });
+        });
+
+
+
+
+    }); //end reserve namespace
     
         
     //Create Error Response - No Route Exists
