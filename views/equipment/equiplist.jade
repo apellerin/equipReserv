@@ -1,7 +1,7 @@
 ﻿extends ../layout
 block content
   if (message) 
-    include ../feedback/feedback
+    include ../feedback
   div.col-xs-12.col-sm-9
     h2#pageheader.clearfix Report Administration
     br
@@ -30,9 +30,9 @@ block content
             li.page-control.next
               a(href='#') Next →
   //Modals
-  include ../modals/editequiptype
-  include ../modals/editequipment
-  include ../modals/addequipment
+  include ../equipment/editequiptype
+  include ../equipment/editequipment
+  include ../equipment/addequipment
 block css
   link(rel='stylesheet', href='/stylesheets/jasny-bootstrap.min.css')
   link(rel='stylesheet', href='/stylesheets/alertify.core.css')

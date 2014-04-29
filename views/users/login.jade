@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   if (message || notactivated || resetpassword) 
-    include ../feedback/feedback
+    include ../feedback
   div.col-xs-12.col-sm-9
     div.jumbotron.clearfix
       div.container
@@ -25,7 +25,7 @@ block content
                 a(href='#myModal' role='button' data-toggle="modal" data-target="#myModal") Forgot Password
                 text  |  
                 a(href='/users/register') Create Account
-  include ../modals/recoverpassmodal
+  include ../users/recoverpass
 block scripts
   script(src='/scripts/jqBootstrapValidation.js')
   script(src='/scripts/page/login.js')	    
