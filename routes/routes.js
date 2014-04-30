@@ -4,8 +4,9 @@ var users = require('../lib/users.js');
 var equip = require('../lib/equipment.js');
 var reserv = require('../lib/reservation.js');
 var local = require('../local.config.js');
-    messages = local.config.messages;
-//Check Login Status
+var messages = local.config.messages;
+
+//FUNCTIONS
 function isLoggedIn(req, res, next){
     if(req.session.thisUser){
         next();
@@ -22,10 +23,10 @@ function isAdmin(req, res, next){
         }
 }
 
-//Application Routing Logic
+//APPLICATION ROUTING
 module.exports = function(app){
 
-     //USER NAMESPACE
+    //USER ACCOUNTS
     app.namespace('/users', function(req, res) {
         //User Authentication
         app.post('/authenticate',function(req,res) {
@@ -108,9 +109,9 @@ module.exports = function(app){
         app.get('/',function(req,res){
             res.render('./users/login');
         });
-    });//End Users Namespace
-   
-    //ADMINISTRATION NAMESPACE
+    });
+  
+    //EQUIPMENT ADMINISTRATION
     app.namespace('/admin',isLoggedIn,isAdmin,function() {
         //EQUIPMENT NAMESPACE
         app.namespace('/equipment', function() {
@@ -350,8 +351,9 @@ module.exports = function(app){
 
         });//end admin/users namespace
 
-    });//end admin namespace
+    });
 
+    //RESERVATION API
     app.namespace('/reservation', isLoggedIn, function () {
 
         //ADD RESERVATION
@@ -452,9 +454,22 @@ module.exports = function(app){
                 res.send(result);
             });
         });
-    }); //end reserve namespace
-    
-        
+    });
+
+    //USER EXPERIENCE
+    app.namespace('/reservation/user', isLoggedIn, function () {
+
+        app.get('/home', function (req, res) {
+            res.render('./reservation/user/userhome', { user: req.session.thisUser });
+        });
+
+    });
+
+    //ADMIN EXPERIENCE
+    app.namespace('/reservation/admin', isLoggedIn, function () {
+
+    });
+       
     //Create Error Response - No Route Exists
     app.all('*', function(req, res){
         res.render('./users/login');

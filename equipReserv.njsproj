@@ -1353,7 +1353,6 @@
     <Compile Include="public\scripts\jasny-bootstrap.js" />
     <Compile Include="public\scripts\jasny-bootstrap.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
-    <Compile Include="public\scripts\loginvalidation.js" />
     <Compile Include="public\scripts\moment.js" />
     <Compile Include="public\scripts\page\typelist.js" />
     <Compile Include="public\scripts\page\userlist.js" />
@@ -2284,6 +2283,7 @@
     <Content Include="views\equipment\old_equip.jade" />
     <Content Include="views\equipment\equiplist.jade" />
     <Content Include="views\feedback.jade" />
+    <Content Include="views\reservation\user\userhome.jade" />
     <Content Include="views\users\edituser.jade" />
     <Content Include="views\equipment\addinventory.jade" />
     <Content Include="views\equipment\editequipment.jade" />

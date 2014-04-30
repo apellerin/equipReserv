@@ -6,6 +6,7 @@ html,
 body {
   overflow-x: hidden;
 /* Prevent scroll on narrow devices */
+  height: 100%;
 }
 /*
  * Off Canvas
@@ -43,4 +44,15 @@ body {
 }
 .panel-heading.menuheader {
   text-align: center;
+}
+.test,
+#content {
+  background-color: LightGrey;
+  border: 2px solid;
+  border-radius: 5px;
+  height: 90%;
+}
+body,
+html {
+  height: 100%;
 }
