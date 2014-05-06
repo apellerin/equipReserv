@@ -1,12 +1,11 @@
 ﻿div.modal.fade(id='myModal' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
-  div.modal-dialog
-   div.row
-    div.modal-content.col-md-12
+  div.modal-dialog.modal-sm
+    div.modal-content
+      div.modal-header
+        h3 Recover Password
       div.modal-body
         form.form-horizontal(method="POST", action="/users/forgotpassword", id="resetpassform")
           div.form-group
-            h3 Recover Password
-            label.form-label(for="email") Please Enter Email Address:
             input.form-control(type="email", id="email",placeholder="Email Address", name="email", autofocus required)
           div.form-group
             button.btn.btn-primary Submit

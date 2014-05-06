@@ -460,7 +460,7 @@ module.exports = function(app){
     app.namespace('/reservation/user', isLoggedIn, function () {
 
         app.get('/home', function (req, res) {
-            res.render('./reservation/user/userhome', { user: req.session.thisUser });
+            res.render('./reservation/user/home', { user: req.session.thisUser });
         });
 
     });

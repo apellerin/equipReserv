@@ -3,41 +3,34 @@ block content
   if (message || notactivated || resetpassword) 
     include ../feedback
   div.col-xs-12.col-sm-9
-    div.jumbotron.clearfix
+    div.jumbotron.loginarea
       div.container
         form.form-horizontal(method="POST", action="/users/register", id="registerform" novalidate)
           div.form-group
-            H2 Create an Account
+            H2 Account Registration
           div.form-group
-            label(for="user_name") Username:
-            input.form-control(type="text", id="user_name",placeholder="Enter Username", name="user_name", autofocus required)
+            input.form-control(type="text", id="user_name",placeholder="Username", name="user_name", minlength="8", autofocus required)
             p.help-block
           div.form-group
-            label(for="password") Password:
-            input.form-control(type="password", id="password",placeholder="Enter Password", name="password" required)
+            input.form-control(type="password", id="password",placeholder="Password", minlength="8" name="password" required)
             p.help-block
           div.form-group
-            label(for="password2") Confirm Password:
             input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2" data-validation-match-match="password",
             data-validation-match-message="Passwords do not match" required)
             p.help-block
           div.form-group
-            label(for="username") First Name:
             input.form-control(type="text", id="first_name",placeholder="First Name", name="first_name" required)
             p.help-block
           div.form-group
-            label(for="username") Last Name:
             input.form-control(type="text", id="last_name",placeholder="Last Name", name="last_name" required)
             p.help-block
           div.form-group
-            label(for="username") Email Address:
-            input.form-control(type="email", id="email",placeholder="Enter Valid Email Address", name="email" required)
+            input.form-control(type="email", id="email",placeholder="Email Address", name="email" required)
             p.help-block
           div.form-group
-            label(for="username") Phone:  
-              span.badge Format: 123-123-1234
             input.form-control(type="tel", id="username",placeholder="Phone Number", name="phone" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"
             data-validation-pattern-message="Please enter a valid telephone format")
+            span.badge Format: 123-123-1234
             p.help-block
           div.form-group
             button.btn.btn-primary(type="submit") Submit

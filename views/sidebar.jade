@@ -1,22 +1,65 @@
-﻿div.col-xs-6.col-sm-3.sidebar-offcanvas(id="sidebar" role="navigation")
-  div.panel.panel-primary
-    .panel-heading.menuheader Menu
-    div.list-group
-    if(user && user.user_level == -1)
-      a.list-group-item(href='/admin/reservations') Reservations
-      a.list-group-item(href='/admin/equipment/view') Equipment
-      a.list-group-item(href='/admin/equipment/type/view') Equip Types
-      a.list-group-item(href='/admin/users/') Users
-      a.list-group-item(href='/admin/reports/') Reports
-      a.list-group-item(href='/users/account/') My Account
-      a.list-group-item(href='/users/logout') Sign Out
-    if(user && user.user_level == 0)
-      a.list-group-item(href='/reservations/view') My Reservations
-      a.list-group-item(href='/reservations/make') Make Reservation
-      a.list-group-item(href='/equipment/view') Browse Equipment
-      a.list-group-item(href='/contact') Contact Admin
-      a.list-group-item(href='/users/account/') My Account
-      a.list-group-item(href='/users/logout') Sign Out
-    if(!user)
-      a.list-group-item(href='/users/login') Login
-      a.list-group-item(href='/users/register') Register
+﻿if(user && user.user_level == -1)
+    .container-fluid
+        .row
+            .col-sm-3.col-md-2.sidebar
+              ul.nav.nav-sidebar
+                li.active
+                  a(href='#') Dashboard
+                li
+                  a(href='#') Reservations
+                li
+                  a(href='#') Equipment
+                li
+                  a(href='#') Users
+                li
+                  a(href='#') Account
+              ul.nav.nav-sidebar
+                li
+                  a(href='') Nav item
+                li
+                  a(href='') Nav item again
+                li
+                  a(href='') One more nav
+                li
+                  a(href='') Another nav item
+                li
+                  a(href='') More navigation
+              ul.nav.nav-sidebar
+                li
+                  a(href='') Nav item again
+                li
+                  a(href='') One more nav
+                li
+                  a(href='') Another nav item
+
+if(user && user.user_level == 0)
+    .container-fluid
+        .row
+            .col-sm-3.col-md-2.sidebar
+              ul.nav.nav-sidebar
+                li.active
+                  a(href='#') Dashboard
+                li
+                  a(href='#') View Equipment
+                li
+                  a(href='#') Account
+                li
+                  a(href='/users/logout') Sign-Out
+              ul.nav.nav-sidebar
+                li
+                  a(href='') Nav item
+                li
+                  a(href='') Nav item again
+                li
+                  a(href='') One more nav
+                li
+                  a(href='') Another nav item
+                li
+                  a(href='') More navigation
+              ul.nav.nav-sidebar
+                li
+                  a(href='') Nav item again
+                li
+                  a(href='') One more nav
+                li
+                  a(href='') Another nav item

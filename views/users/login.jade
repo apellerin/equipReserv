@@ -3,19 +3,17 @@ extends ../layout
 block content
   if (message || notactivated || resetpassword) 
     include ../feedback
-  div.col-xs-12.col-sm-9
-    div.jumbotron.clearfix
+  div
+    div.jumbotron.loginarea
       div.container
         form.form-horizontal(method="POST", action="/users/authenticate", id="loginform" novalidate)
           div.form-group
             h2 Login
           div.form-group
-            label.form-label(for="user_name") Username/Email:
-            input.form-control(type="text", id="user_name",placeholder="Enter Username", name="user_name", min="8" autofocus required)
+            input.form-control(type="text", id="user_name",placeholder="Username", name="user_name", maxlength="20" autofocus required)
             p.help-block
           div.form-group
-            label.form-label(for="password") Password:
-            input.form-control(type="password", id="password",placeholder="Enter Password", name="password", min="8" required)
+            input.form-control(type="password", id="password",placeholder="Password", name="password", maxlength="20" required)
             p.help-block
           div.form-group
             button.btn.btn-primary Login
