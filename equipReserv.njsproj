@@ -2286,7 +2286,6 @@
     <Content Include="views\equipment\old_equip.jade" />
     <Content Include="views\equipment\equiplist.jade" />
     <Content Include="views\feedback.jade" />
-    <Content Include="views\reservation\user\availequip.jade" />
     <Content Include="views\reservation\user\home.jade" />
     <Content Include="views\users\edituser.jade" />
     <Content Include="views\equipment\addinventory.jade" />

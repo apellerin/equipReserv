@@ -3,7 +3,7 @@ extends ../layout
 block content
   if (message || notactivated || resetpassword) 
     include ../feedback
-  div
+  div.col-xs-12.col-sm-9
     div.jumbotron.loginarea
       div.container
         form.form-horizontal(method="POST", action="/users/authenticate", id="loginform" novalidate)

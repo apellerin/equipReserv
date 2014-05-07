@@ -433,12 +433,14 @@ module.exports = function(app){
             }
         });
 
-        app.post('/getavailableequipment', function (req, res) {
-            start = new Date(req.body.start);
-            end = new Date(req.body.end);
-            type = req.body.type;
+        app.get('/getavailableequipment', function (req, res) {
+            length = parseInt(req.query.length);
+            page = parseInt(req.query.page);
+            filter = req.query.filter;
+            start = req.query.start;
+            end = req.query.end;
 
-            reserv.getAvailableEquipment(start, end, type, function (result) {
+            reserv.getAvailableEquipment(length, page, filter, start, end, function (result) {
                 res.send(result);
             });
         });
