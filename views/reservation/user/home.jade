@@ -1,0 +1,79 @@
+﻿extends ../../layout
+block content
+  .row
+    h1.page-header Dashboard
+  .row
+    .dashcontainer
+      h4.sub-header.section-header My Reservations
+      table#reslist.table.table-hover.table-responsive
+        thead
+          tr#tableheadings
+            th Start
+            th End
+            th Status
+            th 
+            th
+            th
+  .row
+    .dashcontainer
+      h4.sub-header.section-header Create Reservation
+      form.form-inline
+        .form-group
+          .col-lg-5
+            #startdatetime.input-group.date
+              input.form-control(type='text')
+              span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+          .col-lg-1
+          .col-lg-6
+            #enddatetime.input-group.date
+              input.form-control(type='text')
+              span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+      .sub-header
+
+  .row
+    .dashcontainer.col-lg-6
+      h4.sub-header.section-header Available Equipment
+      .row.col-lg-6
+        div.input-group.filter-box
+          span.input-group-addon Filter
+          input#aeq-filter.form-control
+      .row
+        div.table.table-responsive.col-lg-5
+          table#aeq-list.table.table-hover.table-responsive.table-condensed(style="background-color:white")
+            thead
+              tr#aeq-headings
+                th Type
+                th Make
+                th Model
+                th Avail
+                th
+                th
+            tbody#aeq-body
+              tr#aeq-contents
+
+    .col-lg-2
+    .dashcontainer.col-lg-6
+      h4.sub-header.section-header Shopping Cart
+      .row.col-lg-6
+        div.input-group.filter-box(style="visibility:hidden")
+          span.input-group-addon Filter
+          input#cart-filter.form-control
+      .row
+        div.table.table-responsive.col-lg-5
+          table#cart-list.table.table-hover.table-responsive.table-condensed(style="background-color:white")
+            thead
+              tr#cart-headings
+                th Type
+                th Make
+                th Model
+                th
+                th
+            tbody#cart-body
+              tr#cart-contents
+
+block scripts
+  script(src='/scripts/moment.js')
+  script(src='/scripts/bootstrap-datetimepicker.js')
+  script(src='/scripts/page/userdash.js')
