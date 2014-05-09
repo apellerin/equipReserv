@@ -1354,7 +1354,7 @@
     <Compile Include="public\scripts\jasny-bootstrap.min.js" />
     <Compile Include="public\scripts\jqBootstrapValidation.js" />
     <Compile Include="public\scripts\moment.js" />
-    <Compile Include="public\scripts\page\dashboard.js" />
+    <Compile Include="public\scripts\page\userdash.js" />
     <Compile Include="public\scripts\page\typelist.js" />
     <Compile Include="public\scripts\page\userlist.js" />
     <Compile Include="public\scripts\page\inventory.js" />

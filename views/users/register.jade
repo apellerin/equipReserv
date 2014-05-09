@@ -2,7 +2,7 @@ extends ../layout
 block content
   if (message || notactivated || resetpassword) 
     include ../feedback
-  div.col-xs-12.col-sm-9
+  .row.col-sm-8.col-md-6.col-lg-4.col-centered.clearfix
     div.jumbotron.loginarea
       div.container
         form.form-horizontal(method="POST", action="/users/register", id="registerform" novalidate)

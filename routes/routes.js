@@ -465,6 +465,12 @@ module.exports = function(app){
             res.render('./reservation/user/home', { user: req.session.thisUser });
         });
 
+        app.post('/addcart', function (req, res) {
+            reserv.addItemToCart(req.session.thisUser.user_name, req.body.equip_id, req.body.start, req.body.end, function (result) {
+                res.send(result);
+            });
+        });
+
     });
 
     //ADMIN EXPERIENCE

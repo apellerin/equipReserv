@@ -1,5 +1,6 @@
 ﻿require('newrelic');
 var cluster = require('cluster');
+var reserv = require('./lib/reservation.js');
 
 //Variable to track whether or not we want to fork new workers
 var close_server = false;
@@ -79,6 +80,9 @@ else {
       
             var server = http.createServer(app).listen(app.get('port')) 
                 console.log('Express app started by %s', worker_id);
+
+                //Start 5Min Interval Shopping Cart Cleaner/Collector
+                if (cluster.worker.id === 1) reserv.startCartCollector();
             }
 
     

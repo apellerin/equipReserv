@@ -5,7 +5,7 @@ html(lang='en')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(name='description' content='')
     meta(name='author' content='Anthony Lee Pellerin')
-    title Finsys SSRS Wrapper
+    title EquipReserv V0.1
 
     //if lt IE 9
       script(src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")
@@ -18,9 +18,13 @@ html(lang='en')
   body
     include header
     include sidebar
-    div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-4-col-lg-offset-2.main
+    if(user)
+      div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-lg-4-col-lg-offset-2.main
+        block content
+    else
       block content
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
     script(src='http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js')
     script(src='/scripts/scripts.js')
     block scripts
+    block vars

@@ -99,10 +99,15 @@ body {
 }
 .loginarea {
   border-radius: 25px;
+  margin: 18px 18px 18px 18px;
 }
 .modal-body {
   background-color: #f7f7f9;
 }
 .filter-box {
   padding: 0px 0px 15px 0px;
+}
+.col-centered {
+  float: none;
+  margin: 0 auto;
 }
