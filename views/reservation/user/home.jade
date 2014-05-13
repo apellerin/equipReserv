@@ -21,13 +21,13 @@ block content
         .form-group
           .col-lg-5
             #startdatetime.input-group.date
-              input.form-control(type='text')
+              input#startinput.form-control(type='text')
               span.input-group-addon
                 span.glyphicon.glyphicon-calendar
           .col-lg-1
           .col-lg-6
             #enddatetime.input-group.date
-              input.form-control(type='text')
+              input#endinput.form-control(type='text')
               span.input-group-addon
                 span.glyphicon.glyphicon-calendar
       .sub-header
@@ -56,6 +56,9 @@ block content
     .col-lg-2
     .dashcontainer.col-lg-6
       h4.sub-header.section-header Shopping Cart
+        .timer.pull-right
+          small Time-Remaining: 
+          span#timer.badge 5:00
       .row.col-lg-6
         div.input-group.filter-box(style="visibility:hidden")
           span.input-group-addon Filter
@@ -68,12 +71,19 @@ block content
                 th Type
                 th Make
                 th Model
+                th Id#
                 th
                 th
             tbody#cart-body
               tr#cart-contents
+          #cartsubmitbtn.btn.btn-success Submit
 
+block css
+  link(rel='stylesheet', href='/stylesheets/alertify.core.css')
+  link(rel='stylesheet', href='/stylesheets/alertify.bootstrap.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
 block scripts
   script(src='/scripts/moment.js')
   script(src='/scripts/bootstrap-datetimepicker.js')
+  script(src='/scripts/alertify.min.js')
   script(src='/scripts/page/userdash.js')

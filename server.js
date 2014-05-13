@@ -36,7 +36,6 @@ else {
     var path  = require('path');
     var mysql_pool = require('./lib/mysql_pool.js'); 
     var namespace = require('express-namespace');   
-    
     //Initalize Express Application
     var app = express();
     
@@ -56,6 +55,7 @@ else {
     sql_pool = mysql_pool.startPool();
 
     //Mount Middleware
+    app.use(require('moment'));
     app.use(express.logger('dev'));
     app.use(express.compress());
     app.use(express.favicon());

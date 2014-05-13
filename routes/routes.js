@@ -466,7 +466,28 @@ module.exports = function(app){
         });
 
         app.post('/addcart', function (req, res) {
-            reserv.addItemToCart(req.session.thisUser.user_name, req.body.equip_id, req.body.start, req.body.end, function (result) {
+            start = new Date(req.body.start);
+            end = new Date(req.body.end);
+
+            reserv.addItemToCart(req.session.thisUser.user_name, req.body.equip_id, start, end, function (result) {
+                res.send(result);
+            });
+        });
+
+        app.get('/clearcart', function (req, res) {
+            reserv.clearUserCart(req.session.thisUser.user_name, function(result) {
+                res.send(result);
+            });
+        });
+
+        app.get('/getcartitems', function (req, res) {
+            reserv.getCartItemsByUser(req.session.thisUser.user_name, function(result) {
+                res.send(result);
+            });
+        });
+
+        app.get('/carttimer', function (req, res) {
+            reserv.getCartTimerValue(req.session.thisUser.user_name, function(result) {
                 res.send(result);
             });
         });
@@ -474,7 +495,7 @@ module.exports = function(app){
     });
 
     //ADMIN EXPERIENCE
-    app.namespace('/reservation/admin', isLoggedIn, function () {
+    app.namespace('/reservation/admin', isLoggedIn, isAdmin, function () {
 
     });
        
