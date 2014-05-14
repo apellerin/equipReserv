@@ -1,0 +1,24 @@
+div.modal.fade(id='equipViewModal' role='dialog' aria-labelledby='equipViewModalLabel' aria-hidden='true')
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        a.close(data-dismiss="modal") &times;
+        h4 Make &amp Model
+      div.modal-body
+        div.carousel.slide#myCarousel(data-ride="carousel")
+          div.carousel-inner
+            div.item.active
+              img(src="holder.js/900x500/auto/#777:#555/text:First slide")
+              div.carousel-caption
+                h4 First Thumbnail label
+                p Cras justo odio, dapibus ac facilisis in, egestas eget quam. 
+                  | Donec id elit non mi porta gravida at eget metus. 
+                  |  Nullam id dolor id nibh ultricies vehicula ut id elit.
+            div.item
+              img(src="holder.js/900x500/auto/#777:#555/text:Second slide")
+              div.carousel-caption
+                h4
+                p
+      div.modal-footer
+        a.btn.btn-primary(href="#") Reserve
+        a.btn(href="#", data-dismiss="modal") Close

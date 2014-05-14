@@ -491,6 +491,31 @@ module.exports = function(app){
                 res.send(result);
             });
         });
+        
+        app.post('/delcartitem', function (req, res) {
+            reserv.removeCartItem(req.body.inventory_id, function(result) {
+                res.send(result);
+            });
+        });
+
+        app.post('/getequipdetail',function(req,res){
+                reserv.getEquipment(req.body.equip_id, function(result){
+
+                    if(result.image != null) {
+                        var image = result.image.toString('base64');
+                    }else { var image = null;}
+
+                    var obj = { "equip_id":result.equip_id,
+                            "type_id":result.type_id,
+                            "make": result.make,
+                            "model": result.model,
+                            "description": result.description,
+                            "image": image
+                            }
+                    res.send(obj);
+                });
+            });
+
 
     });
 

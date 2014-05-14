@@ -56,7 +56,7 @@ block content
     .col-lg-2
     .dashcontainer.col-lg-6
       h4.sub-header.section-header Shopping Cart
-        .timer.pull-right
+        #timerdiv.timer.pull-right.hidden
           small Time-Remaining: 
           span#timer.badge 5:00
       .row.col-lg-6
@@ -76,7 +76,10 @@ block content
                 th
             tbody#cart-body
               tr#cart-contents
-          #cartsubmitbtn.btn.btn-success Submit
+          #cartsubmitbtn.btn.btn-success.hidden Reserve
+
+
+  include showequipmodal
 
 block css
   link(rel='stylesheet', href='/stylesheets/alertify.core.css')
@@ -87,3 +90,4 @@ block scripts
   script(src='/scripts/bootstrap-datetimepicker.js')
   script(src='/scripts/alertify.min.js')
   script(src='/scripts/page/userdash.js')
+  script(src='/scripts/holder.js')

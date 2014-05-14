@@ -11,20 +11,27 @@
     $('#startdatetime').data('DateTimePicker').setDate(now.add(1, 'day').startOf('hour'));
     $('#enddatetime').data('DateTimePicker').setDate(now.add(1, 'day').add(1, 'hour'));
     var now = new moment();
-    $('#startdatetime').data('DateTimePicker').setMinDate(now.add(-1, 'day'));
+    $('#startdatetime').data('DateTimePicker').setMinDate(now);
     var now = new moment();
-    $('#enddatetime').data('DateTimePicker').setMinDate(now.add(-1, 'day'));
+    $('#enddatetime').data('DateTimePicker').setMinDate(now);
     var now = new moment();
 
     //Register Change Listener
     $("#startdatetime")
         .on("dp.change", function (e) {
-            newend = new moment($('#startdatetime').data("DateTimePicker").getDate());
+            var now = new moment();
+            var newend = new moment($('#startdatetime').data("DateTimePicker").getDate());
+            if (newend < now) {
+
+                alertify.alert("Invalid Time Douche!");
+            } else {
+
             $('#enddatetime').data('DateTimePicker').setDate(newend.add(1, 'day').add(1, 'hour'));
             $.getJSON('/reservation/user/clearcart', function(result) {
                 loadAvailableEquip();
             });
-        });
+        }
+    });
 
     $("#enddatetime").on("dp.change", function (e) {
         $('#startdatetime').data("DateTimePicker").setMaxDate(e.date);
@@ -89,13 +96,21 @@ var loadAvailableEquip = function (length, page, filter) {
                 alertify.alert("You must set start & end date/time for your reservation."); 
             }
             else {
+
                 var eid = $(this).parent().siblings(":first").text();
                 $.post("/reservation/user/addcart",{equip_id: eid, start: start, end: end},  function (result) {
-                    alertify.success("Item Added.",5000);
                     loadAvailableEquip();
                 }); 
             }
         });
+
+        $('.aeq-view').on('click', function () {
+            
+        });
+
+
+
+
         loadShoppingCart();
     }); 
 };
@@ -103,18 +118,28 @@ var loadAvailableEquip = function (length, page, filter) {
 var loadShoppingCart = function() {
 
     $.getJSON("/reservation/user/getcartitems", function (result) {
-            $('#cart-body').empty();
-            $.each(result, function (key, value) {
-                $('#cart-body')
-                    .append(
-                        "<tr><td id='type'>" + value.type_desc + "</td>" +
-                        "<td id='make'>" + value.make + "</td>" +
-                        "<td id='model'>" + value.model + "</td>" +
-                        "<td id='inventory_id'>" + value.inventory_id + "</td>" +
-                        "<td>" + "<a href='#deleteitem' id='deleteitem' class='btn btn-danger btn-sm cart-delete'>Remove</a>" + "</td>" +
-                        "<td>" + "<a href='#viewitem2' id='viewitem2' class='btn btn-primary btn-sm cart-view'>View</a>" + "</td>" +
-                        "</tr>");
+        toggleTimer(result.length);
+        $('#cart-body').empty();
+        $.each(result, function (key, value) {
+            $('#cart-body')
+                .append(
+                    "<tr><td id='type'>" + value.type_desc + "</td>" +
+                    "<td id='make'>" + value.make + "</td>" +
+                    "<td id='model'>" + value.model + "</td>" +
+                    "<td id='inventory_id'>" + value.inventory_id + "</td>" +
+                    "<td>" + "<a href='#deleteitem' id='deleteitem' class='btn btn-danger btn-sm cart-delete'>Delete</a>" + "</td>" +
+                    "<td>" + "<a href='#viewitem2' id='viewitem2' class='btn btn-primary btn-sm cart-view'>View</a>" + "</td>" +
+                    "</tr>");
+        });
+
+        $('.cart-delete').on("click", function() {
+            var eid = $(this).parent().siblings('#inventory_id').text();
+            
+            $.post("/reservation/user/delcartitem", {inventory_id: eid}, function (result) {
+                loadShoppingCart();
+                loadAvailableEquip();
             });
+        });
     });
 }
 
@@ -133,16 +158,19 @@ var startTimer = function() {
 function updateTimer() {
     $.getJSON("/reservation/user/carttimer", function(result) {
         if(result.length) {
+
             var maxtime = new moment(result[0].timer);
             var diff = moment().diff(maxtime);
             var timeval = 5 - moment.duration(diff).asMinutes();
             var minutes = parseInt(timeval);
             var seconds = parseInt((((300 - moment.duration(diff).asSeconds())/60)%1)*60);
 
-            if(minutes === 0 && seconds === 0) {
-                $('#timer').html('5:00');
-                loadAvailableEquip();
-                loadShoppingCart();
+            if(minutes < 1 && seconds < 1) {
+
+                $.getJSON('/reservation/user/clearcart', function(result) {
+                    loadAvailableEquip();
+                });
+
             } else if (seconds < 10) {
                 $('#timer').html(minutes + ':0' + seconds);
             }
@@ -153,24 +181,16 @@ function updateTimer() {
     });
 }
 
-function populate(frm, data) {   
-    $.each(data, function(key, value){  
-        var $ctrl = $('[id='+key+']', frm);  
-        switch($ctrl.attr("type"))  
-        {  
-            case "text" :   
-            case "hidden":  
-                $ctrl.val(value);   
-            break;   
-            case "radio" : case "checkbox":   
-                $ctrl.each(function(){
-                   if($(this).attr('value') == value) {  $(this).attr("checked",value); } });   
-                break;  
-            case "file" :
-                $ctrl.parent().parent().parent().find('img').attr('src','data:image/png;charset=utf-8;base64,' +value);
-                break;
-            default:
-            $ctrl.val(value); 
-        }  
-    });  
+function toggleTimer(t) {
+    if(t){
+        $('#timerdiv, #cartsubmitbtn').removeClass('hidden');
+    } else {
+
+        if(! $('#timerdiv, #cartsubmitbtn').hasClass('hidden') )
+            $('#timerdiv, #cartsubmitbtn').addClass('hidden');
+    }
+}
+
+function showMyModal() {   
+    $('#equipViewModal').modal();
 }  
