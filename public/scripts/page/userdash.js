@@ -21,16 +21,11 @@
         .on("dp.change", function (e) {
             var now = new moment();
             var newend = new moment($('#startdatetime').data("DateTimePicker").getDate());
-            if (newend < now) {
-
-                alertify.alert("Invalid Time Douche!");
-            } else {
 
             $('#enddatetime').data('DateTimePicker').setDate(newend.add(1, 'day').add(1, 'hour'));
             $.getJSON('/reservation/user/clearcart', function(result) {
                 loadAvailableEquip();
             });
-        }
     });
 
     $("#enddatetime").on("dp.change", function (e) {
@@ -67,6 +62,11 @@
             } 
         });    
     });
+    $('#cartcancelbtn').on("click", function () {
+        $.getJSON('/reservation/user/clearcart', function(result) {
+                loadAvailableEquip();
+        });
+    });
 });
 
 //LOAD/REFRESH TABLE DATA
@@ -78,8 +78,7 @@ var loadAvailableEquip = function (length, page, filter) {
     
     //set page length based on viewport size    
     if (!length) {
-        if ($(window).width() < 992) { length = 5; }
-        else { length = 15; }
+        length = 10000;
     }
     //if page is not supplied or page is <0 make 0 and disable previous button.
     if (!page || page < 0) {
@@ -87,7 +86,9 @@ var loadAvailableEquip = function (length, page, filter) {
         $('#aeq-previous').hide();
     } 
     if (!filter) { filter = "" };
+
     localStorage.setItem("aeq_page", page);
+
     $.getJSON("/reservation/getavailableequipment?length=" + length + "&page=" + page + "&filter=" + filter +
         "&start=" + start + "&end=" + end, function (result) {
             $('#aeq-body').empty();
@@ -99,8 +100,10 @@ var loadAvailableEquip = function (length, page, filter) {
                         "<td id='make'>" + value.make + "</td>" +
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='avail'><span class='badge alert-info'>" + value.available + "</span></td>" +
-                        "<td>" + "<a href='#additem' id='additem' class='btn btn-success btn-xs aeq-add'>Add</a>" + "</td>" +
-                        "<td>" + "<a href='#viewitem1' id='viewitem1' class='btn btn-primary btn-xs aeq-view'>View</a>" + "</td>" +
+                        "<td>" + 
+                        "<a href='#viewitem1' id='viewitem1' class='btn btn-primary btn-xs aeq-view'>View</a>" +
+                        "<a href='#additem' id='additem' class='btn btn-success btn-xs aeq-add'>Add</a>" +
+                        "</td>" +
                         "</tr>");
             });
 
@@ -139,14 +142,17 @@ var loadAvailableEquip = function (length, page, filter) {
 
         loadShoppingCart();
         loadReservations();
-    }); 
+    })
+
+    .fail( function () {
+        $('#aeq-body').empty();
+    });
 };
 
 var loadShoppingCart = function() {
-
     $.getJSON("/reservation/user/getcartitems", function (result) {
-        toggleTimer(result.length);
         $('#cart-body').empty();
+        toggleTimer(result.length);
         $.each(result, function (key, value) {
             $('#cart-body')
                 .append(
@@ -162,10 +168,13 @@ var loadShoppingCart = function() {
             var eid = $(this).parent().siblings('#inventory_id').text();
             
             $.post("/reservation/user/delcartitem", {inventory_id: eid}, function (result) {
-                loadShoppingCart();
                 loadAvailableEquip();
             });
         });
+    })
+
+    .fail( function () {
+        $('#cart-body').empty();
     });
 }
 
@@ -209,11 +218,11 @@ function updateTimer() {
 
 function toggleTimer(t) {
     if(t){
-        $('#timerdiv, #cartsubmitbtn').removeClass('hidden');
+        $('.timerobject').removeClass('hidden');
     } else {
 
-        if(! $('#timerdiv, #cartsubmitbtn').hasClass('hidden') )
-            $('#timerdiv, #cartsubmitbtn').addClass('hidden');
+        if(! $('.timerobject').hasClass('hidden') )
+            $('.timerobject').addClass('hidden');
     }
 }
 
@@ -224,12 +233,48 @@ var loadReservations = function() {
         $.each(result, function (key, value) {
             $('#res-body')
                 .append(
-                    "<tr><td id='start'>" + moment(value.reserv_start_date) + "</td>" +
-                    "<td id='end'>" + moment(value.reserv_end_date) + "</td>" +
+                    "<tr><td id='reservation_id' style=" + "display:none" + ">" + value.reservation_id + "</td>" +
+                    "<td id='start'>" + moment(value.reserv_start_date).format("MM/DD/YYYY h:mm A") + "</td>" +
+                    "<td id='end'>" + moment(value.reserv_end_date).format("MM/DD/YYYY h:mm A") + "</td>" +
+                    "<td id='numitems'>" + value.item_count + "</td>" +
                     "<td id='status'>" + value.status_description + "</td>" +
-                    "<td>" + "<a href='#viewres' id='viewres' class='btn btn-primary btn-xs'>View</a>" + "</td>" +
-                    "<td>" + "<a href='#cancelres' id='cancelres' class='btn btn-danger btn-xs'>Cancel</a>" + "</td>" +
+                    "<td>" + "<a href='#reslist' id='viewres' class='btn btn-primary btn-xs viewres'>View</a>" + 
+                    "<a href='#reslist' id='cancelres' class='btn btn-danger btn-xs cancelres'>Cancel</a>" + "</td>" +
                     "</tr>");
         });
-    });
+
+        $('.viewres').on("click", function() {
+            var rid = $(this).parent().siblings('#reservation_id').text();
+
+            $.getJSON("/reservation/user/getresequipment?reservation_id=" + rid, function (result) {
+                $('#reseq-body').empty();
+                $.each(result, function (key, value) {
+                    $('#reseq-body')
+                        .append(
+                            "<tr><td id='type'>" + value.type_desc + "</td>" +
+                            "<td id='make'>" + value.make + "</td>" +
+                            "<td id='model'>" + value.model + "</td>" +
+                            "<td id='inventory_id'>" + value.inventory_id + "</td>" +
+                            "</tr>");
+                });
+
+                $('#resViewModal').modal();
+            });
+        });
+
+        $('.cancelres').on("click", function() {
+            var rid = $(this).parent().siblings('#reservation_id').text();
+            alertify.confirm("Are you sure you want to cancel this reservation?", function (e) {
+                if (e) {
+                    $.post("/reservation/delete", {reservation_id: rid}, function (result) {
+                        loadAvailableEquip();
+                    });
+                }
+            });   
+        });
+    })
+
+    .fail(function () {
+        $('#res-body').empty();
+    }); 
 }

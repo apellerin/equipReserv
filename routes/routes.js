@@ -396,6 +396,7 @@ module.exports = function(app){
                 res.send(result);
             });
         });
+
         app.get('/list', function (req, res) {
             length = parseInt(req.query.length);
             page = parseInt(req.query.page);
@@ -548,6 +549,12 @@ module.exports = function(app){
 
         app.get('/list', function(req,res) {
             reserv.getReservationByUser(req.session.thisUser.user_name, function(result) {
+                res.send(result);
+            });
+        });
+
+        app.get('/getresequipment', function (req, res) {
+            reserv.getReservationEquipment(req.query.reservation_id, function (result) {
                 res.send(result);
             });
         });

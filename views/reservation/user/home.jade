@@ -11,11 +11,11 @@ block content
             tr#tableheadings
               th Start
               th End
+              th # Items
               th Status
               th 
-              th
           tbody#res-body
-                tr#res-contents
+            tr#res-contents
   .row
     #resdates.dashcontainer
       h4.sub-header.section-header Create Reservation
@@ -51,14 +51,13 @@ block content
                 th Model
                 th Avail
                 th
-                th
             tbody#aeq-body
               tr#aeq-contents
 
     .col-lg-2
-    #acart.dashcontainer.col-lg-6
+    #cart.dashcontainer.col-lg-6
       h4.sub-header.section-header Shopping Cart
-        #timerdiv.timer.pull-right.hidden
+        #timerdiv.timerobject.timer.pull-right.hidden
           small Time-Remaining: 
           span#timer.badge 5:00
       .row.col-lg-6
@@ -75,13 +74,14 @@ block content
                 th Model
                 th Id#
                 th
-                th
             tbody#cart-body
               tr#cart-contents
-          #cartsubmitbtn.btn.btn-success.btn-sm.hidden Reserve
+          #cartsubmitbtn.timerobject.cart-btn.btn.btn-success.btn-sm.hidden Reserve
+          #cartcancelbtn.timerobject.cart-btn.btn.btn-danger.btn-sm.hidden Cancel 
 
 
   include showequipmodal
+  include showresmodal
 
 block css
   link(rel='stylesheet', href='/stylesheets/alertify.core.css')

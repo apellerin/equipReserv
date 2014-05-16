@@ -222,3 +222,5 @@ pip-log.txt
 bin/
 node_modules/
 *.sql
+*.sublime-project
+*.sublime-workspace

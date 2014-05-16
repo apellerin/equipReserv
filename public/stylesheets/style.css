@@ -94,6 +94,18 @@ body {
   border: 1px solid #e1e1e8;
   border-radius: 25px;
 }
+.dashcontainer .btn-xs {
+  margin-right: 10px;
+  width: 50px;
+}
+.dashcontainer .btn-sm {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.padform {
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .loginarea {
   border-radius: 25px;
   margin: 18px 18px 18px 18px;
@@ -107,4 +119,11 @@ body {
 .col-centered {
   float: none;
   margin: 0 auto;
+}
+#reseq-list {
+  margin-top: 0;
+}
+.modal-close {
+  border: 1px solid;
+  border-color: #65a8f0;
 }

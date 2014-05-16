@@ -1,0 +1,21 @@
+div.modal.fade(id='resViewModal' role='dialog' aria-labelledby='resViewModalLabel' aria-hidden='true')
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        a.close(data-dismiss="modal") &times;
+        h4#title Reserved Equipment
+      #reseq.modal-body(style="background-color:white")
+        .row
+          div.table.table-responsive
+            table#reseq-list.table.table-hover.table-responsive.table-condensed(style="background-color:white")
+              thead
+                tr#reseq-headings
+                  th Type
+                  th Make
+                  th Model
+                  th Id#
+                  th
+              tbody#reseq-body
+                tr#reseq-contents
+      div.modal-footer
+        a.btn.modal-close(href="#", data-dismiss="modal") Close
