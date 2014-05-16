@@ -362,12 +362,16 @@ module.exports = function(app){
                 user_name: req.session.thisUser.user_name,
                 reserv_date: new Date(),
                 reserv_edit_date: new Date(),
-                reserv_start_date: req.body.start,
-                reserv_end_date: req.body.end
+                reserv_start_date: new Date(req.body.start),
+                reserv_end_date: new Date(req.body.end)
             }
-
+            
             reserv.createReservation(newres, function (result) {
-                res.send('Your reservation ID is: ' + result);
+                if (result) {
+                    reserv.finalizeCart(req.session.thisUser.user_name, result, function (result) {
+                        res.send(result);
+                    });
+                }
             });
         });
 
@@ -515,6 +519,38 @@ module.exports = function(app){
                     res.send(obj);
                 });
             });
+
+        app.get('/getequippic', function (req, res) {
+
+            reserv.getEquipPic(req.query.equip_id, function (result) {
+
+            if(result) {
+                
+                var result = result[0];
+
+                if(result.image != null) {
+                        var image = result.image.toString('base64');
+                } else { var image = null; }
+
+                     var obj = { "equip_id" : result.equip_id,
+                            "type_id" : result.type_id,
+                            "make" : result.make,
+                            "model" : result.model,
+                            "description" : result.description,
+                            "image" : image
+                            }
+
+                    res.send(obj);
+
+                } else {res.send(null);}
+            });
+        });
+
+        app.get('/list', function(req,res) {
+            reserv.getReservationByUser(req.session.thisUser.user_name, function(result) {
+                res.send(result);
+            });
+        });
 
 
     });

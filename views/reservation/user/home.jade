@@ -3,19 +3,21 @@ block content
   .row
     h1.page-header Dashboard
   .row
-    .dashcontainer
-      h4.sub-header.section-header My Reservations
-      table#reslist.table.table-hover.table-responsive
-        thead
-          tr#tableheadings
-            th Start
-            th End
-            th Status
-            th 
-            th
-            th
+    #res.dashcontainer.col-lg-12
+      div.table.table-responsive.col-lg-5
+        h4.sub-header.section-header My Reservations
+        table#res-list.table.table-responsive.table-condensed(style="background-color:white")
+          thead
+            tr#tableheadings
+              th Start
+              th End
+              th Status
+              th 
+              th
+          tbody#res-body
+                tr#res-contents
   .row
-    .dashcontainer
+    #resdates.dashcontainer
       h4.sub-header.section-header Create Reservation
       form.form-inline
         .form-group
@@ -33,7 +35,7 @@ block content
       .sub-header
 
   .row
-    .dashcontainer.col-lg-6
+    #aeq.dashcontainer.col-lg-6
       h4.sub-header.section-header Available Equipment
       .row.col-lg-6
         div.input-group.filter-box
@@ -54,7 +56,7 @@ block content
               tr#aeq-contents
 
     .col-lg-2
-    .dashcontainer.col-lg-6
+    #acart.dashcontainer.col-lg-6
       h4.sub-header.section-header Shopping Cart
         #timerdiv.timer.pull-right.hidden
           small Time-Remaining: 
@@ -76,7 +78,7 @@ block content
                 th
             tbody#cart-body
               tr#cart-contents
-          #cartsubmitbtn.btn.btn-success.hidden Reserve
+          #cartsubmitbtn.btn.btn-success.btn-sm.hidden Reserve
 
 
   include showequipmodal

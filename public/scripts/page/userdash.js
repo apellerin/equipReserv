@@ -53,6 +53,20 @@
         loadAvailableEquip(null, null, $('#aeq-filter').val());
     });
 
+    //SET UP CART SUBMIT
+    $('#cartsubmitbtn').on("click", function() {
+        alertify.confirm("Are you ready to finalize your reservation?", function (e) {
+            if (e) {
+                var start = $('#startdatetime').data("DateTimePicker").getDate();
+                var end = $('#enddatetime').data("DateTimePicker").getDate();
+                var start = start.toISOString();
+                var end = end.toISOString();
+                $.post('/reservation/add',{start: start, end: end}, function (result) {
+                    loadAvailableEquip();
+                });
+            } 
+        });    
+    });
 });
 
 //LOAD/REFRESH TABLE DATA
@@ -85,8 +99,8 @@ var loadAvailableEquip = function (length, page, filter) {
                         "<td id='make'>" + value.make + "</td>" +
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='avail'><span class='badge alert-info'>" + value.available + "</span></td>" +
-                        "<td>" + "<a href='#additem' id='additem' class='btn btn-success btn-sm aeq-add'>Add</a>" + "</td>" +
-                        "<td>" + "<a href='#viewitem1' id='viewitem1' class='btn btn-primary btn-sm aeq-view'>View</a>" + "</td>" +
+                        "<td>" + "<a href='#additem' id='additem' class='btn btn-success btn-xs aeq-add'>Add</a>" + "</td>" +
+                        "<td>" + "<a href='#viewitem1' id='viewitem1' class='btn btn-primary btn-xs aeq-view'>View</a>" + "</td>" +
                         "</tr>");
             });
 
@@ -105,13 +119,26 @@ var loadAvailableEquip = function (length, page, filter) {
         });
 
         $('.aeq-view').on('click', function () {
-            
+            var eid = $(this).parent().siblings(':first').text();
+            $.getJSON('/reservation/user/getequippic?equip_id=' + eid, function (result) {
+                $('#equipViewModal #title').html(result.make + " - " + result.model);
+                $('#equipViewModal #caption').html(result.model);
+                $('#equipViewModal #description').html(result.description);
+
+                if (result.image) {
+                $('#equipViewModal #image').attr('src','data:image/png;charset=utf-8;base64,' + result.image);
+                } else {
+
+                    $('#equipViewModal #image').attr('src','holder.js/900x700/auto/#777:#555/text:No Image Available');
+                    Holder.run();
+                }
+
+                $('#equipViewModal').modal();
+            });
         });
 
-
-
-
         loadShoppingCart();
+        loadReservations();
     }); 
 };
 
@@ -127,8 +154,7 @@ var loadShoppingCart = function() {
                     "<td id='make'>" + value.make + "</td>" +
                     "<td id='model'>" + value.model + "</td>" +
                     "<td id='inventory_id'>" + value.inventory_id + "</td>" +
-                    "<td>" + "<a href='#deleteitem' id='deleteitem' class='btn btn-danger btn-sm cart-delete'>Delete</a>" + "</td>" +
-                    "<td>" + "<a href='#viewitem2' id='viewitem2' class='btn btn-primary btn-sm cart-view'>View</a>" + "</td>" +
+                    "<td>" + "<a href='#deleteitem' id='deleteitem' class='btn btn-danger btn-xs cart-delete'>Delete</a>" + "</td>" +
                     "</tr>");
         });
 
@@ -191,6 +217,19 @@ function toggleTimer(t) {
     }
 }
 
-function showMyModal() {   
-    $('#equipViewModal').modal();
-}  
+var loadReservations = function() {
+
+    $.getJSON("/reservation/user/list", function (result) {
+        $('#res-body').empty();
+        $.each(result, function (key, value) {
+            $('#res-body')
+                .append(
+                    "<tr><td id='start'>" + moment(value.reserv_start_date) + "</td>" +
+                    "<td id='end'>" + moment(value.reserv_end_date) + "</td>" +
+                    "<td id='status'>" + value.status_description + "</td>" +
+                    "<td>" + "<a href='#viewres' id='viewres' class='btn btn-primary btn-xs'>View</a>" + "</td>" +
+                    "<td>" + "<a href='#cancelres' id='cancelres' class='btn btn-danger btn-xs'>Cancel</a>" + "</td>" +
+                    "</tr>");
+        });
+    });
+}
