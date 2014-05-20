@@ -1,38 +1,36 @@
-﻿div.container
-  div.row
-    div
-      if(message.messagetype=='info')
-        div.alert.alert-info.alert-dismissable
-          button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
-          strong #{message.messageheader} 
-          text #{message.message}
-      if(message.messagetype=='error')
-        div.alert.alert-danger.alert-dismissable
-          button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
-          strong #{message.messageheader}
-          text #{message.message}
-      if(message.messagetype=='success')
-        div.alert.alert-success.alert-dismissable
-          button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
-          strong #{message.messageheader} 
-          text #{message.message}
-      if(message.messagetype=='warning')
-        div.alert.alert-warning.alert-dismissable
-          button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
-          strong #{message.messageheader} 
-          text #{message.message}
-      if(notactivated)
-        div.alert.alert-info.alert-dismissable
-          button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
-          strong Account Not Activated:  
-          text An email was sent to 
-          strong #{notactivated.email} 
-          text with instructions on activating your account. Please activate your account to use the system.  
-          a(href="/users/resendactivate") Resend Activation Link
-      if(resetpassword)
-        div.alert.alert-success.alert-dismissable
-          button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
-          strong Email Sent:  
-          text An email was sent to  
-          strong #{email}
-          text  with instructions on resetting your password.
+﻿div
+  if(message.messagetype=='info')
+    div.alert.alert-info.alert-dismissable
+      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+      strong #{message.messageheader} 
+      text #{message.message}
+  if(message.messagetype=='error')
+    div.alert.alert-danger.alert-dismissable
+      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+      strong #{message.messageheader}
+      text #{message.message}
+  if(message.messagetype=='success')
+    div.alert.alert-success.alert-dismissable
+      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+      strong #{message.messageheader} 
+      text #{message.message}
+  if(message.messagetype=='warning')
+    div.alert.alert-warning.alert-dismissable
+      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+      strong #{message.messageheader} 
+      text #{message.message}
+  if(notactivated)
+    div.alert.alert-info.alert-dismissable
+      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+      strong Account Not Activated:  
+      text An email was sent to 
+      strong #{notactivated.email} 
+      text with instructions on activating your account. Please activate your account to use the system.  
+      a(href="/users/resendactivate") Resend Activation Link
+  if(resetpassword)
+    div.alert.alert-success.alert-dismissable
+      button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+      strong Email Sent:  
+      text An email was sent to  
+      strong #{email}
+      text  with instructions on resetting your password.

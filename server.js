@@ -84,6 +84,3 @@ else {
                 //Start 5Min Interval Shopping Cart Cleaner/Collector
                 if (cluster.worker.id === 1) reserv.startCartCollector();
             }
-
-    
-

@@ -4,33 +4,15 @@
             .col-sm-3.col-md-2.sidebar
               ul.nav.nav-sidebar
                 li.active
-                  a(href='#') Dashboard
+                  a(href='/reservation/admin/home') Reservations
                 li
-                  a(href='#') Reservations
+                  a(href='/admin/equipment') Equipment
                 li
-                  a(href='#') Equipment
+                  a(href='/admin/users') Users
                 li
-                  a(href='#') Users
+                  a(href='/users/account') My Account
                 li
-                  a(href='#') Account
-              ul.nav.nav-sidebar
-                li
-                  a(href='') Nav item
-                li
-                  a(href='') Nav item again
-                li
-                  a(href='') One more nav
-                li
-                  a(href='') Another nav item
-                li
-                  a(href='') More navigation
-              ul.nav.nav-sidebar
-                li
-                  a(href='') Nav item again
-                li
-                  a(href='') One more nav
-                li
-                  a(href='') Another nav item
+                  a(href='/users/logout') Sign-Out
 
 if(user && user.user_level == 0)
     .container-fluid
@@ -38,28 +20,8 @@ if(user && user.user_level == 0)
             .col-sm-3.col-md-2.sidebar
               ul.nav.nav-sidebar
                 li.active
-                  a(href='#') Dashboard
+                  a(href='/reservation/user/home') Reservations
                 li
-                  a(href='#') View Equipment
-                li
-                  a(href='#') Account
+                  a(href='/users/account') Account
                 li
                   a(href='/users/logout') Sign-Out
-              ul.nav.nav-sidebar
-                li
-                  a(href='') Nav item
-                li
-                  a(href='') Nav item again
-                li
-                  a(href='') One more nav
-                li
-                  a(href='') Another nav item
-                li
-                  a(href='') More navigation
-              ul.nav.nav-sidebar
-                li
-                  a(href='') Nav item again
-                li
-                  a(href='') One more nav
-                li
-                  a(href='') Another nav item

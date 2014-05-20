@@ -1,17 +1,13 @@
-﻿extends ../layout
+extends ../layout
 block content
   if (message || notactivated || resetpassword) 
     include ../feedback    
   .row.col-sm-8.col-md-6.col-lg-4.col-centered.clearfix
     div.jumbotron.loginarea
       div.container
-        form.form-horizontal(method="POST", action="/users/changepass", id="changepassform" novalidate)
+        form.form-horizontal(method="POST", action="/users/resetpass", id="resetpassform" novalidate)
           div.form-group
-            h2.sub-header.section-header Change Password
-          div.form-group
-            label(for="username") Old Password:
-            input.form-control(type="password", id="oldpassword",value="", name="oldpassword", placeholder="Old Password" required)
-            p.help-block
+            h2.sub-header.section-header Reset Password
           div.form-group
             label(for="password") New Password:
             input.form-control(type="password", id="password",value="", name="password", placeholder="New Password" required)

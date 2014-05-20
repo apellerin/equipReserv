@@ -2,11 +2,12 @@
   div.modal-dialog.modal-sm
     div.modal-content
       div.modal-header
-        h3 Recover Password
-      div.modal-body
-        form.form-horizontal(method="POST", action="/users/forgotpassword", id="resetpassform")
+        h4 Change Password
+      div.modal-body(style="background-color:white")
+        form.form-horizontal(method="POST", action="/users/forgotpassword", id="resetpassform" novalidate)
           div.form-group
             input.form-control(type="email", id="email",placeholder="Email Address", name="email", autofocus required)
+            p.help-block
           div.form-group
             button.btn.btn-primary Submit
             text   

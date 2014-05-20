@@ -19,7 +19,7 @@ function isAdmin(req, res, next){
     if(req.session.thisUser.user_level==-1){
         next();
     } else {
-            res.render('index',{user: req.session.thisUser, message: messages.notadmin});
+            res.render('./reservation/user/home',{user: req.session.thisUser, message: messages.notadmin});
         }
 }
 
@@ -32,6 +32,7 @@ module.exports = function(app){
         app.post('/authenticate',function(req,res) {
             users.authenticate(req, res)
               });
+        
          //Add New User
         app.post('/register',function(req,res) {
             users.getByUsername(req.body.user_name, function(result){
@@ -83,24 +84,25 @@ module.exports = function(app){
                 {users.getByHash(req.query.id,function(user){
                     if(user === null){res.render('./users/login',{message: messages.reset_link_expired});}
                     else {
-                        if(user.activated == 0){
-                            req.session.inactiveUser = user.response_obj();
-                            res.render('notactivated',user.response_obj());
-                        } else {
+                        
                             req.session.thisUser = user;
-                            res.render('./users/changepass',user);
-                        }
+                            res.render('./users/resetpass',user);
                     }
                 })
             }
         });
+
+        app.post('/resetpass', function (req, res) {
+            users.resetPassword(req, res);
+        });
+
         //User Account View
         app.get('/account',isLoggedIn,function(req,res){
             res.render('./users/account',{user: req.session.thisUser});
         });
         //Change Password
         app.get('/changepass',isLoggedIn,function(req,res){
-            res.render('./users/changepass',{user: req.session.thisUser});
+            res.render('./users/account',{user: req.session.thisUser});
         });
         app.post('/changepass',isLoggedIn,function(req,res){
             users.changePassword(req,res);
@@ -564,7 +566,9 @@ module.exports = function(app){
 
     //ADMIN EXPERIENCE
     app.namespace('/reservation/admin', isLoggedIn, isAdmin, function () {
-
+        app.get('/home', function (req, res) {
+            res.render('./reservation/admin/reshome', {user: req.session.thisUser});
+        });
     });
        
     //Create Error Response - No Route Exists

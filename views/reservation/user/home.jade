@@ -2,6 +2,8 @@
 block content
   .row
     h1.page-header Dashboard
+    if (message) 
+      include ../../feedback
   .row
     #res.dashcontainer.col-lg-12
       div.table.table-responsive.col-lg-5

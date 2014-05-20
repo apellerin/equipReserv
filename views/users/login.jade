@@ -25,5 +25,6 @@ block content
                 a(href='/users/register') Create Account
   include ../users/recoverpass
 block scripts
+  script(src='/scripts/page/login.js')	
   script(src='/scripts/jqBootstrapValidation.js')
-  script(src='/scripts/page/login.js')	    
+  script $(document).ready(function(){$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();});    

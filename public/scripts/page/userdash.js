@@ -240,7 +240,7 @@ var loadReservations = function() {
                     "<td id='status'>" + value.status_description + "</td>" +
                     "<td>" + "<a href='#reslist' id='viewres' class='btn btn-primary btn-xs viewres'>View</a>" + 
                     "<a href='#reslist' id='cancelres' class='btn btn-danger btn-xs cancelres'>Cancel</a>" + "</td>" +
-                    "</tr>");
+                    "</tr>")
         });
 
         $('.viewres').on("click", function() {

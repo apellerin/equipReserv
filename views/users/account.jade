@@ -1,11 +1,13 @@
 extends ../layout
 block content
+  .row
+    h1.page-header Account Administration
   if (message || notactivated || resetpassword) 
     include ../feedback
   .row
-    #accountcontainer.dashcontainer.col-lg-6
+    #accountcontainer.dashcontainer.col-lg-5
       .padform
-        form.form-horizontal(method="POST", action="/users/update", id="accountform" novalidate)
+        form.form-horizontal(role="form", method="POST", action="/users/update", id="accountform" novalidate)
           div.form-group
             h4.sub-header.section-header Edit Account
           div.form-group
@@ -35,9 +37,9 @@ block content
             input.form-control(type="password", id="password",placeholder="Confirm Password", name="password" required)
             p.help-block
           div.form-group
-            #updateaccountbtn.button.btn.btn-primary Update
+            button.btn.btn-primary(type="submit") Update
 
-    #changepasscontainer.dashcontainer.col-lg-6
+    #changepasscontainer.dashcontainer.col-lg-5.col-lg-offset-1
       .padform      
         form.form-horizontal(method="POST", action="/users/changepass", id="changepassform" novalidate)
           div.form-group
@@ -56,8 +58,10 @@ block content
             data-validation-match-message="Passwords do not match" required)
             p.help-block
           div.form-group
-            #changepasswordbtn.button.btn.btn-primary Update
+            button.btn.btn-primary(type="submit") Update
 
 block scripts
+  script(src='/scripts/alertify.min.js')
   script(src='/scripts/jqBootstrapValidation.js')
-  script $(document).ready(function(){$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();});
+  script(src='/scripts/scripts.js')
+  script(src='/scripts/page/accountadmin.js')

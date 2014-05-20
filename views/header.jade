@@ -6,17 +6,19 @@
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='#') Project name
+          a.navbar-brand(href='#') equipReserv v0.1
 
         if(user && user.user_level == -1)
           .navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
               li
-                a(href='#') Dashboard
+                a(href='/reservation/admin/home') Reservations
               li
-                a(href='#') Admin
+                a(href='/admin/equipment') Equipment
               li
-                a(href='#') Account
+                a(href='/admin/users') Users
+              li
+                a(href='/users/account') My Account
               li
                 a(href='/users/logout') Sign-Out
               li
@@ -26,11 +28,11 @@
           .navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
               li
-                a(href='#') Dashboard
+                a(href='/reservation/user/home') Reservations
               li
-                a(href='#') Account
+                a(href='/users/account') Account
               li
-                a(href='users/logout') Sign-Out
+                a(href='/users/logout') Sign-Out
               li
                 a(href='#') 
         if(!user)
