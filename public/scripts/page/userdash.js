@@ -183,6 +183,7 @@ var startTimer = function() {
     if (! carttimer) {
         cartimer = true;
         setInterval(updateTimer,1000);
+        setInterval(loadAvailableEquip,30000);
     }
     else {
         return;
@@ -231,16 +232,40 @@ var loadReservations = function() {
     $.getJSON("/reservation/user/list", function (result) {
         $('#res-body').empty();
         $.each(result, function (key, value) {
+            var enddate = moment(value.reserv_end_date);
+            var startdate = moment(value.reserv_start_date);
+            var now = new moment();
+            var rowclass = null;
+            var cancelbutton = '';
+
+            if (value.status_description == 'Approved' || value.status_description == 'Pending') {
+                cancelbutton = "<a href='#reslist' id='cancelres' class='btn btn-danger btn-xs cancelres'>Cancel</a>" + "</td>";
+            }
+
+            switch (true) {
+
+                case (startdate.diff(now, 'days') == 0) : rowclass = 'info';
+                break;
+                case (enddate.diff(now, 'days') == 0) : rowclass = 'info';
+                break;
+                case (enddate.diff(now, 'days') < 0) : rowclass = 'danger';
+                break;
+                case (startdate.diff(now, 'days') == 1) : rowclass = 'warning';
+                break;
+                case (enddate.diff(now, 'days') == 1) : rowclass = 'warning';
+                break;
+            }
+            
             $('#res-body')
                 .append(
-                    "<tr><td id='reservation_id' style=" + "display:none" + ">" + value.reservation_id + "</td>" +
+                    "<tr class='" + rowclass + "'><td id='reservation_id' style=" + "display:none" + ">" + value.reservation_id + "</td>" +
                     "<td id='start'>" + moment(value.reserv_start_date).format("MM/DD/YYYY h:mm A") + "</td>" +
                     "<td id='end'>" + moment(value.reserv_end_date).format("MM/DD/YYYY h:mm A") + "</td>" +
                     "<td id='numitems'>" + value.item_count + "</td>" +
                     "<td id='status'>" + value.status_description + "</td>" +
                     "<td>" + "<a href='#reslist' id='viewres' class='btn btn-primary btn-xs viewres'>View</a>" + 
-                    "<a href='#reslist' id='cancelres' class='btn btn-danger btn-xs cancelres'>Cancel</a>" + "</td>" +
-                    "</tr>")
+                    cancelbutton +
+                    "</tr>") 
         });
 
         $('.viewres').on("click", function() {
@@ -264,9 +289,10 @@ var loadReservations = function() {
 
         $('.cancelres').on("click", function() {
             var rid = $(this).parent().siblings('#reservation_id').text();
+
             alertify.confirm("Are you sure you want to cancel this reservation?", function (e) {
                 if (e) {
-                    $.post("/reservation/delete", {reservation_id: rid}, function (result) {
+                    $.post("/reservation/updatestatus", {reservation_id: rid, reserv_status: 3}, function (result) {
                         loadAvailableEquip();
                     });
                 }

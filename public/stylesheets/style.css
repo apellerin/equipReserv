@@ -102,6 +102,9 @@ body {
   margin-right: 5px;
   margin-top: 5px;
 }
+.dashcontainer .btn-md {
+  margin-left: 10px;
+}
 .padform {
   padding-left: 15px;
   padding-right: 15px;

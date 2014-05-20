@@ -377,14 +377,8 @@ module.exports = function(app){
             });
         });
 
-        app.post('/update', function (req, res) {
-            newres = {
-                reservation_id : req.body.reservation_id,
-                reserv_start_date : req.body.start,
-                reserv_end_date: req.body.end,
-                reserv_status: parseInt(req.body.reserv_status)
-            }
-            reserv.updateReservation(newres, function (result) {
+        app.post('/updatestatus', function (req, res) {
+            reserv.updateReservationStatus(req.body.reservation_id, req.body.reserv_status, function (result) {
                 res.send(result);
             });
         });
@@ -519,6 +513,7 @@ module.exports = function(app){
                             "description": result.description,
                             "image": image
                             }
+                            
                     res.send(obj);
                 });
             });

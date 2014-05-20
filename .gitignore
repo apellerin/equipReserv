@@ -224,3 +224,5 @@ node_modules/
 *.sql
 *.sublime-project
 *.sublime-workspace
+equipreserv.sublime-workspace
+public/stylesheets/style.css
