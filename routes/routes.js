@@ -205,9 +205,9 @@ module.exports = function(app){
                             }
                 equip.addEquipment(obj, function(result){
                     if(!result){
-                        res.render('./equipment/equiplist',{user: req.session.thisUser, message: messages.itemexists});
+                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists});
                     } else {
-                        res.render('./equipment/equiplist',{user: req.session.thisUser, message: messages.itemadded});
+                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});
                     }
                 });
             });
@@ -236,7 +236,7 @@ module.exports = function(app){
                             "description": req.body.description,
                             "image": fs.readFileSync(req.files.image.path) }
                 equip.updateEquipment(obj, function(result){
-                    res.send(result);    
+                    res.render('./equipment/equipment',{user: req.session.thisUser})    
                 });
             });
             app.post('/delete',function(req,res){
@@ -256,7 +256,7 @@ module.exports = function(app){
                 res.render('./equipment/inventory',{user: req.session.thisUser});
             });
             app.get('/view',function(req,res){
-                res.render('./equipment/equiplist',{user: req.session.thisUser});
+                res.render('./equipment/equipment',{user: req.session.thisUser});
             });
             app.get('/new',function(req,res){
                 res.render('./equipment/equipment',{user: req.session.thisUser});

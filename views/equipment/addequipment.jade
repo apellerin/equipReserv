@@ -2,7 +2,7 @@
   div.modal-dialog
    div.row
     div.modal-content.col-md-12
-      div.modal-body
+      div.modal-body(style="background-color: white")
         form.form-horizontal(method="POST", action="/admin/equipment/add", id="addequipform" enctype="multipart/form-data" novalidate)
           div.form-group
             h3 Add Equipment
@@ -17,12 +17,12 @@
             input.form-control(type="input", id="model",placeholder="Model Name/Number", name="model", required)
           div.form-group
             label.form-label(for="description") Product Description:
-            input.form-control(type="textarea", id="description",placeholder="", name="description")
-          div.jumbotron.fileinput
+            input.form-control(type="textarea", id="description",placeholder="Product Description", name="description")
+          div.form-group
             div.fileinput.fileinput-new(data-provides="fileinput")
-              div.fileinput-new.thumbnail(style="width: 425px; height: 250px;")
-                img(data-src="holder.js/100%x100%" alt="" src="data:image/png;base64," style="height 250px; width: 425px")
-              div.fileinput-preview.thumbnail.fileinput-exists(style="width: 425px; height: 250px;")
+              div.fileinput-new.thumbnail
+                img#addplaceholder
+              div.fileinput-preview.thumbnail.fileinput-exists(style="width: 100%; height: 100%;")
               a.btn.btn-default.fileinput-exists(href="#", data-dismiss="fileinput") Remove
               input.btn.btn-default.fileinput-new(type="file", name="image", id="image")        
           div.form-group

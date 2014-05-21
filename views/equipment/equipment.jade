@@ -5,66 +5,49 @@ block content
   .row
     h1.page-header Equipment Administration
   .row
-    .dashcontainer.col-lg-6
-      h4.sub-header.section-header Equipment 
-      div.input-group.btn-group
-          span.input-group-addon Filter
-          input#filter.form-control(style="width:200px")
-          a(href='#equipModal' role='button' data-toggle="modal" data-target="#equipModal")
-            button.btn.btn-success.btn-md Add
-      h4.sub-header.section-header
-      div.table.table-responsive(style="background-color:white")
-        table#eqlist.table.table-hover
-          thead
-            tr#tableheadings
-              th Type
-              th Make
-              th Model
-              th Description
-              th 
-              th
-              th
-          tbody
-            tr#tablecontents
-      ul.pager
-            li.page-control.previous
-              a(href='#') ← Prev
-            li.page-control.next
-              a(href='#') Next →
+    ul.nav.nav-tabs
+      li.active
+        a(href="#") Equipment
+      li
+        a(href="/admin/equipment/type/view") Equip Type
 
-    .dashcontainer.col-lg-6
-      h4.sub-header.section-header Equipment Type
-      div.input-group.btn-group
-        span.input-group-addon Filter
-        input#filter.form-control(style="width:200px")
-        a(href='#addTypeModal' role='button' data-toggle="modal" data-target="#addTypeModal")
-          button.btn.btn-success.btn-md Add
-      h4.sub-header.section-header
-      div.table-responsive(style="background-color:white")
-        table#typelist.table.table-hover
-          thead
-            tr#tableheadings
-              th Type
-              th
-              th
-          tbody
-            tr#tablecontents
-        ul.pager
-              li.page-control.previous
-                a(href='#') ← Prev
-              li.page-control.next
-                a(href='#') Next →  
+  .row
+    div.input-group.btn-group.filter-box
+      span.input-group-addon Filter
+      input#filter.form-control(style="width:200px")
+      a#addbutton(href='#equipModal' role='button' data-toggle="modal" data-target="#equipModal")
+        button.btn.btn-success.btn-md.addlink Add
+    div.table.table-responsive
+      table#eqlist.table.table-hover
+        thead
+          tr#tableheadings
+            th Type
+            th Make
+            th Model
+            th Description
+            th 
+            th
+            th
+        tbody
+          tr#tablecontents
+    ul.pager
+          li.page-control.previous
+            a(href='#') ← Prev
+          li.page-control.next
+            a(href='#') Next →
+
   //Modals
-  include ../equipment/editequiptype
   include ../equipment/editequipment
   include ../equipment/addequipment
+
 block css
-  link(rel='stylesheet', href='/stylesheets/jasny-bootstrap.min.css')
+  link(rel='stylesheet', href='/stylesheets/jasny-bootstrap.css')
   link(rel='stylesheet', href='/stylesheets/alertify.core.css')
   link(rel='stylesheet', href='/stylesheets/alertify.bootstrap.css')
 block scripts
   script(src='/scripts/bootstrap-file-input.js')
   script(src='/scripts/jqBootstrapValidation.js')
-  script(src='/scripts/jasny-bootstrap.min.js')
+  script(src='/scripts/jasny-bootstrap.js')
   script(src='/scripts/alertify.min.js')
   script(src='/scripts/page/equiplist.js')
+  script(src='/scripts/holder.js')

@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"bj",
+				"bjaccordion	Bootstrap accordion"
+			],
+			[
+				"b",
+				"bjtabs	Bootstrap basic tabs"
+			],
+			[
 				"status",
 				"status_description"
 			],
@@ -148,19 +156,34 @@
 	},
 	"file_history":
 	[
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/stylesheets/style.styl",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/equipment.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/equiplist.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/routes/routes.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/reservation.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userdash.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/layout.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/package.json",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/user/home.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/header.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/equipment.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/routes/routes.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/addequipment.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/editequipment.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/equipment.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/equiplist.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/stylesheets/style.styl",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/user/showequipmodal.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/user/home.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/reshome.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/userlist.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/inventory.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/typelist.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/typelist.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/inventory.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/layout.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/stylesheets/slatebootstrap.css",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/stylesheets/spacelabbootstrap.css",
+		"/C/Users/pellera/Documents/GitHub/Node_SM_Admin/Stuff/COMMON_ASSETS/LESS_FILES/variables.less",
+		"/C/Users/pellera/Documents/GitHub/Node_SM_Admin/Stuff/COMMON_ASSETS/LESS_FILES/smartadmin-production.less",
+		"/C/Users/pellera/Documents/GitHub/Node_SM_Admin/public/stylesheets/styles.css",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userdash.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/equiplist.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/reservation.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/package.json",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/old_equip.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/users.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/reshome.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/equiphome.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/home.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/sidebar.jade",
@@ -171,13 +194,10 @@
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/recoverpass.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/accountadmin.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/account.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/equiplist.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/server.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/.gitignore",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/user/showresmodal.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/user/showequipmodal.jade",
 		"/C/Users/pellera/AppData/Roaming/Microsoft/VisualStudio/12.0/ActivityLog.xml",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/equipment.js",
 		"/C/Users/pellera/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/pellera/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/Task_List",
@@ -199,6 +219,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"'/update'",
+			"./equipment/equiplist",
+			"show",
+			"type",
+			"id='cart'",
+			"&amp",
 			"status",
 			"//Update User Activation Status",
 			"status",
@@ -294,6 +320,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"home.j",
+				"views/reservation/user/home.jade"
+			],
+			[
+				"userdas",
+				"public/scripts/page/userdash.js"
+			]
 		],
 		"width": 0.0
 	},

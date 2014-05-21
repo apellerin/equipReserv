@@ -2,15 +2,22 @@
 block content
   if (message) 
     include ../feedback
-  div.col-xs-12.col-sm-9
-    h2#pageheader.clearfix Report Administration
-    br
-    div.input-group
+  .row
+    h1.page-header Equipment Administration
+  .row
+    ul.nav.nav-tabs
+      li
+        a(href="/admin/equipment") Equipment
+      li
+        a(href="/admin/equipment/type/view") Equip Type
+      li.active
+        a(href="#") Inventory
+  .row
+    div.input-group.btn-group.filter-box
       span.input-group-addon Filter
       input#filter.form-control(style="width:200px")
-      a.pull-right(href='#addinventory' role='button' data-toggle="modal" data-target="#addinventory")
-        button.btn.btn-success.btn-md.pull-left
-          span.glyphicon.glyphicon-plus
+      a(href='#addinventory' role='button' data-toggle="modal" data-target="#addinventory")
+        button.btn.btn-success.btn-md.addlink Add
     div.table-responsive(style="background-color:white")
       table#eqlist.table.table-hover
         thead
@@ -18,9 +25,7 @@ block content
             th Make
             th Model
             th Id#
-            th Status
             th 
-            th
         tbody
       ul.pager
             li.page-control.previous

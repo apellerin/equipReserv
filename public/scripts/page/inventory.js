@@ -68,8 +68,6 @@ loadTable = function(length, page, filter) {
                         "<tr><td id='make'>" + value.make + "</td>" + 
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='inventory_id'>" + value.inventory_id + "</td>" +
-                        "<td id='status_desc'>" + value.status_desc + "</td>" +
-                        "<td>" + "<a href='#' class='edit'>Edit </a>"+ "</td>" +
                         "<td>" + "<a href='#' class='delete'>Delete </a>"+ "</td>" +
                         "</tr>");
             });

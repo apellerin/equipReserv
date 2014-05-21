@@ -77,8 +77,8 @@ var loadTable = function(length, page, filter) {
                 //get data
                 $.post("/admin/equipment/get",{equip_id: eid},  function (result) {
                     populate("#editequipform", result);
+                    $('#editequipModal').modal('toggle');
                 });
-                $('#editequipModal').modal('toggle');
             });
 
             //handle row delete link click events
@@ -126,5 +126,5 @@ var loadTable = function(length, page, filter) {
             default:
             $ctrl.val(value); 
         }  
-    });  
+    }); 
 }  

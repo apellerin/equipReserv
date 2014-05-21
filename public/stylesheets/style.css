@@ -4,7 +4,6 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
-  background-color: #c9dbff;
 }
 /*
  * Global add-ons
@@ -105,6 +104,9 @@ body {
 .dashcontainer .btn-md {
   margin-left: 10px;
 }
+.dashcontainer .filter-box {
+  padding: 0px 0px 15px 0px;
+}
 .padform {
   padding-left: 15px;
   padding-right: 15px;
@@ -113,11 +115,8 @@ body {
   border-radius: 25px;
   margin: 18px 18px 18px 18px;
 }
-.modal-body {
-  background-color: #f7f7f9;
-}
 .filter-box {
-  padding: 0px 0px 15px 0px;
+  padding: 30px 0px 20px 0px;
 }
 .col-centered {
   float: none;
@@ -129,4 +128,7 @@ body {
 .modal-close {
   border: 1px solid;
   border-color: #65a8f0;
+}
+.addlink {
+  margin-left: 10px;
 }
