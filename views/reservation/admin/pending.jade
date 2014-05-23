@@ -1,31 +1,35 @@
-extends ../layout
+extends ../../layout
 block content
   if (message) 
-    include ../feedback
+    include ../../feedback
   .row
     h1.page-header Equipment Administration
   .row
     ul.nav.nav-tabs
       li.active
-        a(href="#") Equipment
+        a(href="#") Pending
       li
-        a(href="/admin/equipment/type/view") Equip Type
-
+        a(href="/reservation/admin/todays") Todays
+      li
+        a(href="/reservation/admin/late") Late Returns
+      li
+        a(href="/reservation/admin/all") All
   .row
     div.input-group.btn-group.filter-box
       span.input-group-addon Filter
       input#filter.form-control(style="width:200px")
-      a#addbutton(href='#equipModal' role='button' data-toggle="modal" data-target="#equipModal")
+      //a#addbutton(href='#equipModal' role='button' data-toggle="modal" data-target="#equipModal")
         button.btn.btn-success.btn-md.addlink Add
     div.table.table-responsive
       table#eqlist.table.table-hover
         thead
           tr#tableheadings
-            th Type
-            th Make
-            th Model
-            th Inventory
-            th 
+            th User
+            th # Items
+            th Start
+            th End
+            th Submitted
+            th
             th
             th
         tbody
@@ -36,18 +40,13 @@ block content
           li.page-control.next
             a(href='#') Next →
 
-  //Modals
-  include ../equipment/editequipment
-  include ../equipment/addequipment
-
 block css
-  link(rel='stylesheet', href='/stylesheets/jasny-bootstrap.css')
   link(rel='stylesheet', href='/stylesheets/alertify.core.css')
   link(rel='stylesheet', href='/stylesheets/alertify.bootstrap.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
 block scripts
-  script(src='/scripts/bootstrap-file-input.js')
-  script(src='/scripts/jqBootstrapValidation.js')
-  script(src='/scripts/jasny-bootstrap.js')
+  script(src='/scripts/moment.js')
+  script(src='/scripts/bootstrap-datetimepicker.js')
   script(src='/scripts/alertify.min.js')
-  script(src='/scripts/page/equiplist.js')
+  script(src='/scripts/page/pendingreservations.js')
   script(src='/scripts/holder.js')

@@ -41,22 +41,23 @@ var loadTable = function(length, page, filter) {
         }else {
             $('.previous').show();
             }
-        if(!filter){filter = ""};
+        if(!filter){filter = $('#filter').val()};
         localStorage.setItem("page", page);
         $.getJSON("/admin/equipment/list?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
             $('tbody').empty();
             $.each(result, function (key, value) {
+
                 $('tbody')
                     .append(
                         "<tr><td id='equip_id' style=" + "display:none" + ">" + value.equip_id + "</td>" + 
                         "<td id='type'>" + value.type_id + "</td>" +
                         "<td id='make'>" + value.make + "</td>" +
                         "<td id='model'>" + value.model + "</td>" +
-                        "<td id='description'>" + value.description + "</td>" +
-                        "<td>" + "<a href='#' class='edit'>Edit </a>"+ "</td>" +
-                        "<td>" + "<a href='#' class='delete'>Delete </a>"+ "</td>" +
+                        "<td id='itemcount'><span class='badge alert-info'>" + value.itemcount + "</span></td>"+
+                        "<td>" + "<a href='#' class='edit btn btn-xs btn-warning'>Edit </a>"+ "</td>" +
+                        "<td>" + "<a href='#' class='delete btn btn-xs btn-danger'>Delete </a>"+ "</td>" +
                         "<td>" + "<a href='/admin/equipment/viewinventory?eid=" + value.equip_id + "&length=" + length +
-                        "&page=0&filter=" +  "'class = 'detail'>Inventory</a>"+ "</td>" +
+                        "&page=0&filter=" +  "'class = 'detail btn btn-xs btn-primary'>Inventory</a>"+ "</td>" +
                         "</tr>");
             });
             //hide next button if there are less than defined length rows.

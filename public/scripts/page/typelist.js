@@ -32,7 +32,7 @@ var loadTable = function(length, page, filter) {
         }else {
             $('.previous').show();
             }
-        if(!filter){filter = ""};
+        if(!filter){filter = $('#filter').val()};
         localStorage.setItem("page", page);
         $.getJSON("/admin/equipment/type/list2?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
             $('tbody').empty();
@@ -41,8 +41,8 @@ var loadTable = function(length, page, filter) {
                     .append(
                         "<tr><td id='type_id' style=" + "display:none" + ">" + value.type_id + "</td>" + 
                         "<td id='Type'>" + value.type_desc + "</td>" +
-                        "<td>" + "<a href='#' class='edit'>Edit </a>"+ "</td>" +
-                        "<td>" + "<a href='#' class='delete'>Delete </a>"+ "</td>" +
+                        "<td>" + "<a href='#' class='edit btn btn-xs btn-warning'>Edit </a>"+ "</td>" +
+                        "<td>" + "<a href='#' class='delete btn btn-xs btn-danger'>Delete </a>"+ "</td>" +
                         "</tr>");
             });
             //hide next button if there are less than defined length rows.

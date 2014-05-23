@@ -1,4 +1,6 @@
 ﻿$(document).ready(function() {
+
+	
     //initialize form validation
     $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
 

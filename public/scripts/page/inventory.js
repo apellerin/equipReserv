@@ -58,7 +58,7 @@ loadTable = function(length, page, filter) {
         }else {
             $('.previous').show();
             }
-        if(!filter){filter = "";}
+        if(!filter){filter = $('#filter').val();}
         localStorage.setItem("page", page);
         $.getJSON("/admin/equipment/item/inventory?eid=" + equip_id +"&length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
             $('tbody').empty();
@@ -68,7 +68,7 @@ loadTable = function(length, page, filter) {
                         "<tr><td id='make'>" + value.make + "</td>" + 
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='inventory_id'>" + value.inventory_id + "</td>" +
-                        "<td>" + "<a href='#' class='delete'>Delete </a>"+ "</td>" +
+                        "<td>" + "<a href='#' class='delete btn btn-xs btn-danger'>Delete </a>"+ "</td>" +
                         "</tr>");
             });
             //hide next button if there are less than defined length rows.
@@ -91,7 +91,12 @@ loadTable = function(length, page, filter) {
                     // str is the input text
                     if (e) {
                         $.post("/admin/equipment/item/delete",{inventory_id: inventory_id},  function (result) {
+
                             loadTable(length,page,filter);
+                        })
+                        .fail(function() {
+
+                            alertify.error('Cannot delete reserved items!')
                         });
                     } else {
                         // user clicked "cancel"

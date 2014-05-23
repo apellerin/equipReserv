@@ -1,4 +1,4 @@
-﻿$(document).ready(function() {
+$(document).ready(function() {
 
     //initial table load
     loadTable();
@@ -36,24 +36,22 @@ var loadTable = function(length, page, filter) {
             }
         if(!filter){filter = $('#filter').val()};
         localStorage.setItem("page", page);
-        $.getJSON("/admin/users/list?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
+
+        $.getJSON("/reservation/admin/getpending?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
             $('tbody').empty();
             $.each(result, function (key, value) {
-                var level = 'User';
-                var active = 'Inactive';
-                if (value.user_level == -1) level = 'Admin';
-                if (value.activated == 1) active = 'Active';
+
                 $('tbody')
                     .append(
-                        "<tr>" + 
-                        "<td id='user_name'>" + value.user_name + "</td>" +
-                        "<td id='first_name'>" + value.first_name + "</td>" +
-                        "<td id='last_name'>" + value.last_name + "</td>" +
-                        "<td id='email'>" + value.email + "</td>" +
-                        "<td id='user_level'>" + level + "</td>" +
-                        "<td id='activated'>" + active + "</td>" +
-                        "<td>" + "<a href='#' class='edit btn btn-xs btn-warning', data-toggle='modal' data-target='#edituser'>Edit </a>"+ "</td>" +
+                        "<tr><td id='equip_id' style=" + "display:none" + ">" + value.equip_id + "</td>" + 
+                        "<td id='type'>" + value.type_id + "</td>" +
+                        "<td id='make'>" + value.make + "</td>" +
+                        "<td id='model'>" + value.model + "</td>" +
+                        "<td id='itemcount'><span class='badge alert-info'>" + value.itemcount + "</span></td>"+
+                        "<td>" + "<a href='#' class='edit btn btn-xs btn-warning'>Edit </a>"+ "</td>" +
                         "<td>" + "<a href='#' class='delete btn btn-xs btn-danger'>Delete </a>"+ "</td>" +
+                        "<td>" + "<a href='/admin/equipment/viewinventory?eid=" + value.equip_id + "&length=" + length +
+                        "&page=0&filter=" +  "'class = 'detail btn btn-xs btn-primary'>Inventory</a>"+ "</td>" +
                         "</tr>");
             });
             //hide next button if there are less than defined length rows.
@@ -70,23 +68,23 @@ var loadTable = function(length, page, filter) {
             //handle row edit link click events
             $('.edit').on("click", function(){
                 //get equipment id for row
-                var uid = $(this).parent().siblings(":first").text();
+                var eid = $(this).parent().siblings(":first").text();
                 //get data
-                $.post("/admin/users/get",{user_name: uid},  function (result) {
-                    populate("#edituserform", result);
+                $.post("/admin/equipment/get",{equip_id: eid},  function (result) {
+                    populate("#editequipform", result);
+                    $('#editequipModal').modal('toggle');
                 });
-                $('#edituser').modal('toggle');
             });
 
             //handle row delete link click events
             $('.delete').on("click", function(){
                 //get equipment id for row
-                var user = $(this).parent().siblings(":first").text();
+                var eid = $(this).parent().siblings(":first").text();
                 // prompt dialog
-                alertify.confirm("Are you sure you want to delete this user?", function (e, str) {
+                alertify.confirm("This item and all sub-items will be deleted.", function (e, str) {
                     // str is the input text
                     if (e) {
-                        $.post("/admin/users/delete",{user_name: user},  function (result) {
+                        $.post("/admin/equipment/delete",{equip_id: eid},  function (result) {
                             loadTable(length,page,filter);
                         });
                     } else {
@@ -123,5 +121,5 @@ var loadTable = function(length, page, filter) {
             default:
             $ctrl.val(value); 
         }  
-    });  
+    }); 
 }  

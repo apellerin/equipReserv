@@ -240,8 +240,19 @@ module.exports = function(app){
                 });
             });
             app.post('/delete',function(req,res){
-                equip.deleteEquipment(req.body.equip_id,function(result){
-                    res.send(result);
+
+                reserv.isEquipmentReserved(req.body.equip_id, function(result) {
+
+                    if (result) {
+
+                        res.send(523, 'Cannot delete reserved items.');
+
+                    } else {
+
+                        equip.deleteEquipment(req.body.equip_id,function(result){
+                            res.send(result);
+                        });
+                    }
                 });
             });
             app.get('/list',function(req,res){
@@ -289,8 +300,19 @@ module.exports = function(app){
                 });
             });
             app.post('/item/delete',function(req,res){
-                equip.deleteEquipItem(req.body.inventory_id,function(result){
-                    res.send(result);
+
+                reserv.isInventoryReserved(req.body.inventory_id, function(result) {
+
+                    if (result) {
+
+                        res.send(523, 'Cannot delete reserved items.');
+                        
+                    } else {
+
+                        equip.deleteEquipItem(req.body.inventory_id,function(result){
+                        res.send(result);
+                        });
+                    }
                 });
             });
             app.get('/item/list',function(req,res){
@@ -559,10 +581,62 @@ module.exports = function(app){
 
     });
 
-    //ADMIN EXPERIENCE
+    //ADMIN
     app.namespace('/reservation/admin', isLoggedIn, isAdmin, function () {
         app.get('/home', function (req, res) {
-            res.render('./reservation/admin/reshome', {user: req.session.thisUser});
+            res.render('./reservation/admin/pending', {user: req.session.thisUser});
+        });
+
+        app.get('/pending', function (req, res) {
+            res.render('./reservation/admin/pending', {user: req.session.thisUser});
+        });
+
+        app.get('/todays', function (req, res) {
+            res.render('./reservation/admin/todays', {user: req.session.thisUser});
+        });
+
+        app.get('/late', function (req, res) {
+            res.render('./reservation/admin/late', {user: req.session.thisUser});
+        });
+
+        app.get('/all', function (req, res) {
+            res.render('./reservation/admin/all', {user: req.session.thisUser});
+        });
+
+        app.get('/getpending', function (req, res) {
+            length = parseInt(req.query.length);
+            page = parseInt(req.query.page);
+            filter = req.query.filter;
+            reserv.listPendingReservations(length, page, filter, function(result) {
+                res.send(result);
+            })
+        });
+
+        app.get('/gettodays', function (req, res) {
+            length = parseInt(req.query.length);
+            page = parseInt(req.query.page);
+            filter = req.query.filter;
+            reserv.listTodaysReservations(length, page, filter, function(result) {
+                res.send(result);
+            })
+        });
+
+        app.get('/getlate', function (req, res) {
+            length = parseInt(req.query.length);
+            page = parseInt(req.query.page);
+            filter = req.query.filter;
+            reserv.listLateReservations(length, page, filter, function(result) {
+                res.send(result);
+            })
+        });
+
+        app.get('/getall', function (req, res) {
+            length = parseInt(req.query.length);
+            page = parseInt(req.query.page);
+            filter = req.query.filter;
+            reserv.listAllReservations(length, page, filter, function(result) {
+                res.send(result);
+            })
         });
     });
        

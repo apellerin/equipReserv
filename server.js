@@ -43,6 +43,7 @@ else {
     app.use( express.cookieParser() );
 
     var MongoStore = require('connect-mongo')(express);
+    
     var sessStore = app.use(express.session({
         store: new MongoStore({
             db: 'eqSessions',
@@ -55,7 +56,6 @@ else {
     sql_pool = mysql_pool.startPool();
 
     //Mount Middleware
-    app.use(require('moment'));
     app.use(express.logger('dev'));
     app.use(express.compress());
     app.use(express.favicon());
