@@ -609,7 +609,7 @@ module.exports = function(app){
             filter = req.query.filter;
             reserv.listPendingReservations(length, page, filter, function(result) {
                 res.send(result);
-            })
+            });
         });
 
         app.get('/gettodays', function (req, res) {
@@ -618,7 +618,7 @@ module.exports = function(app){
             filter = req.query.filter;
             reserv.listTodaysReservations(length, page, filter, function(result) {
                 res.send(result);
-            })
+            });
         });
 
         app.get('/getlate', function (req, res) {
@@ -627,7 +627,7 @@ module.exports = function(app){
             filter = req.query.filter;
             reserv.listLateReservations(length, page, filter, function(result) {
                 res.send(result);
-            })
+            });
         });
 
         app.get('/getall', function (req, res) {
@@ -636,7 +636,37 @@ module.exports = function(app){
             filter = req.query.filter;
             reserv.listAllReservations(length, page, filter, function(result) {
                 res.send(result);
-            })
+            });
+        });
+
+        app.post('/approvereservation', function (req, res) {
+            reserv.updateReservationStatus(req.body.reservation_id, 7, function(result){
+                res.send(result);
+            });
+        });
+
+        app.post('/cancelreservation', function (req, res) {
+            reserv.updateReservationStatus(req.body.reservation_id, 3, function(result){
+                res.send(result);
+            });
+        });
+
+        app.post('/rejectreservation', function (req, res) {
+            reserv.updateReservationStatus(req.body.reservation_id, 1, function(result){
+                res.send(result);
+            });
+        });
+
+        app.post('/completereservation', function (req, res) {
+            reserv.updateReservationStatus(req.body.reservation_id, 4, function(result){
+                res.send(result);
+            });
+        });
+
+        app.post('/startreservation', function (req, res) {
+            reserv.updateReservationStatus(req.body.reservation_id, 2, function(result){
+                res.send(result);
+            });
         });
     });
        

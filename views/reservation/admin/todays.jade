@@ -24,14 +24,15 @@ block content
       table#eqlist.table.table-hover
         thead
           tr#tableheadings
-            th User
-            th # Items
+            th Id#
+            th First
+            th Last
             th Start
             th End
-            th Type
-            th
-            th
-            th
+            th Status
+            th Phone
+            th Email
+            th Actions
         tbody
           tr#tablecontents
     ul.pager
@@ -40,13 +41,13 @@ block content
           li.page-control.next
             a(href='#') Next →
 
+  include ../user/showresmodal
+
 block css
   link(rel='stylesheet', href='/stylesheets/alertify.core.css')
   link(rel='stylesheet', href='/stylesheets/alertify.bootstrap.css')
-  link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
 block scripts
   script(src='/scripts/moment.js')
-  script(src='/scripts/bootstrap-datetimepicker.js')
   script(src='/scripts/alertify.min.js')
   script(src='/scripts/page/todaysreservations.js')
   script(src='/scripts/holder.js')
