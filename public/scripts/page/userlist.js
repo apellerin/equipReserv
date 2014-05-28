@@ -94,13 +94,6 @@ var loadTable = function(length, page, filter) {
                     }
                 }, "Default Value");  
             });
-            $('.detail').on("click", function(){
-                //get equipment id for row
-                var eid = $(this).parent().siblings(":first").text();
-                $.post("/admin/equipment/item",{equip_id: eid},  function (result) {
-
-                }); 
-            });
         });
 }
     //populate form function
