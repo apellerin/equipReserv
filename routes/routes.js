@@ -305,11 +305,27 @@ module.exports = function(app){
 
                     if (result) {
 
-                        res.send(523, 'Cannot delete reserved items.');
-                        
+                        async.eachSeries(result, reserv.swapReservedItem, function (err) {
+                            if(err) {
+
+                                if(err.message == 'No Inventory!'){
+                                    res.send(523, 'Item cannot be deleted.');
+                                } else {
+
+                                    throw new Error(err);
+                                }
+
+                            } else {
+
+                                equip.deleteEquipItem(req.body.inventory_id,function(result){
+                                    res.send(result);
+                                });
+                            }
+                        });
+                    
                     } else {
 
-                        equip.deleteEquipItem(req.body.inventory_id,function(result){
+                        equip.deleteEquipItem(req.body.inventory_id, function(result){
                         res.send(result);
                         });
                     }
@@ -667,6 +683,9 @@ module.exports = function(app){
             reserv.updateReservationStatus(req.body.reservation_id, 2, function(result){
                 res.send(result);
             });
+        });
+        app.post('/test', function (req, res) {
+            
         });
     });
        

@@ -87,16 +87,20 @@ var loadTable = function(length, page, filter) {
                 //get equipment id for row
                 var eid = $(this).parent().siblings(":first").text();
                 // prompt dialog
-                alertify.confirm("This item and all sub-items will be deleted.", function (e, str) {
+                alertify.confirm("This item and all inventory will be deleted.", function (e) {
                     // str is the input text
                     if (e) {
                         $.post("/admin/equipment/delete",{equip_id: eid},  function (result) {
                             loadTable(length,page,filter);
+                        })
+                        .fail(function() {
+
+                            alertify.error('Unable to re-assign inventory, cannot delete!')
                         });
                     } else {
                         // user clicked "cancel"
                     }
-                }, "Default Value");  
+                });  
             });
             $('.detail').on("click", function(){
                 //get equipment id for row

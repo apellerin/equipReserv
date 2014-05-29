@@ -87,7 +87,7 @@ loadTable = function(length, page, filter) {
                 //get equipment id for row
                 var inventory_id = $(this).parent().siblings('#inventory_id').text();
                 // prompt dialog
-                alertify.confirm("You are about to delete this item.", function (e, str) {
+                alertify.confirm("Are you sure you want to delete this item?", function (e, str) {
                     // str is the input text
                     if (e) {
                         $.post("/admin/equipment/item/delete",{inventory_id: inventory_id},  function (result) {
@@ -96,7 +96,7 @@ loadTable = function(length, page, filter) {
                         })
                         .fail(function() {
 
-                            alertify.error('Cannot delete reserved items!')
+                            alertify.error('Unable to re-assign inventory, cannot delete!')
                         });
                     } else {
                         // user clicked "cancel"
