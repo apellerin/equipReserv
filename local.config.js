@@ -1,5 +1,5 @@
 ﻿//equipreserv Configuration File
-var domain = 'http://192.168.1.105:3000';
+var host = 'http://localhost:3000';
 
 exports.config = 
 { 
@@ -23,15 +23,23 @@ exports.config =
         auth: {username: 'equipreserv@gmail.com', password: 'reservation'}
         },
 
+    admin_contact: {
+        name: 'Administrator', 
+        email: 'equipreserv@gmail.com', 
+        phone: '', 
+
+
+    },
+
     emails: {
         user_activation_email: {
             text: 'Thank you for registering!  Please follow the link to activate your account: ',
-            link: domain + '/users/activate?id=',
+            link: '<a href="' + host + '/users/activate?id="',
             subject: 'Account Activation'        
         },
         reset_password_email: {
             text: 'Please follow the link to reset your password ',
-            link: domain + '/users/resetpassword/?id=',
+            link: host + '/users/resetpassword/?id=',
             subject: 'Password Reset Request'
         }
     },

@@ -3,6 +3,7 @@ var async = require('async');
 var users = require('../lib/users.js');
 var equip = require('../lib/equipment.js');
 var reserv = require('../lib/reservation.js');
+var mailout = require('../lib/mailout.js');
 var local = require('../local.config.js');
 var messages = local.config.messages;
 
@@ -747,7 +748,12 @@ module.exports = function(app){
             });
         });
         app.get('/test', function (req, res) {
-            res.render('./email/activationemail');
+            //res.render('./email/activationemail',{heading: 'I am heading', content: 'I am content lots of content!'});
+            var filepath = 'views/email/emaillayout.jade';
+            var dataobj = {heading: 'I am heading', content: 'I am content lots of content!'};
+            mailout.compileHTMLEmail(filepath, dataobj, function (html) {
+                mailout.sendEmail(null, html, 'pellera@sutterhealth.org', 'Test');
+            });
         });
     });
        

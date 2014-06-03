@@ -7,13 +7,20 @@ html(lang='en')
     meta(name='author' content='Anthony Lee Pellerin')
 
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/spacelabbootstrap.css')
     link(rel='stylesheet', href='/stylesheets/emailstyle.css')
 
     block css
 
   body
     .container
-        div#header.header.row
-          span.heading Test
-
-      block content
+      .navbar.navbar-inverse.navbar(role='navigation')
+        .container-fluid
+          .navbar-header
+            a.navbar-brand(href='#') equipReserv v0.1
+      .jumbotron
+        h3 #{heading}
+        br
+        br
+        text #{content}
+        block content
