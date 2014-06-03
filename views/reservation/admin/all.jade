@@ -12,8 +12,11 @@ block content
         a(href="/reservation/admin/todays") Todays
       li
         a(href="/reservation/admin/late") Late Returns
+      li
+        a(href="/reservation/admin/active") Active
       li.active
         a(href="#") All
+
   .row
     div.input-group.btn-group.filter-box
       span.input-group-addon Filter
@@ -33,6 +36,8 @@ block content
             th Phone
             th Email
             th Actions
+            th
+            th
         tbody
           tr#tablecontents
     ul.pager

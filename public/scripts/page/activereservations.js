@@ -3,7 +3,7 @@ $(document).ready(function() {
  //initial table load
     loadTable();
     setInterval(loadTable, 60000);
-    
+
     //refresh table data on paginate
     $('.page-control')
         .click(function(){
@@ -41,31 +41,31 @@ var loadTable = function(length, page, filter) {
 
     localStorage.setItem("page", page);
 
-    $.getJSON("/reservation/admin/getpending?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
+    $.getJSON("/reservation/admin/getactive?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
         $('tbody').empty();
         $.each(result, function (key, value) {
-            var buttons;
-            //DETERMINE APPROPRIATE BUTTON ACTIONS BASED ON STATUS_ID
-            switch (value.status_id) {
+        	var buttons;
+        	//DETERMINE APPROPRIATE BUTTON ACTIONS BASED ON STATUS_ID
+        	switch (value.status_id) {
                 // REJECTED
-                case 1 : buttons = buttonhtml.view;
-                break;
+        		case 1 : buttons = buttonhtml.view;
+        		break;
                 // IN PROGRESS
-                case 2 : buttons = buttonhtml.view + buttonhtml.complete + buttonhtml.cancel;
-                break;
+        		case 2 : buttons = buttonhtml.view + buttonhtml.complete + buttonhtml.cancel;
+        		break;
                 // CANCELLED
-                case 3 : buttons = buttonhtml.view;
-                break;
+        		case 3 : buttons = buttonhtml.view;
+        		break;
                 // COMPLETED
-                case 4 : buttons = buttonhtml.view;
-                break;
+        		case 4 : buttons = buttonhtml.view;
+        		break;
                 // PENDING
-                case 5 : buttons = buttonhtml.view + buttonhtml.approve + buttonhtml.reject;
-                break;
+        		case 5 : buttons = buttonhtml.view + buttonhtml.approve + buttonhtml.reject;
+        		break;
                 // APPROVED
-                case 7 : buttons = buttonhtml.view + buttonhtml.start + buttonhtml.cancel;
-                break;
-            }
+        		case 7 : buttons = buttonhtml.view + buttonhtml.start + buttonhtml.cancel;
+        		break;
+        	}
 
             $('tbody')
                 .append(
@@ -109,8 +109,8 @@ var loadTable = function(length, page, filter) {
 
             $('#resViewModal').modal();
 
-            });
-        });
+        	});
+    	});
 
         $('.approveres').on("click", function() {
             var rid = $(this).parent().siblings('#reservation_id').text();
@@ -212,25 +212,25 @@ var buttonhtml = {
 }
 
 var approvereservation = function(id, cb){
-    $.post('/reservation/admin/approvereservation',{reservation_id: id}, function(result){
+	$.post('/reservation/admin/approvereservation',{reservation_id: id}, function(result){
         cb(result);
     });
 };
 
 var rejectreservation = function(id, cb){
-    $.post('/reservation/admin/rejectreservation',{reservation_id: id}, function(result){
+	$.post('/reservation/admin/rejectreservation',{reservation_id: id}, function(result){
         cb(result);
     });
 };
 
 var cancelreservation = function(id, cb){
-    $.post('/reservation/admin/cancelreservation',{reservation_id: id}, function(result){
+	$.post('/reservation/admin/cancelreservation',{reservation_id: id}, function(result){
         cb(result);
     });
 };
 
 var completereservation = function(id, cb){
-    $.post('/reservation/admin/completereservation',{reservation_id: id}, function(result){
+	$.post('/reservation/admin/completereservation',{reservation_id: id}, function(result){
         cb(result);
     });
 };

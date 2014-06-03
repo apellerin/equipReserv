@@ -77,8 +77,7 @@ var loadTable = function(length, page, filter) {
                     "<td id='status_description'>" + value.status_description + "</td>" +
                     "<td id='phone'>" + value.phone + "</td>" +
                     "<td id='email'>" + value.email + "</td>" +
-                    "<td class='btn-group'>" + buttons + "</td>" +
-                    "</tr>");
+                    buttons + "</tr>");
         });
         //hide next button if there are less than defined length rows.
         if($("#eqlist > tbody > tr").length < length){
@@ -204,12 +203,12 @@ var loadTable = function(length, page, filter) {
 
 //HTML MARKUP FOR ACTIONS BASED ON STATUS_ID
 var buttonhtml = {
-    approve: "<button id='approveres' class='btn btn-success btn-xs approveres'>Approve</button>" ,
-    reject: "<button id='rejectres' class='btn btn-danger btn-xs rejectres'>Reject</button>",
-    view: "<button id='viewres' class='btn btn-primary btn-xs viewres'>View</button>",
-    cancel: "<button id='cancelres' class='btn btn-danger btn-xs cancelres'>Cancel</button>",
-    complete: "<button id='completeres' class='btn btn-success btn-xs completeres'>Complete</button>",
-    start: "<button id='startres' class='btn btn-success btn-xs startres'>Start</button>"
+    approve: "<td><button id='approveres' class='btn btn-success btn-xs approveres actionbutton'>Approve</button></td>" ,
+    reject: "<td><button id='rejectres' class='btn btn-danger btn-xs rejectres actionbutton'>Reject</button></td>",
+    view: "<td><button id='viewres' class='btn btn-primary btn-xs viewres actionbutton'>View</button></td>",
+    cancel: "<td><button id='cancelres' class='btn btn-danger btn-xs cancelres actionbutton'>Cancel</button></td>",
+    complete: "<td><button id='completeres' class='btn btn-success btn-xs completeres actionbutton'>Complete</button></td>",
+    start: "<td><button id='startres' class='btn btn-success btn-xs startres actionbutton'>Start</button></td>"
 }
 
 var approvereservation = function(id, cb){

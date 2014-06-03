@@ -416,12 +416,26 @@ module.exports = function(app){
         });
 
         app.post('/updatestatus', function (req, res) {
-            reserv.updateReservationStatus(req.body.reservation_id, req.body.reserv_status, function (result) {
-                res.send(result);
-            });
+            if (req.session.thisUser.user_level == -1 ) {
+                reserv.updateReservationStatus(req.body.reservation_id, req.body.reserv_status, function (result) {
+                    res.send(result);
+                });
+            } else {
+                reserv.getUserForReservation(req.body.reservation_id, function (result) {
+                    if (result.user_name == req.session.thisUser.user_name) {
+
+                        reserv.updateReservationStatus(req.body.reservation_id, req.body.reserv_status, function (result) {
+                            res.send(result);
+                        });
+                    } else {
+                        res.send(524, "This is not your reservation.")
+                    }
+                });
+            }
+            
         });
 
-        app.post('/list', function (req, res) {
+        /*app.post('/list', function (req, res) {
             length = parseInt(req.body.length);
             page = parseInt(req.body.page);
             filter = req.body.filter;
@@ -470,7 +484,7 @@ module.exports = function(app){
             else {
                 res.send(200, 'Huh?');
             }
-        });
+        });*/
 
         app.get('/getavailableequipment', function (req, res) {
             length = parseInt(req.query.length);
@@ -485,15 +499,50 @@ module.exports = function(app){
         });
 
         app.post('/reserveitem', function (req, res) {
-            reserv.reserveItem(req.body.reservation_id, req.body.inventory_id, function (result) {
-                res.send(200, "Your item has been reserved as number: " + result);
-            });
+            if (req.session.thisUser.user_level == -1 ) {
+
+                reserv.reserveItem(req.body.reservation_id, req.body.inventory_id, function (result) {
+                    res.send(200, "Your item has been reserved as number: " + result);
+                });
+
+
+            } else {
+                reserv.getUserForReservation(req.body.reservation_id, function (result) {
+                    if (result.user_name == req.session.thisUser.user_name) {
+
+                        reserv.reserveItem(req.body.reservation_id, req.body.inventory_id, function (result) {
+                            res.send(200, "Your item has been reserved as number: " + result);
+                        });
+
+                    } else {
+                        res.send(524, "This is not your reservation.")
+                    }
+                });
+            }
         });
 
         app.post('/unreserveitem', function (req, res) {
-            reserv.unreserveItem(req.body.reservation_id, req.body.inventory_id, function (result) {
-                res.send(result);
-            });
+            if (req.session.thisUser.user_level == -1 ) {
+
+                reserv.unreserveItem(req.body.reservation_id, req.body.inventory_id, function (result) {
+                    res.send(result);
+                });
+
+
+            } else {
+                reserv.getUserForReservation(req.body.reservation_id, function (result) {
+                    if (result.user_name == req.session.thisUser.user_name) {
+
+                        reserv.unreserveItem(req.body.reservation_id, req.body.inventory_id, function (result) {
+                            res.send(result);
+                        });
+
+                    } else {
+                        res.send(524, "This is not your reservation.")
+                    }
+                });
+            }
+            
         });
     });
 
@@ -532,7 +581,7 @@ module.exports = function(app){
         });
         
         app.post('/delcartitem', function (req, res) {
-            reserv.removeCartItem(req.body.inventory_id, function(result) {
+            reserv.removeCartItem(req.body.inventory_id, req.session.thisUser.user_name, function(result) {
                 res.send(result);
             });
         });
@@ -615,6 +664,10 @@ module.exports = function(app){
             res.render('./reservation/admin/late', {user: req.session.thisUser});
         });
 
+        app.get('/active', function (req, res) {
+            res.render('./reservation/admin/active', {user: req.session.thisUser});
+        });
+
         app.get('/all', function (req, res) {
             res.render('./reservation/admin/all', {user: req.session.thisUser});
         });
@@ -642,6 +695,15 @@ module.exports = function(app){
             page = parseInt(req.query.page);
             filter = req.query.filter;
             reserv.listLateReservations(length, page, filter, function(result) {
+                res.send(result);
+            });
+        });
+
+        app.get('/getactive', function (req, res) {
+            length = parseInt(req.query.length);
+            page = parseInt(req.query.page);
+            filter = req.query.filter;
+            reserv.listActiveReservations(length, page, filter, function(result) {
                 res.send(result);
             });
         });
@@ -684,8 +746,8 @@ module.exports = function(app){
                 res.send(result);
             });
         });
-        app.post('/test', function (req, res) {
-            
+        app.get('/test', function (req, res) {
+            res.render('./email/activationemail');
         });
     });
        
