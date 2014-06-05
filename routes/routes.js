@@ -747,13 +747,16 @@ module.exports = function(app){
                 res.send(result);
             });
         });
-        app.get('/test', function (req, res) {
-            //res.render('./email/activationemail',{heading: 'I am heading', content: 'I am content lots of content!'});
-            var filepath = 'views/email/emaillayout.jade';
-            var dataobj = {heading: 'I am heading', content: 'I am content lots of content!'};
-            mailout.compileHTMLEmail(filepath, dataobj, function (html) {
-                mailout.sendEmail(null, html, 'pellera@sutterhealth.org', 'Test');
-            });
+        app.get('/printcontract', function (req, res) {
+           
+                res.render('./reservation/admin/usercontract', 
+                    {company: local.config.hostconfig.company_name}
+                );
+        });
+        app.post('/getcontractdata', function (req, res) {
+             reserv.getContractData(req.body.reservation_id, function (results) {
+                res.send(results);
+             });
         });
     });
        

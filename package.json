@@ -19,6 +19,7 @@
 	"bcrypt": "0.x",
 	"node-uuid": "1.x",
 	"nodemailer": "0.5.x",
-	"moment": "2.6.x"
+	"moment": "2.6.x",
+	"juice2": "1.2.x"
   }
 }

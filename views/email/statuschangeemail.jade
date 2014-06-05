@@ -1,0 +1,21 @@
+extends emaillayout
+
+block content
+  .jumbotron
+    h3 #{heading}
+    text #{content}
+    ul
+      li 
+        strong Id:  
+          text #{reservationinfo.reservation_id}
+      li
+        strong Start Date: 
+          text #{reservationinfo.reserv_start_date}
+      li
+        strong End Date: 
+          text #{reservationinfo.reserv_end_date}
+      li
+        strong Status: 
+          text #{reservationinfo.status_description}
+    a #{link}
+    br

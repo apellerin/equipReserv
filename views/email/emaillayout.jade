@@ -8,7 +8,6 @@ html(lang='en')
 
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/spacelabbootstrap.css')
-    link(rel='stylesheet', href='/stylesheets/emailstyle.css')
 
     block css
 
@@ -18,9 +17,8 @@ html(lang='en')
         .container-fluid
           .navbar-header
             a.navbar-brand(href='#') equipReserv v0.1
-      .jumbotron
-        h3 #{heading}
-        br
-        br
-        text #{content}
-        block content
+
+      block content
+      h4 The EquipReserv Team
+      strong Email: 
+       text #{contactemail}

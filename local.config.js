@@ -1,8 +1,12 @@
-﻿//equipreserv Configuration File
+//equipreserv Configuration File
 var host = 'http://localhost:3000';
 
 exports.config = 
 { 
+    hostconfig: {
+        csspath: 'http://localhost:3000/stylesheets/',
+        company_name: 'NHS'
+    },
    
     db_config: {
         host : 'localhost',
@@ -27,21 +31,29 @@ exports.config =
         name: 'Administrator', 
         email: 'equipreserv@gmail.com', 
         phone: '', 
-
-
     },
 
     emails: {
         user_activation_email: {
             text: 'Thank you for registering!  Please follow the link to activate your account: ',
-            link: '<a href="' + host + '/users/activate?id="',
+            link: host + '/users/activate?id=',
             subject: 'Account Activation'        
         },
         reset_password_email: {
-            text: 'Please follow the link to reset your password ',
+            text: 'Please follow the link to reset your password: ',
             link: host + '/users/resetpassword/?id=',
             subject: 'Password Reset Request'
-        }
+        },
+        reservation_confirmation_email: {
+            text: 'Thank you.  Your reservation has been received: ',
+            link: host + '/login',
+            subject: 'Reservation Request Received'
+        },
+        reservation_statuschange_email: {
+            text: 'Your reservation status has been changed: ',
+            link: host + '/login',
+            subject: 'Status Change Notification'
+        },
     },
     messages: {
         invalid_credentials: {
