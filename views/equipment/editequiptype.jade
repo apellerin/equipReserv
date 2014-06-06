@@ -3,12 +3,13 @@
    div.row
     div.modal-content.col-md-12
       div.modal-body
-        form.form-horizontal(method="POST", action="/admin/equipment/type/update", id="edittypeform")
+        form.form-horizontal(method="POST", action="/admin/equipment/type/update", id="edittypeform" novalidate)
           div.form-group
             h3 Edit Equipment Type
             label.form-label(for="type_desc") Please Enter Type Description:
             input.form-control(type="input", id="type_id", name="type_id" style="display:none")
-            input.form-control(type="input", id="type_desc",placeholder="", name="type_desc", autofocus required)
+            input.form-control(type="input", id="type_desc",placeholder="", name="type_desc", minlength="1", maxlength="45" autofocus required)
+            p.help-block
           div.form-group
             button.btn.btn-primary Submit
             text

@@ -12,15 +12,15 @@ block content
             h4.sub-header.section-header Edit Account
           div.form-group
             label(for="user_name") Username:
-            input.form-control(type="text", id="user_name",value="#{user.user_name}", name="user_name", required)
+            input.form-control(type="text", id="user_name",value="#{user.user_name}", name="user_name", minlength="6", maxlength="20" required)
             p.help-block
           div.form-group
             label(for="username") First Name:
-            input.form-control(type="text", id="first_name",value="#{user.first_name}", name="first_name" required)
+            input.form-control(type="text", id="first_name",value="#{user.first_name}", name="first_name", minlength="6", maxlength="20" required)
             p.help-block
           div.form-group
             label(for="username") Last Name:
-            input.form-control(type="text", id="last_name",value="#{user.last_name}", name="last_name" required)
+            input.form-control(type="text", id="last_name",value="#{user.last_name}", name="last_name", minlength="1", maxlength="45" required)
             p.help-block
           div.form-group
             label(for="username") Email Address:
@@ -46,15 +46,15 @@ block content
             h4.sub-header.section-header Change Password
           div.form-group
             label(for="username") Old Password:
-            input.form-control(type="password", id="oldpassword",value="", name="oldpassword", placeholder="Old Password" required)
+            input.form-control(type="password", id="oldpassword",value="", name="oldpassword", placeholder="Old Password", minlength="6", maxlength="20" required)
             p.help-block
           div.form-group
             label(for="password") New Password:
-            input.form-control(type="password", id="password",value="", name="password", placeholder="New Password" required)
+            input.form-control(type="password", id="password",value="", name="password", placeholder="New Password", minlength="6", maxlength="20" required)
             p.help-block
           div.form-group
             label(for="password2") Confirm New Password:
-            input.form-control(type="password", id="password2",placeholder="Confirm Password", name="password2", data-validation-match-match="password"
+            input.form-control(type="password", id="password2",placeholder="Confirm Password", name="password2", minlength="6", maxlength="20" data-validation-match-match="password"
             data-validation-match-message="Passwords do not match" required)
             p.help-block
           div.form-group

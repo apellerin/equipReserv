@@ -51,19 +51,19 @@ var loadTable = function(length, page, filter) {
                 case 1 : buttons = buttonhtml.view;
                 break;
                 // IN PROGRESS
-                case 2 : buttons = buttonhtml.view + buttonhtml.complete + buttonhtml.cancel;
+                case 2 : buttons = buttonhtml.view + buttonhtml.complete + buttonhtml.cancel + buttonhtml.print;
                 break;
                 // CANCELLED
                 case 3 : buttons = buttonhtml.view;
                 break;
                 // COMPLETED
-                case 4 : buttons = buttonhtml.view;
+                case 4 : buttons = buttonhtml.view + buttonhtml.print;
                 break;
                 // PENDING
                 case 5 : buttons = buttonhtml.view + buttonhtml.approve + buttonhtml.reject;
                 break;
                 // APPROVED
-                case 7 : buttons = buttonhtml.view + buttonhtml.start + buttonhtml.cancel;
+                case 7 : buttons = buttonhtml.view + buttonhtml.start + buttonhtml.cancel + buttonhtml.print;
                 break;
             }
 
@@ -197,6 +197,11 @@ var loadTable = function(length, page, filter) {
             });
         });
 
+        $('.printres').on('click', function() {
+            var rid = $(this).parent().siblings('#reservation_id').text();
+            printreservation(rid);
+        });
+
     });
 };
 
@@ -208,7 +213,8 @@ var buttonhtml = {
     view: "<td><button id='viewres' class='btn btn-primary btn-xs viewres actionbutton'>View</button></td>",
     cancel: "<td><button id='cancelres' class='btn btn-danger btn-xs cancelres actionbutton'>Cancel</button></td>",
     complete: "<td><button id='completeres' class='btn btn-success btn-xs completeres actionbutton'>Complete</button></td>",
-    start: "<td><button id='startres' class='btn btn-success btn-xs startres actionbutton'>Start</button></td>"
+    start: "<td><button id='startres' class='btn btn-success btn-xs startres actionbutton'>Start</button></td>",
+    print: "<td><button id='printres' class='btn btn-default btn-xs printres actionbutton'>Print</button></td>"
 }
 
 var approvereservation = function(id, cb){
@@ -239,4 +245,12 @@ var startreservation = function(id, cb){
     $.post('/reservation/admin/startreservation',{reservation_id: id}, function(result){
         cb(result);
     });
+};
+
+var printreservation = function(id){
+    var urs = document.location.href.split('/');
+    var root = urs[1];
+    var windowName = ' Contract';
+    var url = '/reservation/admin/printcontract?reservation_id=' + id;
+    window.open(url, windowName, "height=961,width=861");
 };

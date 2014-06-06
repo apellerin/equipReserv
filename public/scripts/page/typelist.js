@@ -1,4 +1,6 @@
 ﻿$(document).ready(function() {
+
+    $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
     //initial table load
     loadTable();
 
@@ -41,8 +43,8 @@ var loadTable = function(length, page, filter) {
                     .append(
                         "<tr><td id='type_id' style=" + "display:none" + ">" + value.type_id + "</td>" + 
                         "<td id='Type'>" + value.type_desc + "</td>" +
-                        "<td>" + "<a href='#' class='edit btn btn-xs btn-warning'>Edit </a>"+ "</td>" +
-                        "<td>" + "<a href='#' class='delete btn btn-xs btn-danger'>Delete </a>"+ "</td>" +
+                        "<td>" + "<a href='#' class='edit btn btn-xs btn-warning actionbutton'>Edit </a>"+ "</td>" +
+                        "<td>" + "<a href='#' class='delete btn btn-xs btn-danger actionbutton'>Delete </a>"+ "</td>" +
                         "</tr>");
             });
             //hide next button if there are less than defined length rows.

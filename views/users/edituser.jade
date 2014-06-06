@@ -8,7 +8,7 @@
             h3 Edit User
           div.form-group
             label(for="user_name") Username:
-            input.form-control(type="text", id="user_name",placeholder="Enter Username", name="user_name", autofocus required)
+            input.form-control(type="text", id="user_name",placeholder="Enter Username", name="user_name", minlength="6", maxlength="45" autofocus required)
             p.help-block
           div.form-group
             label(for="first_name") First Name:
@@ -42,11 +42,11 @@
             p.help-block
           div.form-group
             label(for="modified") Last Modified:
-            input.form-control(type="text", id="modified",placeholder="Last Name", name="modified" required disabled)
+            input.form-control(type="text", id="modified",placeholder="Last Name", name="modified" disabled)
             p.help-block
           div.form-group
             label(for="username") Last Login:
-            input.form-control(type="text", id="last_login",placeholder="", name="last_login" required disabled)
+            input.form-control(type="text", id="last_login",placeholder="", name="last_login" disabled)
             p.help-block
           div.form-group
             button.btn.btn-primary(type="submit") Submit

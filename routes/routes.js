@@ -29,6 +29,12 @@ module.exports = function(app){
 
     //USER ACCOUNTS
     app.namespace('/users', function(req, res) {
+
+        //Error if no javascript
+        app.get('/javascriptdisabled', function(req, res) {
+            res.render('nojavascript');
+        });
+
         //User Authentication
         app.post('/authenticate',function(req,res) {
             users.authenticate(req, res)
@@ -76,6 +82,15 @@ module.exports = function(app){
         //Send password reset link
         app.post('/forgotpassword',function(req,res){
               users.recoverPassword(req, res);
+        });
+        //Render contact form
+        app.get('/sendmessage', function (req, res) {
+            res.render('contact',{user: req.session.thisUser});
+        });
+        //Send contact message to admin.
+        app.post('/sendmessage',function(req,res){
+          users.sendMessage(req.body);
+          res.render('contact', {user: req.session.thisUser, message: messages.messagesubmitted});
         });
         //User followed reset password link
         app.get('/resetpassword',function(req,res){
@@ -152,10 +167,10 @@ module.exports = function(app){
             app.post('/type/add',function(req,res){
                 equip.addEquipType(req.body.type, function(result){
                     if(!result){
-                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists});
+                        res.render('./equipment/typelist',{user: req.session.thisUser, message: messages.itemexists});
                     }
                     else {
-                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});
+                        res.render('./equipment/typelist',{user: req.session.thisUser, message: messages.itemadded});
                         }
                 });
             });

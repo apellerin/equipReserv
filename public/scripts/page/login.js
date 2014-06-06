@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-
+	msieversion();
 	
     //initialize form validation
     $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
@@ -10,3 +10,33 @@
     });
 
 });
+
+
+function msieversion() {
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0) {
+        	var version = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
+        	if(version < 9){
+        		$('.loginarea').prepend('<div class="alert alert-warning alert-dismissable">' +
+  					'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+  					'<strong>Warning!</strong> You are using Internet Explorer.  This site is ' +
+  					'best viewed with Chrome, Firefox or Safari</div>');
+        	}
+
+        }
+
+        else if(!!navigator.userAgent.match(/Trident.*rv\:11\./))  {
+        	$('.loginarea').prepend('<div class="alert alert-warning alert-dismissable">' +
+  					'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+  					'<strong>Warning!</strong> You are using Internet Explorer.  This site is ' +
+  					'best viewed with Chrome, Firefox or Safari</div>');
+        }     
+            
+        else  {
+        
+        }
+            
+}

@@ -258,7 +258,7 @@ var loadReservations = function() {
             
             $('#res-body')
                 .append(
-                    "<tr class='" + rowclass + "'><td id='reservation_id' style=" + "display:none" + ">" + value.reservation_id + "</td>" +
+                    "<tr class='" + rowclass + "'><td id='reservation_id'>" + value.reservation_id + "</td>" +
                     "<td id='start'>" + moment(value.reserv_start_date).format("MM/DD/YYYY h:mm A") + "</td>" +
                     "<td id='end'>" + moment(value.reserv_end_date).format("MM/DD/YYYY h:mm A") + "</td>" +
                     "<td id='numitems'>" + value.item_count + "</td>" +

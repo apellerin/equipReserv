@@ -2,27 +2,27 @@ extends ../layout
 block content
   if (message || notactivated || resetpassword) 
     include ../feedback
-  .row.col-sm-8.col-md-6.col-lg-4.col-centered.clearfix
+  .row.col-lg-6.col-md-6.col-centered.clearfix
     div.jumbotron.loginarea
       div.container
         form.form-horizontal(method="POST", action="/users/register", id="registerform" novalidate)
           div.form-group
             H2 Account Registration
           div.form-group
-            input.form-control(type="text", id="user_name",placeholder="Username", name="user_name", minlength="8", autofocus required)
+            input.form-control(type="text", id="user_name",placeholder="Username", name="user_name", minlength="6", maxlength="20", autofocus required)
             p.help-block
           div.form-group
-            input.form-control(type="password", id="password",placeholder="Password", minlength="8" name="password" required)
+            input.form-control(type="password", id="password",placeholder="Password", name="password", minlength="6", maxlength="20", required)
             p.help-block
           div.form-group
             input.form-control(type="password", id="password",placeholder="Confirm Password", name="password2" data-validation-match-match="password",
-            data-validation-match-message="Passwords do not match" required)
+            data-validation-match-message="Passwords do not match", minlength="6", maxlength="20" required)
             p.help-block
           div.form-group
-            input.form-control(type="text", id="first_name",placeholder="First Name", name="first_name" required)
+            input.form-control(type="text", id="first_name",placeholder="First Name", name="first_name", minlength="1", maxlength="45" required)
             p.help-block
           div.form-group
-            input.form-control(type="text", id="last_name",placeholder="Last Name", name="last_name" required)
+            input.form-control(type="text", id="last_name",placeholder="Last Name", name="last_name", minlength="1", maxlength="45" required)
             p.help-block
           div.form-group
             input.form-control(type="email", id="email",placeholder="Email Address", name="email" required)

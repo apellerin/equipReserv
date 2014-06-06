@@ -1,8 +1,10 @@
 ﻿div.modal.fade(id='myModal' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
-  div.modal-dialog.modal-sm
+  div.modal-dialog.modal-md
     div.modal-content
       div.modal-header
-        h4 Change Password
+        h4 Recover Password
+          br
+          small Submit email to recover password.
       div.modal-body(style="background-color:white")
         form.form-horizontal(method="POST", action="/users/forgotpassword", id="resetpassform" novalidate)
           div.form-group

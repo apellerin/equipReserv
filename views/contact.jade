@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  if (message || notactivated || resetpassword) 
+    include feedback
+  .row.col-lg-6.col-md-6.col-centered.clearfix
+    div.jumbotron.loginarea
+      div.container
+        form.form-horizontal(method="POST", action="/users/sendmessage", id="contactform" novalidate)
+          div.form-group
+            h2 Contact
+          div.form-group
+            input.form-control(type="text", id="name",placeholder="Name", name="name", maxlength="100" autofocus required)
+            p.help-block
+          div.form-group
+            input.form-control(type="email", id="email",placeholder="Email", name="email", maxlength="200" required)
+            p.help-block
+          div.form-group
+            input.form-control(type="tel", id="phone",placeholder="Phone", name="phone", maxlength="15")
+            p.help-block
+          div.form-group
+            input.form-control(type="text", id="subject",placeholder="Subject", name="subject", maxlength="100" required)
+            p.help-block
+          div.form-group
+            textarea.form-control(type="text", rows="10", id="message",placeholder="Message", name="message", minlength="1" required)
+            p.help-block
+          div.form-group
+            button.btn.btn-primary Send
+          
+block scripts
+  script(src='/scripts/page/login.js')
+  script(src='/scripts/jqBootstrapValidation.js')

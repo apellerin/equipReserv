@@ -1,4 +1,6 @@
 ﻿$(document).ready(function() {
+    
+    $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
 
     //load select
     $.getJSON("/admin/equipment/type/list", function(result){
@@ -54,10 +56,10 @@ var loadTable = function(length, page, filter) {
                         "<td id='make'>" + value.make + "</td>" +
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='itemcount'><span class='badge alert-info'>" + value.itemcount + "</span></td>"+
-                        "<td>" + "<a href='#' class='edit btn btn-xs btn-warning'>Edit </a>"+ "</td>" +
-                        "<td>" + "<a href='#' class='delete btn btn-xs btn-danger'>Delete </a>"+ "</td>" +
+                        "<td>" + "<a href='#' class='edit btn btn-xs btn-warning actionbutton'>Edit </a>"+ "</td>" +
+                        "<td>" + "<a href='#' class='delete btn btn-xs btn-danger actionbutton'>Delete </a>"+ "</td>" +
                         "<td>" + "<a href='/admin/equipment/viewinventory?eid=" + value.equip_id + "&length=" + length +
-                        "&page=0&filter=" +  "'class = 'detail btn btn-xs btn-primary'>Inventory</a>"+ "</td>" +
+                        "&page=0&filter=" +  "'class = 'detail btn btn-xs btn-primary actionbutton'>Inventory</a>"+ "</td>" +
                         "</tr>");
             });
             //hide next button if there are less than defined length rows.

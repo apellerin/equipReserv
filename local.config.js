@@ -4,6 +4,7 @@ var host = 'http://localhost:3000';
 exports.config = 
 { 
     hostconfig: {
+        rootpath: host,
         csspath: 'http://localhost:3000/stylesheets/',
         company_name: 'NHS'
     },
@@ -130,8 +131,8 @@ exports.config =
         },
         noupdate: {
             messageheader: 'Invalid Update: ',
-            message: 'No changes were supplied.',
-            messagetype: 'info'
+            message: 'No changes were applied.',
+            messagetype: 'error'
         },
         accountupdated: {
             messageheader: 'Success: ',
@@ -157,6 +158,16 @@ exports.config =
         filetoobig: {
             messageheader: 'Oops!: ',
             message: 'File is too large.  Please upload a file less than 16MB.',
+            messagetype: 'error'
+        },
+        messagesubmitted: {
+            messageheader: 'Thanks!: ',
+            message: 'Your message has been sent.',
+            messagetype: 'success'
+        },
+        messageerror: {
+            messageheader: 'Oops!: ',
+            message: 'An error occurred sending your message.  Please try again later.',
             messagetype: 'error'
         }
     }
