@@ -3,7 +3,7 @@ extends layout
 block content
   if (message || notactivated || resetpassword) 
     include feedback
-  .row.col-lg-6.col-md-6.col-centered.clearfix
+  .row.col-lg-6.col-md-10.col-centered.clearfix
     div.jumbotron.loginarea
       div.container
         form.form-horizontal(method="POST", action="/users/sendmessage", id="contactform" novalidate)

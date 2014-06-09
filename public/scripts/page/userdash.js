@@ -11,9 +11,9 @@
     $('#startdatetime').data('DateTimePicker').setDate(now.add(1, 'day').startOf('hour'));
     $('#enddatetime').data('DateTimePicker').setDate(now.add(1, 'day').add(1, 'hour'));
     var now = new moment();
-    $('#startdatetime').data('DateTimePicker').setMinDate(now);
+    $('#startdatetime').data('DateTimePicker').setMinDate(now.add(-1, 'day'));
     var now = new moment();
-    $('#enddatetime').data('DateTimePicker').setMinDate(now);
+    $('#enddatetime').data('DateTimePicker').setMinDate(now.add(-1, 'day'));
     var now = new moment();
 
     //Register Change Listener

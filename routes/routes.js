@@ -290,8 +290,9 @@ module.exports = function(app){
             });
             app.post('/item/add',function(req,res){
                 var equip_id = req.body.equip_id;
+                
                 async.each(Object.keys(req.body), function(item, callback) {
-                    if(item != 'equip_id') {
+                    if(item != 'equip_id' && req.body[item] != "") {
                         equip.addEquipItem(req.body[item], equip_id, callback);
                     } else {
                         callback();
