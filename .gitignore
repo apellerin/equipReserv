@@ -226,3 +226,4 @@ node_modules/
 *.sublime-workspace
 equipreserv.sublime-workspace
 public/stylesheets/style.css
+*.sublime-workspace

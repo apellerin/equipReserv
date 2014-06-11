@@ -60,8 +60,11 @@ loadTable = function(length, page, filter) {
             }
         if(!filter){filter = $('#filter').val();}
         localStorage.setItem("page", page);
+
+        $('tbody').empty();
+        
         $.getJSON("/admin/equipment/item/inventory?eid=" + equip_id +"&length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
-            $('tbody').empty();
+           
             $.each(result, function (key, value) {
                 $('tbody')
                     .append(
@@ -92,12 +95,17 @@ loadTable = function(length, page, filter) {
                     if (e) {
                         $.post("/admin/equipment/item/delete",{inventory_id: inventory_id},  function (result) {
 
-                            loadTable(length,page,filter);
+                            //loadTable(length,page,filter);
                         })
                         .fail(function() {
 
-                            alertify.error('Unable to re-assign inventory, cannot delete!')
+                            alertify.error('Unable to re-assign inventory, cannot delete!');
+                        })
+                        .always(function() {
+
+                            loadTable(length,page,filter);
                         });
+
                     } else {
                         // user clicked "cancel"
                     }
