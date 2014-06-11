@@ -41,6 +41,8 @@ var loadTable = function(length, page, filter) {
 
     localStorage.setItem("page", page);
 
+    
+
     $.getJSON("/reservation/admin/getlate?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
         $('tbody').empty();
         $.each(result, function (key, value) {
@@ -109,7 +111,10 @@ var loadTable = function(length, page, filter) {
 
             $('#resViewModal').modal();
 
-        	});
+        	})
+            .fail(function() {
+                $('#reseq-body').empty();
+            });
     	});
 
         $('.approveres').on("click", function() {
@@ -202,6 +207,9 @@ var loadTable = function(length, page, filter) {
             printreservation(rid);
         });
 
+    })
+    .fail(function() {
+        $('tbody').empty();
     });
 };
 

@@ -37,6 +37,9 @@ var loadTable = function(length, page, filter) {
             }
         if(!filter){filter = $('#filter').val()};
         localStorage.setItem("page", page);
+
+        
+        
         $.getJSON("/admin/users/list?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
             $('tbody').empty();
             $.each(result, function (key, value) {
@@ -95,6 +98,9 @@ var loadTable = function(length, page, filter) {
                     }
                 }, "Default Value");  
             });
+        })
+        .fail(function() {
+            $('tbody').empty();
         });
 }
     //populate form function

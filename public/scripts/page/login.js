@@ -19,11 +19,11 @@ function msieversion() {
 
         if (msie > 0) {
         	var version = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
-        	if(version < 9){
+        	if(version < 11){
         		$('.loginarea').prepend('<div class="alert alert-warning alert-dismissable">' +
   					'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
   					'<strong>Warning!</strong> You are using Internet Explorer.  This site is ' +
-  					'best viewed with Chrome, Firefox or Safari</div>');
+  					'best viewed with Chrome, Safari or Firefox</div>');
         	}
 
         }
@@ -32,7 +32,7 @@ function msieversion() {
         	$('.loginarea').prepend('<div class="alert alert-warning alert-dismissable">' +
   					'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
   					'<strong>Warning!</strong> You are using Internet Explorer.  This site is ' +
-  					'best viewed with Chrome, Firefox or Safari</div>');
+  					'best viewed with Chrome, Safai or Firefox</div>');
         }     
             
         else  {

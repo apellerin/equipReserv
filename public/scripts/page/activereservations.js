@@ -41,6 +41,8 @@ var loadTable = function(length, page, filter) {
 
     localStorage.setItem("page", page);
 
+    
+    
     $.getJSON("/reservation/admin/getactive?length=" + length + "&page=" + page + "&filter=" + filter, function (result) {
         $('tbody').empty();
         $.each(result, function (key, value) {
@@ -105,11 +107,15 @@ var loadTable = function(length, page, filter) {
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='inventory_id'>" + value.inventory_id + "</td>" +
                         "</tr>");
+            })
+            .fail(function() {
+                $('#reseq-body').empty();
             });
 
             $('#resViewModal').modal();
 
         	});
+
     	});
 
         $('.approveres').on("click", function() {
@@ -202,6 +208,11 @@ var loadTable = function(length, page, filter) {
             printreservation(rid);
         });
 
+    })
+    
+    .fail(function() {
+
+        $('tbody').empty();
     });
 };
 

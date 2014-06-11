@@ -136,10 +136,10 @@
 	"buffers":
 	[
 		{
-			"file": "lib/equipment.js",
+			"file": "views/equipment/equipment.jade",
 			"settings":
 			{
-				"buffer_size": 27351,
+				"buffer_size": 1541,
 				"line_ending": "Windows"
 			}
 		}
@@ -208,50 +208,53 @@
 	},
 	"file_history":
 	[
-		"/C/Users/pellera/Documents/GitHub/equipReserv/local.config.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/reservation.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/routes/routes.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/login.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/addequipment.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/layout.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/login.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/statuschangeemail.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/confirmationemail.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/activationemail.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/register.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/login.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/customercontactemail.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/emaillayout.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/reservation.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/routes/routes.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userdash.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/user/home.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/todaysreservations.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/activereservations.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userlist.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/typelist.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/pendingreservations.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/latereservations.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/inventory.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/equiplist.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/allreservations.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/views/contact.jade",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/local.config.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/users.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/mailout.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/equipment.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/nojavascript.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/feedback.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/addequipment.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/editequipment.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/addinventory.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/inventory.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/equipment.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/typelist.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/typelist.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/addequiptype.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/equipment/editequiptype.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/register.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/userlist.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userlist.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/edituser.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/account.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/accountadmin.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/contact.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/sidebar.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/users.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/header.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/emaillayout.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/statuschangeemail.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/customercontactemail.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/confirmationemail.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/activationemail.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/scripts.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/equiplist.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/changepass.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/recoverpass.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/resetpass.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/user/home.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userdash.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/allreservations.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/activereservations.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/latereservations.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/pendingreservations.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/todaysreservations.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/all.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/todays.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/pending.jade",
@@ -260,7 +263,6 @@
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/usercontract.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/usercontract.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/user/usercontract.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/mailout.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/email/atiostatuschangeemail.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/newrelic.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/stylesheets/emailstyle.styl",
@@ -269,14 +271,12 @@
 		"/C/Users/pellera/Documents/GitHub/equipReserv/server.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/stylesheets/style.styl",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/mysql_pool.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/equipment.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/Email/activationemail.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/Email/emaillayout.jade",
 		"/C/Users/pellera/Documents/GitHub/Node_SM_Admin/Stuff/COMMON_ASSETS/GOODIES/email-templates/sidebar.html",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/stylesheets/style.css",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/create.jade",
 		"/F/Projects/RAC - EDI835/ERN01908.ERN.835",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/inventory.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/moment.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/node_modules/connect-mongo/lib/connect-mongo.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/reshome.jade",
@@ -315,6 +315,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sendActi",
 			"send",
 			"updateReservation",
 			"status",
@@ -393,18 +394,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "lib/equipment.js",
+					"file": "views/equipment/equipment.jade",
 					"settings":
 					{
-						"buffer_size": 27351,
+						"buffer_size": 1541,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1508,
+								1508
 							]
 						],
 						"settings":
@@ -432,6 +433,10 @@
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -453,12 +458,116 @@
 								"bh_single_quote_open",
 								"bh_single_quote_close"
 							],
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 13031.0,
+						"translation.y": 820.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
