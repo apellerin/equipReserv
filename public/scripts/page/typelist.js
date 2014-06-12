@@ -22,6 +22,7 @@
 
 //loadTable function
 var loadTable = function(length, page, filter) {
+    $.blockUI(_blockobj);
     //set page length based on viewport size    
     if(!length){
             if($(window).width() < 992) {length = 5;}
@@ -80,6 +81,7 @@ var loadTable = function(length, page, filter) {
                 alertify.confirm("This item and all sub-items will be deleted.", function (e, str) {
                     // str is the input text
                     if (e) {
+                        $.blockUI(_blockobj);
                         $.post("/admin/equipment/type/delete",{type_id: tid},  function (result) {
                             loadTable(length,page,filter);
                         });
@@ -91,6 +93,9 @@ var loadTable = function(length, page, filter) {
         })
         .fail(function() {
             $('tbody').empty();
+        })
+        .always(function() {
+            $.unblockUI();
         });
 }
     //populate form function

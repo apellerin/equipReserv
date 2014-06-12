@@ -23,6 +23,7 @@
 
 //loadTable function
 var loadTable = function(length, page, filter) {
+    $.blockUI(_blockobj);
     //set page length based on viewport size    
     if(!length){
             if($(window).width() < 992) {length = 5;}
@@ -90,6 +91,7 @@ var loadTable = function(length, page, filter) {
                 alertify.confirm("Are you sure you want to delete this user?", function (e, str) {
                     // str is the input text
                     if (e) {
+                        $.blockUI(_blockobj);
                         $.post("/admin/users/delete",{user_name: user},  function (result) {
                             loadTable(length,page,filter);
                         });
@@ -101,6 +103,9 @@ var loadTable = function(length, page, filter) {
         })
         .fail(function() {
             $('tbody').empty();
+        })
+        .always(function() {
+            $.unblockUI();
         });
 }
     //populate form function

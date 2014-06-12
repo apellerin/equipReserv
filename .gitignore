@@ -227,3 +227,5 @@ node_modules/
 equipreserv.sublime-workspace
 public/stylesheets/style.css
 *.sublime-workspace
+*.TBD
+*.sublime-workspace

@@ -24,6 +24,7 @@ $(document).ready(function() {
 
 //loadTable function
 var loadTable = function(length, page, filter) {
+    $.blockUI(_blockobj);
     //set page length based on viewport size    
     if(!length){
         if($(window).width() < 992) {length = 5;}
@@ -120,9 +121,11 @@ var loadTable = function(length, page, filter) {
 
             alertify.confirm('Are you sure you want to approve this reservation?', function (e){
                 if(e) {
+                    $.blockUI(_blockobj);
                     approvereservation(rid, function(result){
                         if (! result) {
                             alertify.error('An error occurred.  Please retry.');
+                            loadTable();
                         } else {
                             alertify.success('Reservation ' + rid + ' approved.');
                             loadTable();
@@ -137,9 +140,11 @@ var loadTable = function(length, page, filter) {
 
             alertify.confirm('Are you sure you want to cancel this reservation?', function (e){
                 if(e) {
+                    $.blockUI(_blockobj);
                     cancelreservation(rid, function(result){
                         if (! result) {
                             alertify.error('An error occurred.  Please retry.');
+                            loadTable();
                         } else {
                             alertify.success('Reservation ' + rid + ' cancelled.');
                             loadTable();
@@ -154,9 +159,11 @@ var loadTable = function(length, page, filter) {
 
             alertify.confirm('Are you sure you want to reject this reservation?', function (e){
                 if(e) {
+                    $.blockUI(_blockobj);
                     rejectreservation(rid, function(result){
                         if (! result) {
                             alertify.error('An error occurred.  Please retry.');
+                            loadTable();
                         } else {
                             alertify.success('Reservation ' + rid + ' rejected.');
                             loadTable();
@@ -171,9 +178,11 @@ var loadTable = function(length, page, filter) {
 
             alertify.confirm('Are you sure you want to complete this reservation?', function (e){
                 if(e) {
+                    $.blockUI(_blockobj);
                     completereservation(rid, function(result){
                         if (! result) {
                             alertify.error('An error occurred.  Please retry.');
+                            loadTable();
                         } else {
                             alertify.success('Reservation ' + rid + ' completed.');
                             loadTable();
@@ -188,9 +197,11 @@ var loadTable = function(length, page, filter) {
 
             alertify.confirm('Are you sure you want to start this reservation?', function (e){
                 if(e) {
+                    $.blockUI(_blockobj);
                     startreservation(rid, function(result){
                         if (! result) {
                             alertify.error('An error occurred.  Please retry.');
+                            loadTable();
                         } else {
                             alertify.success('Reservation ' + rid + ' started.');
                             loadTable();
@@ -208,6 +219,9 @@ var loadTable = function(length, page, filter) {
     })
     .fail(function() {
         $('tbody').empty();
+    })
+    .always(function() {
+        $.unblockUI();
     });
 };
 

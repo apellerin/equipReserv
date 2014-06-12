@@ -1,9 +1,9 @@
 ﻿require('newrelic');
 var cluster = require('cluster');
 var reserv = require('./lib/reservation.js');
+var local = require('./local.config.js');
+var sessionconfig = local.config.session_config;
 
-//Variable to track whether or not we want to fork new workers
-var close_server = false;
 
 // Master process - starts the workers
 if (cluster.isMaster) {
@@ -20,8 +20,11 @@ if (cluster.isMaster) {
 
     // In case a worker dies, a new one should be started
     cluster.on('exit', function (worker, code, signal) {
-        //logger.info('Worker ' + worker.process.pid + ' died');
-        if (close_server = false)  cluster.fork();
+
+        worker_id = worker.workerID;
+        console.log('Worker: ' + worker_id + ' Died!');
+        cluster.fork();
+        
     });
 
 }
@@ -46,19 +49,19 @@ else {
     
     var sessStore = app.use(express.session({
         store: new MongoStore({
-            db: 'eqSessions',
-            host: 'localhost',
-            port: 27017
-        }), secret: 'S3KR#T',
+            db: sessionconfig.db,
+            host: sessionconfig.host,
+            port: sessionconfig.port
+        }), secret: sessionconfig.secret,
     })); 
 
     //Start mySQL Pools
     sql_pool = mysql_pool.startPool();
 
     //Mount Middleware
-    app.use(express.logger('dev'));
+    //app.use(express.logger('dev'));
     app.use(express.compress());
-    app.use(express.favicon());
+    app.use(express.favicon(path.join(__dirname, 'public','images','favicon.ico')));
     app.use(express.bodyParser());
     //app.use(express.methodOverride());
     app.set('port', process.env.PORT || 3000);
@@ -72,15 +75,17 @@ else {
   
      // development only
     if ('development' == app.get('env')) {
-      app.use(express.errorHandler());
-      app.set('view options', { pretty: true });
+        app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+        app.set('view options', { pretty: true });
+    } else {
+        app.use(express.errorHandler());
     }
 
  // Start the app
       
             var server = http.createServer(app).listen(app.get('port')) 
-                console.log('Express app started by %s', worker_id);
+                console.log('Express app started by %s in %s mode on port %s.', worker_id, app.get('env'), app.get('port'));
 
-                //Start 5Min Interval Shopping Cart Cleaner/Collector
-                if (cluster.worker.id === 1) reserv.startCartCollector();
-            }
+             reserv.startCartCollector();
+
+}

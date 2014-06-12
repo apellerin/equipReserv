@@ -50,12 +50,16 @@
 
     //SET UP CART SUBMIT
     $('#cartsubmitbtn').on("click", function() {
+
         alertify.confirm("Are you ready to finalize your reservation?", function (e) {
             if (e) {
                 var start = $('#startdatetime').data("DateTimePicker").getDate();
                 var end = $('#enddatetime').data("DateTimePicker").getDate();
                 var start = start.toISOString();
                 var end = end.toISOString();
+                //block ui while processing
+                $.blockUI(_blockobj); 
+
                 $.post('/reservation/add',{start: start, end: end}, function (result) {
                     loadAvailableEquip();
                 });
@@ -63,6 +67,7 @@
         });    
     });
     $('#cartcancelbtn').on("click", function () {
+        $.blockUI(_blockobj);
         $.getJSON('/reservation/user/clearcart', function(result) {
                 loadAvailableEquip();
         });
@@ -71,6 +76,7 @@
 
 //LOAD/REFRESH TABLE DATA
 var loadAvailableEquip = function (length, page, filter) {
+    $.blockUI(_blockobj);
     var start = $('#startdatetime').data("DateTimePicker").getDate();
     var end = $('#enddatetime').data("DateTimePicker").getDate();
     var start = start.toISOString();
@@ -113,7 +119,7 @@ var loadAvailableEquip = function (length, page, filter) {
                 alertify.alert("You must set start & end date/time for your reservation."); 
             }
             else {
-
+                $.blockUI(_blockobj);
                 var eid = $(this).parent().siblings(":first").text();
                 $.post("/reservation/user/addcart",{equip_id: eid, start: start, end: end},  function (result) {
                     loadAvailableEquip();
@@ -146,6 +152,9 @@ var loadAvailableEquip = function (length, page, filter) {
 
     .fail( function () {
         $('#aeq-body').empty();
+    })
+    .always( function() {
+        $.unblockUI();
     });
 };
 

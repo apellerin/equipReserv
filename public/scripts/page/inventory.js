@@ -44,6 +44,7 @@ function getParameterByName(name) {
 
 //loadTable function
 loadTable = function(length, page, filter) {
+    $.blockUI(_blockobj);
     //get EID from querystring
     var equip_id = getParameterByName("eid");
     //set page length based on viewport size    
@@ -93,17 +94,21 @@ loadTable = function(length, page, filter) {
                 alertify.confirm("Are you sure you want to delete this item?", function (e, str) {
                     // str is the input text
                     if (e) {
+                        $.blockUI(_blockobj);
                         $.post("/admin/equipment/item/delete",{inventory_id: inventory_id},  function (result) {
 
-                            //loadTable(length,page,filter);
+                            loadTable(length,page,filter);
                         })
                         .fail(function() {
 
                             alertify.error('Unable to re-assign inventory, cannot delete!');
+                            loadTable(length, page, filter);
+
                         })
                         .always(function() {
 
                             loadTable(length,page,filter);
+
                         });
 
                     } else {
@@ -114,6 +119,9 @@ loadTable = function(length, page, filter) {
         })
         .fail(function() {
             $('tbody').empty();
+        })
+        .always(function() {
+            $.unblockUI();
         });
 }
     //populate form function

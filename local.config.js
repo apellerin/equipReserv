@@ -21,6 +21,13 @@ exports.config =
 
         },
 
+    session_config: {
+        db: 'eqSessions',
+        host: 'localhost',
+        port: 27017,
+        secret: 'S3KR#T'
+    },
+
     smtp_config: {
         host: 'smtp.gmail.com',
         secureConnection: true,

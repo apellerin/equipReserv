@@ -4,22 +4,22 @@
   "description": "equipReserv",
   "main": "server.js",
   "author": {
-	"name": "ANT_IW3R",
-	"email": "anthonyleepellerin@hotmail.com"
+    "name": "ANT_IW3R",
+    "email": "anthonyleepellerin@hotmail.com"
   },
   "dependencies": {
-	"express": "3.4.4",
-	"express-namespace": "0.1.x",
-	"jade": "*",
-	"stylus": "*",
-	"connect-mongo": "0.4.x",
-	"mysql": "2.0.0-rc2",
-	"async": "0.2.x",
-	"generic-pool": "2.x",
-	"bcrypt": "0.x",
-	"node-uuid": "1.x",
-	"nodemailer": "0.5.x",
-	"moment": "2.6.x",
-	"juice2": "1.2.x"
+    "async": "0.2.x",
+    "bcrypt": "0.x",
+    "connect-mongo": "0.4.x",
+    "express": "3.4.4",
+    "express-namespace": "0.1.x",
+    "generic-pool": "2.x",
+    "jade": "*",
+    "juice2": "1.2.x",
+    "moment": "2.6.x",
+    "mysql": "2.0.0-rc2",
+    "node-uuid": "1.x",
+    "nodemailer": "0.5.x",
+    "stylus": "*"
   }
 }

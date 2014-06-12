@@ -31,6 +31,7 @@
 
 //loadTable function
 var loadTable = function(length, page, filter) {
+    $.blockUI(_blockobj);
     //set page length based on viewport size    
     if(!length){
             if($(window).width() < 992) {length = 5;}
@@ -95,6 +96,7 @@ var loadTable = function(length, page, filter) {
                 alertify.confirm("This item and all inventory will be deleted.", function (e) {
                     // str is the input text
                     if (e) {
+                        $.blockUI(_blockobj);
                         $.post("/admin/equipment/delete",{equip_id: eid},  function (result) {
                             loadTable(length,page,filter);
                         })
@@ -117,6 +119,9 @@ var loadTable = function(length, page, filter) {
         })
         .fail(function() {
             $('tbody').empty();
+        })
+        .always(function(){
+            $.unblockUI();
         });
 }
     //populate form function
