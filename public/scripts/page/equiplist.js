@@ -1,10 +1,18 @@
 ﻿$(document).ready(function() {
 
+    $('.fileinput').fileinput();
+
     $("input#image").change( function() {
         var input = $("input#image");
         var f = this.files[0];
+        var filename = f.name;
         if (f.size > 3145728 || f.fileSize > 3145728) {
             alertify.error('File size greater than 3MB!');
+            input.val('');
+        }
+        if (! filename.match(/\.(png|jpg|jpeg|gif|bmp|tiff)$/) ) {
+            alertify.success(filename);
+            alertify.error('Not valid image (jpg,jpeg,png,gif,bmp,tiff)');
             input.val('');
         }
     });
@@ -94,6 +102,7 @@ var loadTable = function(length, page, filter) {
                 $.post("/admin/equipment/get",{equip_id: eid},  function (result) {
                     populate("#editequipform", result);
                     $('#editequipModal').modal('toggle');
+
                 });
             });
 
@@ -148,7 +157,11 @@ var loadTable = function(length, page, filter) {
                    if($(this).attr('value') == value) {  $(this).attr("checked",value); } });   
                 break;  
             case "file" :
-                $ctrl.parent().parent().parent().find('img').attr('src','data:image/png;charset=utf-8;base64,' +value);
+                if (!value) {
+                    $ctrl.parent().parent().parent().find('img').attr('src','holder.js/900x700/auto/#777:#555/text:No Image Available');
+                    Holder.run();
+                }
+                else $ctrl.parent().parent().parent().find('img').attr('src','data:image/png;charset=utf-8;base64,' + value);
                 break;
             default:
             $ctrl.val(value); 

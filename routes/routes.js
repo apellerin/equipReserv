@@ -235,25 +235,29 @@ module.exports = function(app){
             });
             app.post('/add',function(req,res){
                 if (req.body.type && req.body.make && req.body.model) {
-                    if(fs.statSync(req.files.image.path)["size"] >= 3145728) {
-                        console.log('File uploaded to %s', req.files.image.path);
-                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.filetoobig, title: title});
-                        } else {
-                            var obj = { "equip_id":null,
-                                        "type_id":req.body.type,
-                                        "make": req.body.make,
-                                        "model": req.body.model,
-                                        "description": req.body.description,
-                                        "image": fs.readFileSync(req.files.image.path) 
-                                        }
-                            equip.addEquipment(obj, function(result){
-                                if(!result){
-                                    res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists, title: title});
-                                } else {
-                                    res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded, title: title});
-                                }
-                            });
-                        } 
+                    if (req.files.image) {
+                        var imagefile = fs.readFileSync(req.files.image.path);
+
+                        if(fs.statSync(req.files.image.path)["size"] >= 3145728) {
+                            console.log('File uploaded to %s', req.files.image.path);
+                            res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.filetoobig, title: title});
+                            } 
+                        }
+                        var obj = { "equip_id":null,
+                                    "type_id":req.body.type,
+                                    "make": req.body.make,
+                                    "model": req.body.model,
+                                    "description": req.body.description,
+                                    "image": imagefile || null 
+                                    }
+                        equip.addEquipment(obj, function(result){
+                            if(!result){
+                                res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists, title: title});
+                            } else {
+                                res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded, title: title});
+                            }
+                        });
+                            
                 } else res.send('525', 'Request Invalid, Missing Information');
             });
             app.post('/get',function(req,res){
@@ -277,20 +281,25 @@ module.exports = function(app){
             });
             app.post('/update',function(req,res){
                 if (req.body.equip_id && req.body.type_id && req.body.make && req.body.model) {
-                    if(fs.statSync(req.files.image.path)["size"] >= 3145728) {
-                        console.log('File uploaded to %s', req.files.image.path);
-                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.filetoobig, title: title});
-                    } else {
-                        var obj = { "equip_id":req.body.equip_id,
-                                    "type_id":req.body.type_id,
-                                    "make": req.body.make,
-                                    "model": req.body.model,
-                                    "description": req.body.description,
-                                    "image": fs.readFileSync(req.files.image.path) }
-                        equip.updateEquipment(obj, function(result){
-                            res.render('./equipment/equipment',{user: req.session.thisUser, title: title})    
-                        });
+                    if (req.files.image) {
+                        var imagefile = fs.readFileSync(req.files.image.path);
+                        if(fs.statSync(req.files.image.path)["size"] >= 3145728) {
+                            console.log('File uploaded to %s', req.files.image.path);
+                            res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.filetoobig, title: title});
+                        }
                     }
+                    var obj = { "equip_id":req.body.equip_id,
+                                "type_id":req.body.type_id,
+                                "make": req.body.make,
+                                "model": req.body.model,
+                                "description": req.body.description,
+                                "image": imagefile || null 
+                            }
+
+                    equip.updateEquipment(obj, function(result){
+                        res.render('./equipment/equipment',{user: req.session.thisUser, title: title})    
+                    });
+                        
                 } else res.send('525', 'Request Invalid, Missing Information');
             });
             app.post('/delete',function(req,res){
