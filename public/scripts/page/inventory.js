@@ -72,7 +72,7 @@ loadTable = function(length, page, filter) {
                         "<tr><td id='make'>" + value.make + "</td>" + 
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='inventory_id'>" + value.inventory_id + "</td>" +
-                        "<td>" + "<a href='#' class='delete btn btn-xs btn-danger'>Delete </a>"+ "</td>" +
+                        "<td>" + "<button class='delete btn btn-xs btn-danger'>Delete </a>"+ "</td>" +
                         "</tr>");
             });
             //hide next button if there are less than defined length rows.

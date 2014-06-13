@@ -107,8 +107,8 @@ var loadAvailableEquip = function (length, page, filter) {
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='avail'><span class='badge alert-info'>" + value.available + "</span></td>" +
                         "<td>" + 
-                        "<a href='#viewitem1' id='viewitem1' class='btn btn-primary btn-xs aeq-view nojump'>View</a>" +
-                        "<a href='#aeq' id='additem' class='btn btn-success btn-xs aeq-add nojump'>Add</a>" +
+                        "<button id='viewitem1' class='btn btn-primary btn-xs aeq-view nojump'>View</a>" +
+                        "<button id='additem' class='btn btn-success btn-xs aeq-add nojump'>Add</a>" +
                         "</td>" +
                         "</tr>");
             });
@@ -169,7 +169,7 @@ var loadShoppingCart = function() {
                     "<td id='make'>" + value.make + "</td>" +
                     "<td id='model'>" + value.model + "</td>" +
                     "<td id='inventory_id'>" + value.inventory_id + "</td>" +
-                    "<td>" + "<a href='#deleteitem' id='deleteitem' class='btn btn-danger btn-xs cart-delete nojump'>Delete</a>" + "</td>" +
+                    "<td>" + "<button id='deleteitem' class='btn btn-danger btn-xs cart-delete nojump'>Delete</a>" + "</td>" +
                     "</tr>");
         });
 
@@ -248,7 +248,7 @@ var loadReservations = function() {
             var cancelbutton = '';
 
             if (value.status_description == 'Approved' || value.status_description == 'Pending') {
-                cancelbutton = "<a href='#reslist' id='cancelres' class='btn btn-danger btn-xs cancelres nojump'>Cancel</a>" + "</td>";
+                cancelbutton = "<button id='cancelres' class='btn btn-danger btn-xs cancelres nojump'>Cancel</a>" + "</td>";
             }
 
             switch (true) {
@@ -272,7 +272,7 @@ var loadReservations = function() {
                     "<td id='end'>" + moment(value.reserv_end_date).format("MM/DD/YYYY h:mm A") + "</td>" +
                     "<td id='numitems'>" + value.item_count + "</td>" +
                     "<td id='status'>" + value.status_description + "</td>" +
-                    "<td>" + "<a href='#reslist' id='viewres' class='btn btn-primary btn-xs viewres'>View</a>" + 
+                    "<td>" + "<button id='viewres' class='btn btn-primary btn-xs viewres'>View</a>" + 
                     cancelbutton +
                     "</tr>") 
         });

@@ -77,8 +77,8 @@ var loadTable = function(length, page, filter) {
                         "<td id='make'>" + value.make + "</td>" +
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='itemcount'><span class='badge alert-info'>" + value.itemcount + "</span></td>"+
-                        "<td>" + "<a href='#' class='edit btn btn-xs btn-warning actionbutton'>Edit </a>"+ "</td>" +
-                        "<td>" + "<a href='#' class='delete btn btn-xs btn-danger actionbutton'>Delete </a>"+ "</td>" +
+                        "<td>" + "<button class='edit btn btn-xs btn-warning actionbutton'>Edit </a>"+ "</td>" +
+                        "<td>" + "<button class='delete btn btn-xs btn-danger actionbutton'>Delete </a>"+ "</td>" +
                         "<td>" + "<a href='/admin/equipment/viewinventory?eid=" + value.equip_id + "&length=" + length +
                         "&page=0&filter=" +  "'class = 'detail btn btn-xs btn-primary actionbutton'>Inventory</a>"+ "</td>" +
                         "</tr>");
