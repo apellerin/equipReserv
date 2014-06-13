@@ -6,7 +6,8 @@ exports.config =
     hostconfig: {
         rootpath: host,
         csspath: 'http://localhost:3000/stylesheets/',
-        company_name: 'NHS'
+        company_name: 'NHS',
+        app_title: 'NHS EquipReserv'
     },
    
     db_config: {
@@ -164,7 +165,7 @@ exports.config =
         },
         filetoobig: {
             messageheader: 'Oops!: ',
-            message: 'File is too large.  Please upload a file less than 16MB.',
+            message: 'File is too large.  Please upload a file no larger than 3MB.',
             messagetype: 'error'
         },
         messagesubmitted: {

@@ -6,6 +6,7 @@ var reserv = require('../lib/reservation.js');
 var mailout = require('../lib/mailout.js');
 var local = require('../local.config.js');
 var messages = local.config.messages;
+var title = local.config.hostconfig.app_title;
 
 //FUNCTIONS
 function isLoggedIn(req, res, next){
@@ -20,7 +21,7 @@ function isAdmin(req, res, next){
     if(req.session.thisUser.user_level==-1){
         next();
     } else {
-            res.render('./reservation/user/home',{user: req.session.thisUser, message: messages.notadmin});
+            res.render('./reservation/user/home',{user: req.session.thisUser, message: messages.notadmin, title: title});
         }
 }
 
@@ -32,7 +33,7 @@ module.exports = function(app){
 
         //Error if no javascript
         app.get('/javascriptdisabled', function (req, res) {
-            res.render('nojavascript');
+            res.render('nojavascript', {title: title});
         });
 
         //User Authentication
@@ -46,11 +47,11 @@ module.exports = function(app){
         app.post('/register',function (req,res) {
             users.getByUsername(req.body.user_name, function(result){
                 if(result){
-                    res.render('./users/register',{message: messages.username_exists});
+                    res.render('./users/register',{message: messages.username_exists, title: title});
                 } else {
                     users.getByEmail(req.body.email, function(result){
                         if(result){
-                            res.render('./users/register',{message: messages.email_exists});
+                            res.render('./users/register',{message: messages.email_exists, title: title});
                         } else {
                             users.register(req, res)
                         }
@@ -61,7 +62,7 @@ module.exports = function(app){
         });
          //User Registration Form
         app.get('/register',function (req,res) {
-            res.render('./users/register');
+            res.render('./users/register', {title: title});
         });
         //User Activation
         app.get('/activate',function (req,res){
@@ -73,7 +74,7 @@ module.exports = function(app){
             if (req.session.inactiveUser) {
                 var inactiveUser = req.session.inactiveUser;
                 users.sendActivationLink(inactiveUser.hash, inactiveUser.email);
-                res.render('./users/login',{resendactivate: messages.resend_activate});
+                res.render('./users/login',{resendactivate: messages.resend_activate, title: title});
             } else res.send('525', 'Request Invalid, Missing Information');
         });
         //update user account
@@ -86,18 +87,18 @@ module.exports = function(app){
         });
         //Send password reset link
         app.post('/forgotpassword',function (req,res){
-            if(req.body.password) users.recoverPassword(req, res);
+            if(req.body.email) users.recoverPassword(req, res);
             else res.send('525', 'Request Invalid, Missing Information');
         });
         //Render contact form
         app.get('/sendmessage', function (req, res) {
-            res.render('contact',{user: req.session.thisUser});
+            res.render('contact',{user: req.session.thisUser, title: title});
         });
         //Send contact message to admin.
         app.post('/sendmessage',function(req,res){
             if(req.body.email && req.body.subject && req.body.message) {
                 users.sendMessage(req.body);
-                res.render('contact', {user: req.session.thisUser, message: messages.messagesubmitted});
+                res.render('contact', {user: req.session.thisUser, message: messages.messagesubmitted, title: title});
             } else res.send('525', 'Request Invalid, Missing Information');
         });
         //User followed reset password link
@@ -106,11 +107,11 @@ module.exports = function(app){
                 res.send('525', 'Request Invalid, Missing Information');
             } else 
                 {users.getByHash(req.query.id,function(user){
-                    if(user === null){res.render('./users/login',{message: messages.reset_link_expired});}
+                    if(user === null){res.render('./users/login',{message: messages.reset_link_expired, title: title});}
                     else {
                         
                             req.session.thisUser = user;
-                            res.render('./users/resetpass',user);
+                            res.render('./users/resetpass',{user: user, title: title});
                     }
                 })
             }
@@ -123,18 +124,18 @@ module.exports = function(app){
 
         //User Account View
         app.get('/account',isLoggedIn,function(req,res){
-            res.render('./users/account',{user: req.session.thisUser});
+            res.render('./users/account',{user: req.session.thisUser, title: title});
         });
         //Change Password
         app.get('/changepass',isLoggedIn,function(req,res){
-            res.render('./users/account',{user: req.session.thisUser});
+            res.render('./users/account',{user: req.session.thisUser, title: title});
         });
         app.post('/changepass',isLoggedIn,function(req,res){
             users.changePassword(req,res);
         });
         //Default
         app.get('/',function(req,res){
-            res.render('./users/login');
+            res.render('./users/login', {title: title});
         });
     });
   
@@ -143,7 +144,7 @@ module.exports = function(app){
         //EQUIPMENT NAMESPACE
         app.namespace('/equipment', function() {
             app.get('/',function(req,res){
-                res.render('./equipment/equipment',{user: req.session.thisUser});
+                res.render('./equipment/equipment',{user: req.session.thisUser, title: title});
             });
             /*
             app.post('/status/add',function(req,res){
@@ -182,10 +183,10 @@ module.exports = function(app){
                 if (req.body.type) {
                     equip.addEquipType(req.body.type, function(result){
                         if(!result){
-                            res.render('./equipment/typelist',{user: req.session.thisUser, message: messages.itemexists});
+                            res.render('./equipment/typelist',{user: req.session.thisUser, message: messages.itemexists, title: title});
                         }
                         else {
-                            res.render('./equipment/typelist',{user: req.session.thisUser, message: messages.itemadded});
+                            res.render('./equipment/typelist',{user: req.session.thisUser, message: messages.itemadded, title: title});
                             }
                     });
                 } else res.send('525', 'Request Invalid, Missing Information');
@@ -220,37 +221,39 @@ module.exports = function(app){
                 } else res.send('525', 'Request Invalid, Missing Information');
             });
             app.get('type/view', function (req, res) {
-                res.render('./equipment/typelist', { user: req.session.thisUser });
+                res.render('./equipment/typelist', { user: req.session.thisUser, title: title });
             });
             app.get('/type/new',function(req,res){
-                res.render('./equipment/equipment',{user: req.session.thisUser});
+                res.render('./equipment/equipment',{user: req.session.thisUser, title: title});
             });
             app.post('/type/update', function (req, res) {
                 if (req.body.type_id && req.body.type_desc) {
                     equip.updateEquipType(req.body.type_id, req.body.type_desc, function (result) {
-                        res.render('./equipment/typelist', { user: req.session.thisUser});
+                        res.render('./equipment/typelist', { user: req.session.thisUser, title: title});
                     });
                 } else res.send('525', 'Request Invalid, Missing Information');
             });
             app.post('/add',function(req,res){
                 if (req.body.type && req.body.make && req.body.model) {
-                    if(fs.statSync(req.files.image.path)["size"] >= 16777215) {
-                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.filetoobig});
-                        }
-                    var obj = { "equip_id":null,
-                                "type_id":req.body.type,
-                                "make": req.body.make,
-                                "model": req.body.model,
-                                "description": req.body.description,
-                                "image": fs.readFileSync(req.files.image.path) 
-                                }
-                    equip.addEquipment(obj, function(result){
-                        if(!result){
-                            res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists});
+                    if(fs.statSync(req.files.image.path)["size"] >= 3145728) {
+                        console.log('File uploaded to %s', req.files.image.path);
+                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.filetoobig, title: title});
                         } else {
-                            res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded});
-                        }
-                    });
+                            var obj = { "equip_id":null,
+                                        "type_id":req.body.type,
+                                        "make": req.body.make,
+                                        "model": req.body.model,
+                                        "description": req.body.description,
+                                        "image": fs.readFileSync(req.files.image.path) 
+                                        }
+                            equip.addEquipment(obj, function(result){
+                                if(!result){
+                                    res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemexists, title: title});
+                                } else {
+                                    res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.itemadded, title: title});
+                                }
+                            });
+                        } 
                 } else res.send('525', 'Request Invalid, Missing Information');
             });
             app.post('/get',function(req,res){
@@ -274,15 +277,20 @@ module.exports = function(app){
             });
             app.post('/update',function(req,res){
                 if (req.body.equip_id && req.body.type_id && req.body.make && req.body.model) {
-                    var obj = { "equip_id":req.body.equip_id,
-                                "type_id":req.body.type_id,
-                                "make": req.body.make,
-                                "model": req.body.model,
-                                "description": req.body.description,
-                                "image": fs.readFileSync(req.files.image.path) }
-                    equip.updateEquipment(obj, function(result){
-                        res.render('./equipment/equipment',{user: req.session.thisUser})    
-                    });
+                    if(fs.statSync(req.files.image.path)["size"] >= 3145728) {
+                        console.log('File uploaded to %s', req.files.image.path);
+                        res.render('./equipment/equipment',{user: req.session.thisUser, message: messages.filetoobig, title: title});
+                    } else {
+                        var obj = { "equip_id":req.body.equip_id,
+                                    "type_id":req.body.type_id,
+                                    "make": req.body.make,
+                                    "model": req.body.model,
+                                    "description": req.body.description,
+                                    "image": fs.readFileSync(req.files.image.path) }
+                        equip.updateEquipment(obj, function(result){
+                            res.render('./equipment/equipment',{user: req.session.thisUser, title: title})    
+                        });
+                    }
                 } else res.send('525', 'Request Invalid, Missing Information');
             });
             app.post('/delete',function(req,res){
@@ -313,13 +321,13 @@ module.exports = function(app){
                 } else res.send('525', 'Request Invalid, Missing Information');
             });
             app.get('/viewinventory',function(req,res){
-                res.render('./equipment/inventory',{user: req.session.thisUser});
+                res.render('./equipment/inventory',{user: req.session.thisUser, title: title});
             });
             app.get('/view',function(req,res){
-                res.render('./equipment/equipment',{user: req.session.thisUser});
+                res.render('./equipment/equipment',{user: req.session.thisUser, title: title});
             });
             app.get('/new',function(req,res){
-                res.render('./equipment/equipment',{user: req.session.thisUser});
+                res.render('./equipment/equipment',{user: req.session.thisUser, title: title});
             });
             app.post('/item/add',function(req,res){
                 if (req.body.equip_id) {
@@ -411,13 +419,13 @@ module.exports = function(app){
                 } else res.send('525', 'Request Invalid, Missing Information');
             });
             app.get('/item/new',function(req,res){
-                res.render('./equipment/equipment',{user: req.session.thisUser});
+                res.render('./equipment/equipment',{user: req.session.thisUser, title: title});
             });
         });//end admin/equipment namespace
 
         app.namespace('/users', function() {
             app.get('/', function(req, res) {
-                res.render('./users/userlist',{user: req.session.thisUser});
+                res.render('./users/userlist',{user: req.session.thisUser, title: title});
             });
             app.get('/list', function(req, res) {
                 if (req.query.length && req.query.page) {
@@ -441,9 +449,9 @@ module.exports = function(app){
                     req.body.email && req.body.user_level && req.body.activated) {
                         users.adminUpdate(req, function (result) {
                             if (!result.affectedRows == 1) {
-                                res.render('./users/userlist', { message: messages.noupdate, user: req.session.thisUser });
+                                res.render('./users/userlist', { message: messages.noupdate, user: req.session.thisUser, title: title });
                             } else {
-                                res.render('./users/userlist', { message: messages.accountupdated, user: req.session.thisUser });
+                                res.render('./users/userlist', { message: messages.accountupdated, user: req.session.thisUser, title: title });
                             }
                         });
                 } else res.send('525', 'Request Invalid, Missing Information');
@@ -629,7 +637,7 @@ module.exports = function(app){
     app.namespace('/reservation/user', isLoggedIn, function () {
 
         app.get('/home', function (req, res) {
-            res.render('./reservation/user/home', { user: req.session.thisUser });
+            res.render('./reservation/user/home', { user: req.session.thisUser, title: title });
         });
 
         app.post('/addcart', function (req, res) {
@@ -741,27 +749,27 @@ module.exports = function(app){
     //ADMIN
     app.namespace('/reservation/admin', isLoggedIn, isAdmin, function () {
         app.get('/home', function (req, res) {
-            res.render('./reservation/admin/pending', {user: req.session.thisUser});
+            res.render('./reservation/admin/pending', {user: req.session.thisUser, title: title});
         });
 
         app.get('/pending', function (req, res) {
-            res.render('./reservation/admin/pending', {user: req.session.thisUser});
+            res.render('./reservation/admin/pending', {user: req.session.thisUser, title: title});
         });
 
         app.get('/todays', function (req, res) {
-            res.render('./reservation/admin/todays', {user: req.session.thisUser});
+            res.render('./reservation/admin/todays', {user: req.session.thisUser, title: title});
         });
 
         app.get('/late', function (req, res) {
-            res.render('./reservation/admin/late', {user: req.session.thisUser});
+            res.render('./reservation/admin/late', {user: req.session.thisUser, title: title});
         });
 
         app.get('/active', function (req, res) {
-            res.render('./reservation/admin/active', {user: req.session.thisUser});
+            res.render('./reservation/admin/active', {user: req.session.thisUser, title: title});
         });
 
         app.get('/all', function (req, res) {
-            res.render('./reservation/admin/all', {user: req.session.thisUser});
+            res.render('./reservation/admin/all', {user: req.session.thisUser, title: title});
         });
 
         app.get('/getpending', function (req, res) {
@@ -851,7 +859,7 @@ module.exports = function(app){
         app.get('/printcontract', function (req, res) {
            
                 res.render('./reservation/admin/usercontract', 
-                    {company: local.config.hostconfig.company_name}
+                    {company: local.config.hostconfig.company_name, title: title}
                 );
         });
         app.post('/getcontractdata', function (req, res) {
@@ -865,6 +873,6 @@ module.exports = function(app){
        
     //Create Error Response - No Route Exists
     app.all('*', function(req, res){
-        res.render('./users/login');
+        res.render('./users/login', {title: title});
     });
 }

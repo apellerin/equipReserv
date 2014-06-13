@@ -78,7 +78,7 @@ var loadTable = function(length, page, filter) {
                 //get equipment id for row
                 var tid = $(this).parent().siblings(":first").text();
                 // prompt dialog
-                alertify.confirm("This item and all sub-items will be deleted.", function (e, str) {
+                alertify.confirm("Are you sure you want to delete this item?", function (e, str) {
                     // str is the input text
                     if (e) {
                         $.blockUI(_blockobj);

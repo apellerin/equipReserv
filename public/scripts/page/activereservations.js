@@ -130,7 +130,7 @@ var loadTable = function(length, page, filter) {
                             alertify.error('An error occurred.  Please retry.');
                             loadTable();
                         } else {
-                            alertify.success('Reservation ' + rid + ' approved.');
+                            alertify.success('Reservation ' + rid + ' Approved.');
                             loadTable();
                         }
                     });
@@ -149,7 +149,7 @@ var loadTable = function(length, page, filter) {
                             alertify.error('An error occurred.  Please retry.');
                             loadTable();
                         } else {
-                            alertify.success('Reservation ' + rid + ' cancelled.');
+                            alertify.success('Reservation ' + rid + ' Cancelled.');
                             loadTable();
                         }
                     });
@@ -168,7 +168,7 @@ var loadTable = function(length, page, filter) {
                             alertify.error('An error occurred.  Please retry.');
                             loadTable();
                         } else {
-                            alertify.success('Reservation ' + rid + ' rejected.');
+                            alertify.success('Reservation ' + rid + ' Rejected.');
                             loadTable();
                         }
                     });
@@ -187,7 +187,7 @@ var loadTable = function(length, page, filter) {
                             alertify.error('An error occurred.  Please retry.');
                             loadTable();
                         } else {
-                            alertify.success('Reservation ' + rid + ' completed.');
+                            alertify.success('Reservation ' + rid + ' Completed.');
                             loadTable();
                         }
                     });
@@ -206,7 +206,7 @@ var loadTable = function(length, page, filter) {
                             alertify.error('An error occurred.  Please retry.');
                             loadTable();
                         } else {
-                            alertify.success('Reservation ' + rid + ' started.');
+                            alertify.success('Reservation ' + rid + ' Started.');
                             loadTable();
                         }
                     });

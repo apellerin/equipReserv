@@ -16,11 +16,14 @@ html(lang='en')
       .navbar.navbar-inverse.navbar(role='navigation')
         .container-fluid
           .navbar-header
-            a.navbar-brand(href='#') equipReserv v0.1
+            if (title)
+              a.navbar-brand(href='#') #{title}
+            else
+              a.navbar-brand(href='#') EquipReserv
 
       block content
       br
       br
-      h4 The EquipReserv Team
+      h4 Contact
       strong Email: 
        text #{contactemail}

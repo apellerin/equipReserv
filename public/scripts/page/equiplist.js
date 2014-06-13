@@ -1,4 +1,13 @@
 ﻿$(document).ready(function() {
+
+    $("input#image").change( function() {
+        var input = $("input#image");
+        var f = this.files[0];
+        if (f.size > 3145728 || f.fileSize > 3145728) {
+            alertify.error('File size greater than 3MB!');
+            input.val('');
+        }
+    });
     
     $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
 

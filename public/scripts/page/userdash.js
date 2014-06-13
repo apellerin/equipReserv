@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    //Initialize Cart Timer Var
+       //Initialize Cart Timer Var
     carttimer = false;
 
     //Set Up the Date/Time Picker & Defaults
@@ -107,8 +107,8 @@ var loadAvailableEquip = function (length, page, filter) {
                         "<td id='model'>" + value.model + "</td>" +
                         "<td id='avail'><span class='badge alert-info'>" + value.available + "</span></td>" +
                         "<td>" + 
-                        "<a href='#viewitem1' id='viewitem1' class='btn btn-primary btn-xs aeq-view'>View</a>" +
-                        "<a href='#additem' id='additem' class='btn btn-success btn-xs aeq-add'>Add</a>" +
+                        "<a href='#viewitem1' id='viewitem1' class='btn btn-primary btn-xs aeq-view nojump'>View</a>" +
+                        "<a href='#aeq' id='additem' class='btn btn-success btn-xs aeq-add nojump'>Add</a>" +
                         "</td>" +
                         "</tr>");
             });
@@ -169,7 +169,7 @@ var loadShoppingCart = function() {
                     "<td id='make'>" + value.make + "</td>" +
                     "<td id='model'>" + value.model + "</td>" +
                     "<td id='inventory_id'>" + value.inventory_id + "</td>" +
-                    "<td>" + "<a href='#deleteitem' id='deleteitem' class='btn btn-danger btn-xs cart-delete'>Delete</a>" + "</td>" +
+                    "<td>" + "<a href='#deleteitem' id='deleteitem' class='btn btn-danger btn-xs cart-delete nojump'>Delete</a>" + "</td>" +
                     "</tr>");
         });
 
@@ -248,7 +248,7 @@ var loadReservations = function() {
             var cancelbutton = '';
 
             if (value.status_description == 'Approved' || value.status_description == 'Pending') {
-                cancelbutton = "<a href='#reslist' id='cancelres' class='btn btn-danger btn-xs cancelres'>Cancel</a>" + "</td>";
+                cancelbutton = "<a href='#reslist' id='cancelres' class='btn btn-danger btn-xs cancelres nojump'>Cancel</a>" + "</td>";
             }
 
             switch (true) {

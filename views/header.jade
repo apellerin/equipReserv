@@ -6,7 +6,11 @@
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='#') equipReserv v0.1
+          if (title)
+            a.navbar-brand(href='#') #{title}
+          else
+            a.navbar-brand(href='#') EquipReserv
+
 
         if(user && user.user_level == -1)
           .navbar-collapse.collapse
