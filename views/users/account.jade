@@ -29,8 +29,7 @@ block content
           div.form-group
             label(for="username") Phone:  
               span.badge Format: 123-123-1234
-            input.form-control(type="tel", id="username",value="#{user.phone}", name="phone" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"
-            data-validation-pattern-message="Please enter a valid telephone format")
+            input.form-control(type="tel", id="username",value="#{user.phone}", name="phone" maxlength="45")
             p.help-block
           div.form-group
             label(for="password") Confirm Password:

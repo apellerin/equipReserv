@@ -28,8 +28,7 @@ block content
             input.form-control(type="email", id="email",placeholder="Email Address", name="email" required)
             p.help-block
           div.form-group
-            input.form-control(type="tel", id="username",placeholder="Phone Number", name="phone" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"
-            data-validation-pattern-message="Please enter a valid telephone format")
+            input.form-control(type="tel", id="username",placeholder="Phone Number", name="phone" maxlength="45")
             span.badge Format: 123-123-1234
             p.help-block
           div.form-group

@@ -7,30 +7,52 @@
     $('#startdatetime').datetimepicker();
     $('#enddatetime').datetimepicker();
 
-    var now = new moment();
-    $('#startdatetime').data('DateTimePicker').setDate(now.add(1, 'day').startOf('hour'));
-    $('#enddatetime').data('DateTimePicker').setDate(now.add(1, 'day').add(1, 'hour'));
-    var now = new moment();
-    $('#startdatetime').data('DateTimePicker').setMinDate(now.add(-1, 'day'));
-    var now = new moment();
-    $('#enddatetime').data('DateTimePicker').setMinDate(now.add(-1, 'day'));
-    var now = new moment();
+    var now = new moment().startOf('minute');
+    //Set Default Date Values
+    $('#startdatetime').data('DateTimePicker').setDate(now.clone().add(1, 'day').add(1, 'hour').startOf('hour').startOf('minute'));
+    $('#enddatetime').data('DateTimePicker').setDate(now.clone().add(2, 'day').add(1, 'hour').startOf('hour').startOf('minute'));
 
-    //Register Change Listener
+    //Set Min Dates for Pickers
+    $('#startdatetime').data('DateTimePicker').setMinDate(now.clone().add(-1, 'day').startOf('minute'));
+    $('#enddatetime').data('DateTimePicker').setMinDate(now.clone().add(-1, 'day').startOf('minute'));
+
+    //Register Change Listeners
     $("#startdatetime")
         .on("dp.change", function (e) {
-            var now = new moment();
-            var newend = new moment($('#startdatetime').data("DateTimePicker").getDate());
 
-            $('#enddatetime').data('DateTimePicker').setDate(newend.add(1, 'day').add(1, 'hour'));
+            now = new moment().startOf('minute');
+
+            if (moment(e.date).startOf('minute') < now) {
+
+                $('#startdatetime').data('DateTimePicker').setDate(now.clone());
+            }
+
+            if ( $('#enddatetime').data('DateTimePicker').getDate() < e.date ) {
+
+                $('#enddatetime').data('DateTimePicker').setDate(e.date.clone().startOf('minute').add(1, 'hour'));
+            }
+
+            //GET NEW DATA
             $.getJSON('/reservation/user/clearcart', function(result) {
                 loadAvailableEquip();
             });
     });
 
     $("#enddatetime").on("dp.change", function (e) {
-        $('#startdatetime').data("DateTimePicker").setMaxDate(e.date);
-        var endDate = $('#startdatetime').data("DateTimePicker").getDate();
+
+       var startdt = $('#startdatetime').data('DateTimePicker').getDate().startOf('minute');
+
+            if (moment(e.date).startOf('minute') < startdt) {
+
+                $('#enddatetime').data('DateTimePicker').setDate(startdt.clone().add(1, 'hour'));
+            }
+
+            if ( $('#startdatetime').data('DateTimePicker').getDate() > e.date ) {
+
+                $('#startdatetime').data('DateTimePicker').setDate(e.date.clone().startOf('minute').add(-1, 'hour'));
+            }
+
+        //GET NEW DATA
         $.getJSON('/reservation/user/clearcart', function(result) {
                 loadAvailableEquip();
             });
@@ -81,7 +103,7 @@ var loadAvailableEquip = function (length, page, filter) {
     var end = $('#enddatetime').data("DateTimePicker").getDate();
     var start = start.toISOString();
     var end = end.toISOString();
-    
+
     //set page length based on viewport size    
     if (!length) {
         length = 10000;
@@ -91,7 +113,7 @@ var loadAvailableEquip = function (length, page, filter) {
         page = 0;
         $('#aeq-previous').hide();
     } 
-    if (!filter) { filter = "" };
+    if (!filter) { filter = $('#aeq-filter').val() };
 
     localStorage.setItem("aeq_page", page);
 
