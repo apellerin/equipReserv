@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"un",
+				"unblockUI"
+			],
+			[
 				"enddate",
 				"enddatetime"
 			],
@@ -220,15 +224,17 @@
 	},
 	"file_history":
 	[
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userdash.js",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/reservation.js",
+		"/C/Users/pellera/Desktop/availequip.sql",
+		"/C/Users/pellera/AppData/Roaming/Microsoft/VisualStudio/12.0/ActivityLog.xml",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/routes/routes.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/register.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/edituser.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/users/account.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/todays.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/pending.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/active.jade",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userdash.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/reservation.js",
-		"/C/Users/pellera/Documents/GitHub/equipReserv/routes/routes.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/accountadmin.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/equiplist.js",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/inventory.js",
@@ -308,7 +314,6 @@
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/admin/home.jade",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/.gitignore",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/views/reservation/user/showresmodal.jade",
-		"/C/Users/pellera/AppData/Roaming/Microsoft/VisualStudio/12.0/ActivityLog.xml",
 		"/C/Users/pellera/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/pellera/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/Task_List",
@@ -331,6 +336,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"start =",
+			"start",
+			"now =",
+			"\\",
+			"cart",
 			"clone",
 			"endDate",
 			".add",

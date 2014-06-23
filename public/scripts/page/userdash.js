@@ -1,66 +1,18 @@
 ﻿$(document).ready(function () {
 
+    $.ajaxSetup({ cache: false });
+
        //Initialize Cart Timer Var
     carttimer = false;
 
-    //Set Up the Date/Time Picker & Defaults
-    $('#startdatetime').datetimepicker();
-    $('#enddatetime').datetimepicker();
-
-    var now = new moment().startOf('minute');
-    //Set Default Date Values
-    $('#startdatetime').data('DateTimePicker').setDate(now.clone().add(1, 'day').add(1, 'hour').startOf('hour').startOf('minute'));
-    $('#enddatetime').data('DateTimePicker').setDate(now.clone().add(2, 'day').add(1, 'hour').startOf('hour').startOf('minute'));
-
-    //Set Min Dates for Pickers
-    $('#startdatetime').data('DateTimePicker').setMinDate(now.clone().add(-1, 'day').startOf('minute'));
-    $('#enddatetime').data('DateTimePicker').setMinDate(now.clone().add(-1, 'day').startOf('minute'));
-
-    //Register Change Listeners
-    $("#startdatetime")
-        .on("dp.change", function (e) {
-
-            now = new moment().startOf('minute');
-
-            if (moment(e.date).startOf('minute') < now) {
-
-                $('#startdatetime').data('DateTimePicker').setDate(now.clone());
-            }
-
-            if ( $('#enddatetime').data('DateTimePicker').getDate() < e.date ) {
-
-                $('#enddatetime').data('DateTimePicker').setDate(e.date.clone().startOf('minute').add(1, 'hour'));
-            }
-
-            //GET NEW DATA
-            $.getJSON('/reservation/user/clearcart', function(result) {
-                loadAvailableEquip();
-            });
-    });
-
-    $("#enddatetime").on("dp.change", function (e) {
-
-       var startdt = $('#startdatetime').data('DateTimePicker').getDate().startOf('minute');
-
-            if (moment(e.date).startOf('minute') < startdt) {
-
-                $('#enddatetime').data('DateTimePicker').setDate(startdt.clone().add(1, 'hour'));
-            }
-
-            if ( $('#startdatetime').data('DateTimePicker').getDate() > e.date ) {
-
-                $('#startdatetime').data('DateTimePicker').setDate(e.date.clone().startOf('minute').add(-1, 'hour'));
-            }
-
-        //GET NEW DATA
-        $.getJSON('/reservation/user/clearcart', function(result) {
-                loadAvailableEquip();
-            });
-    });
-
+    setUpDatePickers();
+    
 
     //LOAD AVAILABLE EQUIPMENT TABLE
-    loadAvailableEquip();
+    //GET NEW DATA
+    $.getJSON('/reservation/user/clearcart', function(result) {
+            loadAvailableEquip();
+    });
     
     //Start Cart Countown Timer Functions
     startTimer();
@@ -84,6 +36,9 @@
 
                 $.post('/reservation/add',{start: start, end: end}, function (result) {
                     loadAvailableEquip();
+                })
+                .always(function(){
+                    $.unblockUI();
                 });
             } 
         });    
@@ -99,10 +54,10 @@
 //LOAD/REFRESH TABLE DATA
 var loadAvailableEquip = function (length, page, filter) {
     $.blockUI(_blockobj);
-    var start = $('#startdatetime').data("DateTimePicker").getDate();
-    var end = $('#enddatetime').data("DateTimePicker").getDate();
-    var start = start.toISOString();
-    var end = end.toISOString();
+    var start = $('#startdatetime').data("DateTimePicker").getDate() || moment();
+    var end = $('#enddatetime').data("DateTimePicker").getDate() || moment();
+    start = start.format();
+    end = end.format();
 
     //set page length based on viewport size    
     if (!length) {
@@ -174,6 +129,7 @@ var loadAvailableEquip = function (length, page, filter) {
 
     .fail( function () {
         $('#aeq-body').empty();
+        alert('Failed AEQ Call');
     })
     .always( function() {
         $.unblockUI();
@@ -334,4 +290,63 @@ var loadReservations = function() {
     .fail(function () {
         $('#res-body').empty();
     }); 
+}
+
+
+function setUpDatePickers() {
+    //Set Up the Date/Time Picker & Defaults
+    $('#startdatetime').datetimepicker();
+    $('#enddatetime').datetimepicker();
+
+    var now = new moment().startOf('minute');
+    //Set Default Date Values
+    $('#startdatetime').data('DateTimePicker').setDate(now.clone().add(1, 'day').add(1, 'hour').startOf('hour').startOf('minute'));
+    $('#enddatetime').data('DateTimePicker').setDate(now.clone().add(2, 'day').add(1, 'hour').startOf('hour').startOf('minute'));
+
+    //Set Min Dates for Pickers
+    $('#startdatetime').data('DateTimePicker').setMinDate(now.clone().add(-1, 'day').startOf('minute'));
+    $('#enddatetime').data('DateTimePicker').setMinDate(now.clone().add(-1, 'day').startOf('minute'));
+
+    //Register Change Listeners
+    $("#startdatetime")
+        .on("dp.change", function (e) {
+
+            var now = new moment().startOf('minute');
+
+            if (moment(e.date).startOf('minute') < now) {
+
+                $('#startdatetime').data('DateTimePicker').setDate(now.clone());
+            }
+
+            if ( $('#enddatetime').data('DateTimePicker').getDate() < e.date ) {
+
+                $('#enddatetime').data('DateTimePicker').setDate(e.date.clone().startOf('minute').add(1, 'hour'));
+            }
+
+            //GET NEW DATA
+            $.getJSON('/reservation/user/clearcart', function(result) {
+                loadAvailableEquip();
+            });
+    });
+
+    $("#enddatetime").on("dp.change", function (e) {
+
+       var startdt = $('#startdatetime').data('DateTimePicker').getDate().startOf('minute');
+
+            if (moment(e.date).startOf('minute') < startdt) {
+
+                $('#enddatetime').data('DateTimePicker').setDate(startdt.clone().add(1, 'hour'));
+            }
+
+            if ( $('#startdatetime').data('DateTimePicker').getDate() > e.date ) {
+
+                $('#startdatetime').data('DateTimePicker').setDate(e.date.clone().startOf('minute').add(-1, 'hour'));
+            }
+
+        //GET NEW DATA
+        $.getJSON('/reservation/user/clearcart', function(result) {
+                loadAvailableEquip();
+            });
+    });
+
 }
