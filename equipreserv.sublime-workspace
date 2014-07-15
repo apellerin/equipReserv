@@ -224,8 +224,20 @@
 	},
 	"file_history":
 	[
-		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userdash.js",
+		"/T/inetpub/ftproot/mcr835/Import/import.35",
+		"/Z/MedicareEDIShare/SHEBR/05036125.MBX",
+		"/Z/MedicareEDIShare/SHEBR/5010.ERA",
+		"/Z/MedicareEDIShare/SHCVR/5010835A.8459",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/lib/reservation.js",
+		"/C/Users/pellera/Desktop/10187604.txt",
+		"/Z/MedicareEDIShare/SHEBR/10297535.mbx",
+		"/Z/MedicareEDIShare/SHEBR/EM_MBX_101026.001",
+		"/Z/MedicareEDIShare/SHEBR/ERN02606.ZIP.835_C01001",
+		"/Z/EDIStorage/Reimbursement_835/5010835A.2226",
+		"/Z/EDIStorage/Reimbursement_835/5010835A.9909",
+		"/Z/EDIStorage/Reimbursement_835/ERN00620.ERN",
+		"/Z/EDIStorage/Reimbursement_835/ERN00177.ERN",
+		"/C/Users/pellera/Documents/GitHub/equipReserv/public/scripts/page/userdash.js",
 		"/C/Users/pellera/Desktop/availequip.sql",
 		"/C/Users/pellera/AppData/Roaming/Microsoft/VisualStudio/12.0/ActivityLog.xml",
 		"/C/Users/pellera/Documents/GitHub/equipReserv/routes/routes.js",
@@ -336,6 +348,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"CAS*",
+			"ISA*",
+			"st*",
 			"start =",
 			"start",
 			"now =",
